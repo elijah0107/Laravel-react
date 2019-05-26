@@ -1,0 +1,73 @@
+@import "../../App.scss";
+
+.testimonials {
+  font-family: 'Montserrat', sans-serif;
+  padding: 40px;
+  color: #434343;
+  text-align: center;
+
+  .inner {
+    max-width: 100vw;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
+
+    .border {
+      width: 160px;
+      height: 5px;
+      background: #6ab04c;
+      margin: 26px auto;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .col {
+        flex: 33.33%;
+        max-width: 33.33%;
+        box-sizing: border-box;
+        padding: 15px;
+
+        .testimonial {
+          box-shadow: #434343 1px 1px 20px;
+          min-height: 400px;
+          background-color: #fff;
+          padding: 30px;
+
+          img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+          }
+
+          .name {
+            font-size: 0.8*$sizeTextBlock;
+            text-transform: uppercase;
+            margin: 20px 0;
+          }
+
+          .price {
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.1*$sizeTextBlock;
+          }
+        }
+      }
+
+      @media (max-width: 960px) {
+        .col {
+          flex: 100%;
+          max-width: 80%;
+        }
+      }
+      @media (max-width: 600px) {
+        .col {
+          flex: 100%;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}

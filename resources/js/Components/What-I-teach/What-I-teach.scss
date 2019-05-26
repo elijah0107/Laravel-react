@@ -1,0 +1,94 @@
+@import "../../App.scss";
+.what-i-teach {
+  min-height: 600px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 80%;
+
+  .about-teach {
+    position: relative;
+    height: 650px;
+    margin-top: 50px;
+
+    .rose-block {
+      position: absolute;
+      top: -29px;
+      left: -310px;
+      background-color: #e74c3c;
+      width: 40vw;
+      height: 90vh;
+      z-index: -10;
+    }
+
+    .text-block {
+      position: absolute;
+      left: -700px;
+      top: -10px;
+      display: flex;
+      align-items: center;
+      font-size: $sizeTextBlock;
+      background-color: white;
+      padding: 5px;
+      width: 70vw;
+      height: 80vh;
+      border: 1px solid #000000;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .about-teach {
+      position: relative;
+      width: 100%;
+      margin-top: 10vh;
+
+      .text-block {
+        font-size: 0.9*$sizeTextBlock;
+        position: absolute;
+        width: 80vw;
+        left: 50px;
+        height: 90vh;
+      }
+
+      .rose-block {
+        position: absolute;
+        left: 50vw;
+        top: -80px;
+      }
+    }
+  }
+
+  @media (max-width: 500px) {
+    .about-teach {
+      min-height: 800px;
+      .text-block {
+        font-size: 0.83*$sizeTextBlock;
+        left: 5px;
+        width: 90vw;
+        height: 110vh;
+      }
+
+    }
+  }
+
+  @media (max-width: 350px) {
+    .about-teach {
+      position: relative;
+      width: 100%;
+
+      .text-block {
+        font-size: 0.65*$sizeTextBlock;
+        position: absolute;
+        width: 90vw;
+        left: 5px;
+        height: 90vh;
+      }
+
+      .rose-block {
+        position: absolute;
+        left: 50vw;
+        top: -80px;
+      }
+    }
+  }
+}
