@@ -73018,8 +73018,8 @@ module.exports = "/images/whatsapp-logo.png?392ad4544a502022b3c98672b3f36f32";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/roman/Repositorii/Laravel-react/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/roman/Repositorii/Laravel-react/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/roman/Repositorii/laravel-react/react-laravel/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/roman/Repositorii/laravel-react/react-laravel/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
