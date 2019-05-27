@@ -1,0 +1,11 @@
+@import "./MainPageView";
+
+.container {
+  .checkout-form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    font-size: $sizeTextBlock;
+    font-family: 'Poiret One', cursive;
+  }
+}

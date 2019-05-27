@@ -21,7 +21,7 @@ class Header extends Component {
           <div className='block-menu'>
             <ul className={this.state.isOpen && !this.state.modalIsShow ? 'menu menu_active' : 'menu'}>
               <li>
-                <button className="buy" onClick={this.openModalWindow}>купить</button>
+                <a className="buy" onClick={this.openModalWindow} href="/checkout">купить</a>
               </li>
               <li><a href="#about-me" data-hover="обо мне" className="menu-link">обо мне</a></li>
               <li><a href="#about-courses" data-hover="тарифы" className="menu-link">тарифы</a></li>
@@ -32,7 +32,7 @@ class Header extends Component {
                className={this.state.isOpen ? 'button-menu button-menu_active' : 'button-menu'}
                onClick={this.openHeaderMenu}
             >
-              <span className="burger-button"/>
+              <span className="burger-button" />
             </a>
           </div>
         </div>

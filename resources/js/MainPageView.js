@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.scss';
+import './MainPageView.scss';
 import Header from './Components/Header/Header';
 import Motto from "./Components/Motto/Motto";
 import AboutMe from "./Components/About-me/About-me";
@@ -11,7 +11,7 @@ import WhoCanNot from "./Components/Who-can-not/Who-can-not";
 import Footer from "./Components/Footer/Footer";
 import TakeCheckList from "./Components/Take-check-list/Take-check-list";
 
-class App extends Component {
+class MainPageView extends Component {
   constructor(props) {
     super(props);
     this.state = {}
@@ -38,4 +38,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default MainPageView;
