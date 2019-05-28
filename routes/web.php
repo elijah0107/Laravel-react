@@ -17,3 +17,5 @@ Route::get('/', function () {
 Route::get('/checkout', function () {
     return view('checkout');
 });
+
+Auth::routes();
