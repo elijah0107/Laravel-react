@@ -69,4 +69,24 @@ class UserController extends Controller
 
         return response()->json(compact('user'));
     }
+
+    public function notification(Request $request)
+    {
+        $validator = Validator::make($request->json()->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users'
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $user = User::create([
+            'name' => $request->json()->get('name'),
+            'email' => $request->json()->get('email'),
+        ]);
+
+        $token = JWTAuth::fromUser($user);
+
+        return response()->json(compact('user', 'token'), 201);
+    }
 }

@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('register','UserController@register');
 Route::post('login','UserController@login');
 Route::get('profile','UserController@getAuthenticatedUser');
+Route::post('notification','UserController@notification');
 
 Route::middleware('auth:api')->get('/user', function (Request $request){
     return $request->user();
