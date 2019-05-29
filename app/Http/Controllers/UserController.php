@@ -43,7 +43,7 @@ class UserController extends Controller
         $credentials = $request->json()->all();
 
         try {
-            if (!$token == JWTAuth::attempt($credentials)) {
+            if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json(['error' => 'invalid_credentials'], 400);
             }
         } catch (JWTException $e) {
@@ -55,8 +55,8 @@ class UserController extends Controller
     public function getAuthenticatedUser()
     {
         try {
-            if (!$user == JWTAuth::parseToken()->authenticate()) {
-                return \response()->json(['user_not_found'], 404);
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
             }
         } catch (TokenExpiredException $e) {
             return response()->json(['token_expired'], $e->getCode());
