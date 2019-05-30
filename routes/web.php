@@ -19,7 +19,7 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-Route::get('/api/users', function () {
-    $users = App\Notification::all();
-    return view('notice', compact('users'));
-});
+Route::get('api/users', 'NotificationController@allUsers');
+
+
+

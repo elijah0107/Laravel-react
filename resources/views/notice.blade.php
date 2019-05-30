@@ -12,6 +12,13 @@
 </head>
 <body>
 <div id="notice"></div>
+<div>
+    <ul>
+        <?php foreach ($users as $user): ?>
+            <li><?= $user; ?></li>
+        <?php endforeach ?>
+    </ul>
+</div>
 <script src="/js/app.js"></script>
 </body>
 </html>
