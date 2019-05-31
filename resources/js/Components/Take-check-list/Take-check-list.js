@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import './Take-check-list.scss'
+import axios from 'axios';
 
 class TakeCheckList extends Component {
   constructor(props) {
@@ -7,8 +8,25 @@ class TakeCheckList extends Component {
     this.state = {
       isOpenCheckListPopup: false,
       isButton: false,
+      user: {
+        email,
+        name,
+      }
     }
   };
+  getData() {
+    axios.get('/api/users', {
+      params: {
+        user: this.state.user
+      }
+    })
+      .then(function (response) {
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
   render() {
     return (
       <Fragment>
@@ -56,6 +74,12 @@ class TakeCheckList extends Component {
     )
   }
 
+  onChange = () => {
+    this.setState({user: {
+        email,
+        name,
+      }})
+  };
   openCheckList = () => {
     this.setState({isOpenCheckListPopup: !this.state.isOpenCheckListPopup})
   };

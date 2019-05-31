@@ -13,11 +13,15 @@
 <body>
 <div id="notice"></div>
 <div>
-    <ul>
-        <?php foreach ($users as $user): ?>
-            <li><?= $user; ?></li>
-        <?php endforeach ?>
-    </ul>
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 </div>
 <script src="/js/app.js"></script>
 </body>

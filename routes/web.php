@@ -19,7 +19,8 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-Route::get('api/users', 'NotificationController@allUsers');
+Route::get('api/users', 'NotificationController@create');
+Route::post('api', 'NotificationController@store');
 
 
 
