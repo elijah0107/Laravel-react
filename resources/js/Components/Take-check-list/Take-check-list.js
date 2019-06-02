@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import './Take-check-list.scss'
-import axios from 'axios';
+import { connect, sendEmail } from './connectApi'
 
 class TakeCheckList extends Component {
   constructor(props) {
@@ -8,32 +8,19 @@ class TakeCheckList extends Component {
     this.state = {
       isOpenCheckListPopup: false,
       isButton: false,
-      user: {
-        email,
-        name,
-      }
+      email: '',
+      name: '',
+      errors: {}
     }
   };
-  getData() {
-    axios.get('/api/users', {
-      params: {
-        user: this.state.user
-      }
-    })
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-  }
+
   render() {
     return (
       <Fragment>
         {this.state.isOpenCheckListPopup && (
           <div className='container' onClick={this.closeCheckList}>
             <div className='check-list-form'>
-              <form className='form-action'>
+              <form className='form-action' onSubmit={this.onSubmit}>
                 <legend>Для получения чек листа введите ваши данные</legend>
                 <div className='input'>
                   <label htmlFor=''>
@@ -41,8 +28,10 @@ class TakeCheckList extends Component {
                   </label>
                   <input
                     onChange={this.onChange}
-                    type='email'
                     required
+                    name='email'
+                    placeholder='Ваше e-mail'
+                    value={this.state.email}
                   />
                 </div>
                 <div className='input'>
@@ -51,11 +40,13 @@ class TakeCheckList extends Component {
                   </label>
                   <input
                     onChange={this.onChange}
-                    type='name'
                     required
+                    name='name'
+                    placeholder='Ваше имя'
+                    value={this.state.name}
                   />
                 </div>
-                <button type='submit' className='submit-button' onClick={this.postData}>Отправить</button>
+                <button type='submit' className='submit-button' >Отправить</button>
               </form>
             </div>
           </div>
@@ -74,11 +65,37 @@ class TakeCheckList extends Component {
     )
   }
 
-  onChange = () => {
-    this.setState({user: {
-        email,
-        name,
-      }})
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  };
+  onSubmit = e => {
+    e.preventDefault();
+
+    const user = {
+      email: this.state.email,
+      name: this.state.name,
+    };
+    let needToSend = false;
+    connect(user).then(res => {
+      if (res) {
+        needToSend = true
+      }
+    });
+    if (needToSend) {
+      this.send();
+    }
+  };
+  send = () => {
+    const user = {
+      email: this.state.email,
+    };
+    sendEmail(user).then(res => {
+      if(res) {
+        console.log('email отправлен')
+      }
+    })
   };
   openCheckList = () => {
     this.setState({isOpenCheckListPopup: !this.state.isOpenCheckListPopup})
