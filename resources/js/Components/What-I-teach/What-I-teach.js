@@ -6,7 +6,7 @@ const WhatITeach = () => {
     <section className="what-i-teach" id="teach">
       <div className="about-teach">
         <div className="text-block">
-          <p className="text-about-school">
+          <div className="text-about-school">
             На курсе мы осветим эти темы
             <ol>
               <li>Популярные диеты и принцип их работы, почему эффект только временный;</li>
@@ -18,7 +18,7 @@ const WhatITeach = () => {
               <li>Популярные мифы: аутофагия, углеводы после 16:00, холестерин, дробное питание</li>
             </ol>
             Всего 4 вебинара и авторские материалы, которые останутся у вас навсегда
-          </p>
+          </div>
         </div>
         <div className="rose-block"/>
       </div>

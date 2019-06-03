@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import './Take-check-list.scss'
 import { connect, sendEmail } from './connectApi'
+import axios from 'axios';
 
 class TakeCheckList extends Component {
   constructor(props) {
@@ -11,7 +12,9 @@ class TakeCheckList extends Component {
       email: '',
       name: '',
       errors: '',
-    }
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   };
 
   render() {
@@ -20,7 +23,7 @@ class TakeCheckList extends Component {
         {this.state.isOpenCheckListPopup && (
           <div className='container' onClick={this.closeCheckList}>
             <div className='check-list-form'>
-              <form className='form-action' onSubmit={this.onSubmit}>
+              <form className='form-action' noValidate onSubmit={this.onTestSubmit}>
                 <legend>Для получения чек листа введите ваши данные</legend>
                 <div className='input'>
                   <label htmlFor=''>
@@ -67,12 +70,12 @@ class TakeCheckList extends Component {
       </Fragment>
     )
   }
-  onChange = e => {
+  onChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     })
   };
-  onSubmit = e => {
+  onSubmit(e) {
     e.preventDefault();
 
     const user = {
@@ -80,17 +83,40 @@ class TakeCheckList extends Component {
       name: this.state.name,
     };
     let needToSend = false;
-    connect(user).then(res => {
-      this.setState({ errors: res });
-      if (res) {
+    connect(user)
+      .then(response => {
+      this.setState({ errors: response });
+      if (response) {
         needToSend = true;
       }
-      console.log(needToSend)
+      console.log(needToSend, this.state.errors, response)
     });
     if (needToSend) {
       // this.send();
     }
   };
+
+  onTestSubmit(e) {
+    e.preventDefault();
+    const user = {
+      email: this.state.email,
+      name: this.state.name,
+    };
+    axios
+      .post('api/notice', {
+        email: user.email,
+        name: user.name,
+      }, {
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(res => {
+        localStorage.setItem('usertoken', res.data.token);
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      });
+  }
   send = () => {
     const user = {
       email: this.state.email,

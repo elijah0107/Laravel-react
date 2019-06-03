@@ -10,6 +10,7 @@ export const connect = user => {
         })
         .then(res => {
             localStorage.setItem('usertoken', res.data.token);
+
         })
         .catch(err => {
             console.log(err)

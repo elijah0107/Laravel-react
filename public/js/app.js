@@ -72254,6 +72254,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Take_check_list_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Take-check-list.scss */ "./resources/js/Components/Take-check-list/Take-check-list.scss");
 /* harmony import */ var _Take_check_list_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Take_check_list_scss__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _connectApi__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./connectApi */ "./resources/js/Components/Take-check-list/connectApi.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -72278,6 +72280,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var TakeCheckList =
 /*#__PURE__*/
 function (_Component) {
@@ -72289,33 +72292,6 @@ function (_Component) {
     _classCallCheck(this, TakeCheckList);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TakeCheckList).call(this, props));
-
-    _defineProperty(_assertThisInitialized(_this), "onChange", function (e) {
-      _this.setState(_defineProperty({}, e.target.name, e.target.value));
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "onSubmit", function (e) {
-      e.preventDefault();
-      var user = {
-        email: _this.state.email,
-        name: _this.state.name
-      };
-      var needToSend = false;
-      Object(_connectApi__WEBPACK_IMPORTED_MODULE_2__["connect"])(user).then(function (res) {
-        _this.setState({
-          errors: res
-        });
-
-        if (res) {
-          needToSend = true;
-        }
-
-        console.log(needToSend);
-      });
-
-      if (needToSend) {// this.send();
-      }
-    });
 
     _defineProperty(_assertThisInitialized(_this), "send", function () {
       var user = {
@@ -72359,6 +72335,8 @@ function (_Component) {
       name: '',
       errors: ''
     };
+    _this.onChange = _this.onChange.bind(_assertThisInitialized(_this));
+    _this.onSubmit = _this.onSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -72372,7 +72350,8 @@ function (_Component) {
         className: "check-list-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "form-action",
-        onSubmit: this.onSubmit
+        noValidate: true,
+        onSubmit: this.onTestSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("legend", null, "\u0414\u043B\u044F \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u0447\u0435\u043A \u043B\u0438\u0441\u0442\u0430 \u0432\u0432\u0435\u0434\u0438\u0442\u0435 \u0432\u0430\u0448\u0438 \u0434\u0430\u043D\u043D\u044B\u0435"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -72406,6 +72385,59 @@ function (_Component) {
         className: "open-button",
         onClick: this.closeButton
       }, "\xBB"));
+    }
+  }, {
+    key: "onChange",
+    value: function onChange(e) {
+      this.setState(_defineProperty({}, e.target.name, e.target.value));
+    }
+  }, {
+    key: "onSubmit",
+    value: function onSubmit(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      var user = {
+        email: this.state.email,
+        name: this.state.name
+      };
+      var needToSend = false;
+      Object(_connectApi__WEBPACK_IMPORTED_MODULE_2__["connect"])(user).then(function (response) {
+        _this2.setState({
+          errors: response
+        });
+
+        if (response) {
+          needToSend = true;
+        }
+
+        console.log(needToSend, _this2.state.errors, response);
+      });
+
+      if (needToSend) {// this.send();
+      }
+    }
+  }, {
+    key: "onTestSubmit",
+    value: function onTestSubmit(e) {
+      e.preventDefault();
+      var user = {
+        email: this.state.email,
+        name: this.state.name
+      };
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('api/notice', {
+        email: user.email,
+        name: user.name
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function (res) {
+        localStorage.setItem('usertoken', res.data.token);
+        console.log(res);
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   }]);
 
@@ -72514,7 +72546,7 @@ var WhatITeach = function WhatITeach() {
     className: "about-teach"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-block"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-about-school"
   }, "\u041D\u0430 \u043A\u0443\u0440\u0441\u0435 \u043C\u044B \u043E\u0441\u0432\u0435\u0442\u0438\u043C \u044D\u0442\u0438 \u0442\u0435\u043C\u044B", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "\u041F\u043E\u043F\u0443\u043B\u044F\u0440\u043D\u044B\u0435 \u0434\u0438\u0435\u0442\u044B \u0438 \u043F\u0440\u0438\u043D\u0446\u0438\u043F \u0438\u0445 \u0440\u0430\u0431\u043E\u0442\u044B, \u043F\u043E\u0447\u0435\u043C\u0443 \u044D\u0444\u0444\u0435\u043A\u0442 \u0442\u043E\u043B\u044C\u043A\u043E \u0432\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0439;"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "\u041D\u0430 \u0447\u0442\u043E \u0442\u0440\u0430\u0442\u044F\u0442\u0441\u044F \u043A\u0430\u043B\u043E\u0440\u0438\u0438;"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "\u041A\u0430\u043A \u043F\u0440\u043E\u0438\u0441\u0445\u043E\u0434\u0438\u0442 \u043F\u043E\u0445\u0443\u0434\u0435\u043D\u0438\u0435/\u043D\u0430\u0431\u043E\u0440? \u0412 \u0447\u0435\u043C \u0438\u0437\u043C\u0435\u0440\u044F\u0435\u0442\u0441\u044F \u044D\u043D\u0435\u0440\u0433\u0438\u044F;"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "\u041A\u0430\u043A \u043F\u043E\u0441\u0447\u0438\u0442\u0430\u0442\u044C \u043A\u0430\u043B\u043E\u0440\u0438\u0438 \u0438\u043C\u0435\u043D\u043D\u043E \u0442\u0435\u0431\u0435, \u043D\u0430 \u0447\u0442\u043E \u0441\u0442\u043E\u0438\u0442 \u043E\u0431\u0440\u0430\u0442\u0438\u0442\u044C \u0432\u043D\u0438\u043C\u0430\u043D\u0438\u0435. \u041F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u044B \u0434\u043B\u044F \u043F\u043E\u0434\u0441\u0447\u0435\u0442\u0430;"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "\u0411\u0435\u043B\u043A\u0438, \u0436\u0438\u0440\u044B, \u0443\u0433\u043B\u0435\u0432\u043E\u0434\u044B. \u0427\u0442\u043E \u044D\u0442\u043E \u0442\u0430\u043A\u043E\u0435 \u0438 \u0433\u0434\u0435 \u0431\u0440\u0430\u0442\u044C?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "\u0421\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442 \u043B\u0438 \xAB\u0443\u0441\u043A\u043E\u0440\u0435\u043D\u043D\u044B\u0439\xBB \u0438\u043B\u0438 \xAB\u0437\u0430\u043C\u0435\u0434\u043B\u0435\u043D\u043D\u044B\u0439\xBB \u043E\u0431\u043C\u0435\u043D \u0432\u0435\u0449\u0435\u0441\u0442\u0432. \u0420\u0430\u0437\u043D\u0438\u0446\u0430 \u0430\u043F\u043F\u0435\u0442\u0438\u0442\u0430, \u0430\u0434\u0430\u043F\u0442\u0430\u0446\u0438\u044F \u043A \u0434\u0438\u0435\u0442\u0435."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "\u041F\u043E\u043F\u0443\u043B\u044F\u0440\u043D\u044B\u0435 \u043C\u0438\u0444\u044B: \u0430\u0443\u0442\u043E\u0444\u0430\u0433\u0438\u044F, \u0443\u0433\u043B\u0435\u0432\u043E\u0434\u044B \u043F\u043E\u0441\u043B\u0435 16:00, \u0445\u043E\u043B\u0435\u0441\u0442\u0435\u0440\u0438\u043D, \u0434\u0440\u043E\u0431\u043D\u043E\u0435 \u043F\u0438\u0442\u0430\u043D\u0438\u0435")), "\u0412\u0441\u0435\u0433\u043E 4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430 \u0438 \u0430\u0432\u0442\u043E\u0440\u0441\u043A\u0438\u0435 \u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u044B, \u043A\u043E\u0442\u043E\u0440\u044B\u0435 \u043E\u0441\u0442\u0430\u043D\u0443\u0442\u0441\u044F \u0443 \u0432\u0430\u0441 \u043D\u0430\u0432\u0441\u0435\u0433\u0434\u0430")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "rose-block"
