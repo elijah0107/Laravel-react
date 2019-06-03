@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import './Take-check-list.scss'
-import { connect, sendEmail } from './connectApi'
+import { sendEmail } from './connectApi'
 import axios from 'axios';
 
 class TakeCheckList extends Component {
@@ -14,7 +14,6 @@ class TakeCheckList extends Component {
       errors: '',
     };
     this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   };
 
   render() {
@@ -109,12 +108,15 @@ class TakeCheckList extends Component {
       })
       .then(res => {
         localStorage.setItem('usertoken', res.data.token);
-        console.log(res.data)
+        console.log(res.data);
+        if (res) {
+            this.send();
+        }
       })
       .catch(err => {
         console.log(err)
       });
-  }
+  };
   send = () => {
     const user = {
       email: this.state.email,

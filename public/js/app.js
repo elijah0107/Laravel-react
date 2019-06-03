@@ -72232,7 +72232,6 @@ function (_Component) {
       e.preventDefault();
       var email = _this.state.email;
       var name = _this.state.name;
-      console.log(_this.state.email, email, name, 123);
       var user = {
         email: email,
         name: name
@@ -72243,7 +72242,11 @@ function (_Component) {
         }
       }).then(function (res) {
         localStorage.setItem('usertoken', res.data.token);
-        console.log(res);
+        console.log(res.data);
+
+        if (res) {
+          _this.send();
+        }
       })["catch"](function (err) {
         console.log(err);
       });
@@ -72292,7 +72295,6 @@ function (_Component) {
       errors: ''
     };
     _this.onChange = _this.onChange.bind(_assertThisInitialized(_this));
-    _this.onSubmit = _this.onSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -72358,7 +72360,7 @@ function (_Component) {
         name: this.state.name
       };
       var needToSend = false;
-      Object(_connectApi__WEBPACK_IMPORTED_MODULE_2__["connect"])(user).then(function (response) {
+      connect(user).then(function (response) {
         _this2.setState({
           errors: response
         });
