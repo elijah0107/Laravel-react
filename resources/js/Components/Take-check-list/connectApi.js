@@ -13,14 +13,12 @@ export const connect = user => {
         })
         .catch(err => {
             console.log(err)
-        })
+        });
 };
 
 export const sendEmail = user => {
     return axios
-        .post('api/send', {
-            email: user.email,
-        }, {
+        .post('api/send', { email: user.email }, {
             headers: { 'Content-Type': 'application/json' }
         })
         .then(res => {

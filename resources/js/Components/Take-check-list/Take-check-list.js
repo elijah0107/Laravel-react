@@ -10,7 +10,7 @@ class TakeCheckList extends Component {
       isButton: false,
       email: '',
       name: '',
-      errors: {}
+      errors: '',
     }
   };
 
@@ -47,6 +47,9 @@ class TakeCheckList extends Component {
                   />
                 </div>
                 <button type='submit' className='submit-button' >Отправить</button>
+                {this.state.errors && (
+                  <div>{this.state.errors}</div>
+                )}
               </form>
             </div>
           </div>
@@ -64,7 +67,6 @@ class TakeCheckList extends Component {
       </Fragment>
     )
   }
-
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -79,12 +81,14 @@ class TakeCheckList extends Component {
     };
     let needToSend = false;
     connect(user).then(res => {
+      this.setState({ errors: res });
       if (res) {
-        needToSend = true
+        needToSend = true;
       }
+      console.log(needToSend)
     });
     if (needToSend) {
-      this.send();
+      // this.send();
     }
   };
   send = () => {
@@ -95,7 +99,7 @@ class TakeCheckList extends Component {
       if(res) {
         console.log('email отправлен')
       }
-    })
+    });
   };
   openCheckList = () => {
     this.setState({isOpenCheckListPopup: !this.state.isOpenCheckListPopup})
