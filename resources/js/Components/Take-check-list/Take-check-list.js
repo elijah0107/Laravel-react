@@ -95,23 +95,21 @@ class TakeCheckList extends Component {
       // this.send();
     }
   };
-
-  onTestSubmit(e) {
+  onTestSubmit = e => {
     e.preventDefault();
+    const email = this.state.email;
+    const name = this.state.name;
     const user = {
-      email: this.state.email,
-      name: this.state.name,
+      email,
+      name
     };
     axios
-      .post('api/notice', {
-        email: user.email,
-        name: user.name,
-      }, {
+      .post('api/notice', user, {
         headers: { 'Content-Type': 'application/json' }
       })
       .then(res => {
         localStorage.setItem('usertoken', res.data.token);
-        console.log(res)
+        console.log(res.data)
       })
       .catch(err => {
         console.log(err)
