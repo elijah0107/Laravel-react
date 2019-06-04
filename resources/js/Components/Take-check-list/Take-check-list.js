@@ -48,10 +48,10 @@ class TakeCheckList extends Component {
                     value={this.state.name}
                   />
                 </div>
-                <button type='submit' className='submit-button' >Отправить</button>
                 {this.state.errors && (
-                  <div>{this.state.errors}</div>
+                  <div className='error-message'>{this.state.errors}</div>
                 )}
+                <button type='submit' className='submit-button' >Отправить</button>
               </form>
             </div>
           </div>
@@ -110,7 +110,8 @@ class TakeCheckList extends Component {
         localStorage.setItem('usertoken', res.data.token);
         console.log(res.data);
         if (res) {
-            this.send();
+          this.setState({errors: res.data});
+          this.send();
         }
       })
       .catch(err => {
