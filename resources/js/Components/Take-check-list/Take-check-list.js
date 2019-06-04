@@ -74,26 +74,6 @@ class TakeCheckList extends Component {
       [e.target.name]: e.target.value
     })
   };
-  onSubmit(e) {
-    e.preventDefault();
-
-    const user = {
-      email: this.state.email,
-      name: this.state.name,
-    };
-    let needToSend = false;
-    connect(user)
-      .then(response => {
-      this.setState({ errors: response });
-      if (response) {
-        needToSend = true;
-      }
-      console.log(needToSend, this.state.errors, response)
-    });
-    if (needToSend) {
-      // this.send();
-    }
-  };
   onTestSubmit = e => {
     e.preventDefault();
     const email = this.state.email;
@@ -102,15 +82,19 @@ class TakeCheckList extends Component {
       email,
       name
     };
+    const closeAndRemove = () => {
+      this.setState({ isOpenCheckListPopup: false })
+      this.setState({ errors: '' })
+    };
     axios
       .post('api/notice', user, {
         headers: { 'Content-Type': 'application/json' }
       })
       .then(res => {
         localStorage.setItem('usertoken', res.data.token);
-        console.log(res.data);
-        if (res) {
+        if (res && res.data === 'Данные записались') {
           this.setState({errors: res.data});
+          setTimeout(closeAndRemove, 2000);
           this.send();
         }
       })

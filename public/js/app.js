@@ -62424,7 +62424,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72236,15 +72236,31 @@ function (_Component) {
         email: email,
         name: name
       };
+
+      var closeAndRemove = function closeAndRemove() {
+        _this.setState({
+          isOpenCheckListPopup: false
+        });
+
+        _this.setState({
+          errors: ''
+        });
+      };
+
       axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('api/notice', user, {
         headers: {
           'Content-Type': 'application/json'
         }
       }).then(function (res) {
         localStorage.setItem('usertoken', res.data.token);
-        console.log(res.data);
 
-        if (res) {
+        if (res && res.data === 'Данные записались') {
+          _this.setState({
+            errors: res.data
+          });
+
+          setTimeout(closeAndRemove, 2000);
+
           _this.send();
         }
       })["catch"](function (err) {
@@ -72330,10 +72346,12 @@ function (_Component) {
         name: "name",
         placeholder: "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F",
         value: this.state.name
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), this.state.errors && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error-message"
+      }, this.state.errors), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "submit-button"
-      }, "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C"), this.state.errors && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.errors)))), !this.state.isButton && !this.state.isOpenCheckListPopup && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C")))), !this.state.isButton && !this.state.isOpenCheckListPopup && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "button-check-list",
         onClick: this.openCheckList
       }, "\u041F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0448\u043F\u0430\u0440\u0433\u0430\u043B\u043A\u0443 '\u041F\u043E\u0447\u0435\u043C\u0443 \u044F \u043D\u0435 \u0445\u0443\u0434\u0435\u044E?'"), !this.state.isButton && !this.state.isOpenCheckListPopup && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -72348,32 +72366,6 @@ function (_Component) {
     key: "onChange",
     value: function onChange(e) {
       this.setState(_defineProperty({}, e.target.name, e.target.value));
-    }
-  }, {
-    key: "onSubmit",
-    value: function onSubmit(e) {
-      var _this2 = this;
-
-      e.preventDefault();
-      var user = {
-        email: this.state.email,
-        name: this.state.name
-      };
-      var needToSend = false;
-      connect(user).then(function (response) {
-        _this2.setState({
-          errors: response
-        });
-
-        if (response) {
-          needToSend = true;
-        }
-
-        console.log(needToSend, _this2.state.errors, response);
-      });
-
-      if (needToSend) {// this.send();
-      }
     }
   }]);
 
