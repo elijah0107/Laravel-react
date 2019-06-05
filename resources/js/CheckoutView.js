@@ -8,7 +8,6 @@ class MainPageView extends Component {
   };
 
   render() {
-    {classnames}
     return (
       <div className='container'>
         <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml" className="checkout-form">
