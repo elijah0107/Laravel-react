@@ -16,9 +16,9 @@
     align-items: center;
     position: fixed;
     box-shadow: 0 0 20px black;
-    height: 50vh;
+    height: 22em;
     border-radius: 8px;
-    width: 50vw;
+    width: 22em;
     font-size: 25px;
     background: rgba(241, 241, 241, 1);
     z-index: 200;
@@ -43,15 +43,29 @@
         padding: 5px;
       }
     }
-  }
-  @media (max-width: 400px) {
-    .check-list-form {
-      width: 80vw;
+    .error-message {
+      color: red;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
     }
   }
+
+  @media (max-width: 800px) {
+    .check-list-form {
+      width: 70vw;
+      height: 70vh;
+    }
+  }
+
   @media (max-height: 500px) {
     .check-list-form {
       height: 80vh;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .check-list-form {
+      width: 100vw;
     }
   }
 }

@@ -188,7 +188,6 @@ var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/
 var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
 var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
 var createError = __webpack_require__(/*! ../core/createError */ "./node_modules/axios/lib/core/createError.js");
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(/*! ./../helpers/btoa */ "./node_modules/axios/lib/helpers/btoa.js");
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -200,22 +199,6 @@ module.exports = function xhrAdapter(config) {
     }
 
     var request = new XMLHttpRequest();
-    var loadEvent = 'onreadystatechange';
-    var xDomain = false;
-
-    // For IE 8/9 CORS support
-    // Only supports POST and GET calls and doesn't returns the response headers.
-    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
-    if ( true &&
-        typeof window !== 'undefined' &&
-        window.XDomainRequest && !('withCredentials' in request) &&
-        !isURLSameOrigin(config.url)) {
-      request = new window.XDomainRequest();
-      loadEvent = 'onload';
-      xDomain = true;
-      request.onprogress = function handleProgress() {};
-      request.ontimeout = function handleTimeout() {};
-    }
 
     // HTTP basic authentication
     if (config.auth) {
@@ -230,8 +213,8 @@ module.exports = function xhrAdapter(config) {
     request.timeout = config.timeout;
 
     // Listen for ready state
-    request[loadEvent] = function handleLoad() {
-      if (!request || (request.readyState !== 4 && !xDomain)) {
+    request.onreadystatechange = function handleLoad() {
+      if (!request || request.readyState !== 4) {
         return;
       }
 
@@ -248,15 +231,26 @@ module.exports = function xhrAdapter(config) {
       var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
       var response = {
         data: responseData,
-        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
-        status: request.status === 1223 ? 204 : request.status,
-        statusText: request.status === 1223 ? 'No Content' : request.statusText,
+        status: request.status,
+        statusText: request.statusText,
         headers: responseHeaders,
         config: config,
         request: request
       };
 
       settle(resolve, reject, response);
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle browser request cancellation (as opposed to a manual cancellation)
+    request.onabort = function handleAbort() {
+      if (!request) {
+        return;
+      }
+
+      reject(createError('Request aborted', config, 'ECONNABORTED', request));
 
       // Clean up request
       request = null;
@@ -289,8 +283,8 @@ module.exports = function xhrAdapter(config) {
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
-          cookies.read(config.xsrfCookieName) :
-          undefined;
+        cookies.read(config.xsrfCookieName) :
+        undefined;
 
       if (xsrfValue) {
         requestHeaders[config.xsrfHeaderName] = xsrfValue;
@@ -377,6 +371,7 @@ module.exports = function xhrAdapter(config) {
 var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
 var Axios = __webpack_require__(/*! ./core/Axios */ "./node_modules/axios/lib/core/Axios.js");
+var mergeConfig = __webpack_require__(/*! ./core/mergeConfig */ "./node_modules/axios/lib/core/mergeConfig.js");
 var defaults = __webpack_require__(/*! ./defaults */ "./node_modules/axios/lib/defaults.js");
 
 /**
@@ -406,7 +401,7 @@ axios.Axios = Axios;
 
 // Factory for creating new instances
 axios.create = function create(instanceConfig) {
-  return createInstance(utils.merge(defaults, instanceConfig));
+  return createInstance(mergeConfig(axios.defaults, instanceConfig));
 };
 
 // Expose Cancel & CancelToken
@@ -555,10 +550,11 @@ module.exports = function isCancel(value) {
 "use strict";
 
 
-var defaults = __webpack_require__(/*! ./../defaults */ "./node_modules/axios/lib/defaults.js");
 var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var buildURL = __webpack_require__(/*! ../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
 var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ "./node_modules/axios/lib/core/InterceptorManager.js");
 var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ "./node_modules/axios/lib/core/dispatchRequest.js");
+var mergeConfig = __webpack_require__(/*! ./mergeConfig */ "./node_modules/axios/lib/core/mergeConfig.js");
 
 /**
  * Create a new instance of Axios
@@ -582,13 +578,14 @@ Axios.prototype.request = function request(config) {
   /*eslint no-param-reassign:0*/
   // Allow for axios('example/url'[, config]) a la fetch API
   if (typeof config === 'string') {
-    config = utils.merge({
-      url: arguments[0]
-    }, arguments[1]);
+    config = arguments[1] || {};
+    config.url = arguments[0];
+  } else {
+    config = config || {};
   }
 
-  config = utils.merge(defaults, {method: 'get'}, this.defaults, config);
-  config.method = config.method.toLowerCase();
+  config = mergeConfig(this.defaults, config);
+  config.method = config.method ? config.method.toLowerCase() : 'get';
 
   // Hook up interceptors middleware
   var chain = [dispatchRequest, undefined];
@@ -607,6 +604,11 @@ Axios.prototype.request = function request(config) {
   }
 
   return promise;
+};
+
+Axios.prototype.getUri = function getUri(config) {
+  config = mergeConfig(this.defaults, config);
+  return buildURL(config.url, config.params, config.paramsSerializer).replace(/^\?/, '');
 };
 
 // Provide aliases for supported request methods
@@ -853,9 +855,93 @@ module.exports = function enhanceError(error, config, code, request, response) {
   if (code) {
     error.code = code;
   }
+
   error.request = request;
   error.response = response;
+  error.isAxiosError = true;
+
+  error.toJSON = function() {
+    return {
+      // Standard
+      message: this.message,
+      name: this.name,
+      // Microsoft
+      description: this.description,
+      number: this.number,
+      // Mozilla
+      fileName: this.fileName,
+      lineNumber: this.lineNumber,
+      columnNumber: this.columnNumber,
+      stack: this.stack,
+      // Axios
+      config: this.config,
+      code: this.code
+    };
+  };
   return error;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/mergeConfig.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/core/mergeConfig.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
+
+/**
+ * Config-specific merge-function which creates a new config-object
+ * by merging two configuration objects together.
+ *
+ * @param {Object} config1
+ * @param {Object} config2
+ * @returns {Object} New object resulting from merging config2 to config1
+ */
+module.exports = function mergeConfig(config1, config2) {
+  // eslint-disable-next-line no-param-reassign
+  config2 = config2 || {};
+  var config = {};
+
+  utils.forEach(['url', 'method', 'params', 'data'], function valueFromConfig2(prop) {
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    }
+  });
+
+  utils.forEach(['headers', 'auth', 'proxy'], function mergeDeepProperties(prop) {
+    if (utils.isObject(config2[prop])) {
+      config[prop] = utils.deepMerge(config1[prop], config2[prop]);
+    } else if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (utils.isObject(config1[prop])) {
+      config[prop] = utils.deepMerge(config1[prop]);
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
+
+  utils.forEach([
+    'baseURL', 'transformRequest', 'transformResponse', 'paramsSerializer',
+    'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
+    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress', 'maxContentLength',
+    'validateStatus', 'maxRedirects', 'httpAgent', 'httpsAgent', 'cancelToken',
+    'socketPath'
+  ], function defaultToConfig2(prop) {
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
+
+  return config;
 };
 
 
@@ -882,8 +968,7 @@ var createError = __webpack_require__(/*! ./createError */ "./node_modules/axios
  */
 module.exports = function settle(resolve, reject, response) {
   var validateStatus = response.config.validateStatus;
-  // Note: status is not exposed by XDomainRequest
-  if (!response.status || !validateStatus || validateStatus(response.status)) {
+  if (!validateStatus || validateStatus(response.status)) {
     resolve(response);
   } else {
     reject(createError(
@@ -956,12 +1041,13 @@ function setContentTypeIfUnset(headers, value) {
 
 function getDefaultAdapter() {
   var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(/*! ./adapters/xhr */ "./node_modules/axios/lib/adapters/xhr.js");
-  } else if (typeof process !== 'undefined') {
+  // Only Node.JS has a process variable that is of [[Class]] process
+  if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
     // For node use HTTP adapter
     adapter = __webpack_require__(/*! ./adapters/http */ "./node_modules/axios/lib/adapters/xhr.js");
+  } else if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(/*! ./adapters/xhr */ "./node_modules/axios/lib/adapters/xhr.js");
   }
   return adapter;
 }
@@ -970,6 +1056,7 @@ var defaults = {
   adapter: getDefaultAdapter(),
 
   transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Accept');
     normalizeHeaderName(headers, 'Content-Type');
     if (utils.isFormData(data) ||
       utils.isArrayBuffer(data) ||
@@ -1063,54 +1150,6 @@ module.exports = function bind(fn, thisArg) {
 
 /***/ }),
 
-/***/ "./node_modules/axios/lib/helpers/btoa.js":
-/*!************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/btoa.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// btoa polyfill for IE<10 courtesy https://github.com/davidchambers/Base64.js
-
-var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-
-function E() {
-  this.message = 'String contains an invalid character';
-}
-E.prototype = new Error;
-E.prototype.code = 5;
-E.prototype.name = 'InvalidCharacterError';
-
-function btoa(input) {
-  var str = String(input);
-  var output = '';
-  for (
-    // initialize result and counter
-    var block, charCode, idx = 0, map = chars;
-    // if the next str index does not exist:
-    //   change the mapping table to "="
-    //   check if d has no fractional digits
-    str.charAt(idx | 0) || (map = '=', idx % 1);
-    // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
-    output += map.charAt(63 & block >> 8 - idx % 1 * 8)
-  ) {
-    charCode = str.charCodeAt(idx += 3 / 4);
-    if (charCode > 0xFF) {
-      throw new E();
-    }
-    block = block << 8 | charCode;
-  }
-  return output;
-}
-
-module.exports = btoa;
-
-
-/***/ }),
-
 /***/ "./node_modules/axios/lib/helpers/buildURL.js":
 /*!****************************************************!*\
   !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
@@ -1180,6 +1219,11 @@ module.exports = function buildURL(url, params, paramsSerializer) {
   }
 
   if (serializedParams) {
+    var hashmarkIndex = url.indexOf('#');
+    if (hashmarkIndex !== -1) {
+      url = url.slice(0, hashmarkIndex);
+    }
+
     url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
   }
 
@@ -1231,50 +1275,50 @@ module.exports = (
   utils.isStandardBrowserEnv() ?
 
   // Standard browser envs support document.cookie
-  (function standardBrowserEnv() {
-    return {
-      write: function write(name, value, expires, path, domain, secure) {
-        var cookie = [];
-        cookie.push(name + '=' + encodeURIComponent(value));
+    (function standardBrowserEnv() {
+      return {
+        write: function write(name, value, expires, path, domain, secure) {
+          var cookie = [];
+          cookie.push(name + '=' + encodeURIComponent(value));
 
-        if (utils.isNumber(expires)) {
-          cookie.push('expires=' + new Date(expires).toGMTString());
+          if (utils.isNumber(expires)) {
+            cookie.push('expires=' + new Date(expires).toGMTString());
+          }
+
+          if (utils.isString(path)) {
+            cookie.push('path=' + path);
+          }
+
+          if (utils.isString(domain)) {
+            cookie.push('domain=' + domain);
+          }
+
+          if (secure === true) {
+            cookie.push('secure');
+          }
+
+          document.cookie = cookie.join('; ');
+        },
+
+        read: function read(name) {
+          var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+          return (match ? decodeURIComponent(match[3]) : null);
+        },
+
+        remove: function remove(name) {
+          this.write(name, '', Date.now() - 86400000);
         }
-
-        if (utils.isString(path)) {
-          cookie.push('path=' + path);
-        }
-
-        if (utils.isString(domain)) {
-          cookie.push('domain=' + domain);
-        }
-
-        if (secure === true) {
-          cookie.push('secure');
-        }
-
-        document.cookie = cookie.join('; ');
-      },
-
-      read: function read(name) {
-        var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
-        return (match ? decodeURIComponent(match[3]) : null);
-      },
-
-      remove: function remove(name) {
-        this.write(name, '', Date.now() - 86400000);
-      }
-    };
-  })() :
+      };
+    })() :
 
   // Non standard browser env (web workers, react-native) lack needed support.
-  (function nonStandardBrowserEnv() {
-    return {
-      write: function write() {},
-      read: function read() { return null; },
-      remove: function remove() {}
-    };
-  })()
+    (function nonStandardBrowserEnv() {
+      return {
+        write: function write() {},
+        read: function read() { return null; },
+        remove: function remove() {}
+      };
+    })()
 );
 
 
@@ -1323,64 +1367,64 @@ module.exports = (
 
   // Standard browser envs have full support of the APIs needed to test
   // whether the request URL is of the same origin as current location.
-  (function standardBrowserEnv() {
-    var msie = /(msie|trident)/i.test(navigator.userAgent);
-    var urlParsingNode = document.createElement('a');
-    var originURL;
+    (function standardBrowserEnv() {
+      var msie = /(msie|trident)/i.test(navigator.userAgent);
+      var urlParsingNode = document.createElement('a');
+      var originURL;
 
-    /**
+      /**
     * Parse a URL to discover it's components
     *
     * @param {String} url The URL to be parsed
     * @returns {Object}
     */
-    function resolveURL(url) {
-      var href = url;
+      function resolveURL(url) {
+        var href = url;
 
-      if (msie) {
+        if (msie) {
         // IE needs attribute set twice to normalize properties
+          urlParsingNode.setAttribute('href', href);
+          href = urlParsingNode.href;
+        }
+
         urlParsingNode.setAttribute('href', href);
-        href = urlParsingNode.href;
+
+        // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+        return {
+          href: urlParsingNode.href,
+          protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+          host: urlParsingNode.host,
+          search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+          hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+          hostname: urlParsingNode.hostname,
+          port: urlParsingNode.port,
+          pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+            urlParsingNode.pathname :
+            '/' + urlParsingNode.pathname
+        };
       }
 
-      urlParsingNode.setAttribute('href', href);
+      originURL = resolveURL(window.location.href);
 
-      // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
-      return {
-        href: urlParsingNode.href,
-        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
-        host: urlParsingNode.host,
-        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
-        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
-        hostname: urlParsingNode.hostname,
-        port: urlParsingNode.port,
-        pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
-                  urlParsingNode.pathname :
-                  '/' + urlParsingNode.pathname
-      };
-    }
-
-    originURL = resolveURL(window.location.href);
-
-    /**
+      /**
     * Determine if a URL shares the same origin as the current location
     *
     * @param {String} requestURL The URL to test
     * @returns {boolean} True if URL shares the same origin, otherwise false
     */
-    return function isURLSameOrigin(requestURL) {
-      var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
-      return (parsed.protocol === originURL.protocol &&
+      return function isURLSameOrigin(requestURL) {
+        var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+        return (parsed.protocol === originURL.protocol &&
             parsed.host === originURL.host);
-    };
-  })() :
+      };
+    })() :
 
   // Non standard browser envs (web workers, react-native) lack needed support.
-  (function nonStandardBrowserEnv() {
-    return function isURLSameOrigin() {
-      return true;
-    };
-  })()
+    (function nonStandardBrowserEnv() {
+      return function isURLSameOrigin() {
+        return true;
+      };
+    })()
 );
 
 
@@ -1525,7 +1569,7 @@ module.exports = function spread(callback) {
 
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1701,9 +1745,13 @@ function trim(str) {
  *
  * react-native:
  *  navigator.product -> 'ReactNative'
+ * nativescript
+ *  navigator.product -> 'NativeScript' or 'NS'
  */
 function isStandardBrowserEnv() {
-  if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+  if (typeof navigator !== 'undefined' && (navigator.product === 'ReactNative' ||
+                                           navigator.product === 'NativeScript' ||
+                                           navigator.product === 'NS')) {
     return false;
   }
   return (
@@ -1785,6 +1833,32 @@ function merge(/* obj1, obj2, obj3, ... */) {
 }
 
 /**
+ * Function equal to merge with the difference being that no reference
+ * to original objects is kept.
+ *
+ * @see merge
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+function deepMerge(/* obj1, obj2, obj3, ... */) {
+  var result = {};
+  function assignValue(val, key) {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
+      result[key] = deepMerge(result[key], val);
+    } else if (typeof val === 'object') {
+      result[key] = deepMerge({}, val);
+    } else {
+      result[key] = val;
+    }
+  }
+
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
  * Extends object a by mutably adding to it the properties of object b.
  *
  * @param {Object} a The object to be extended
@@ -1822,9 +1896,32 @@ module.exports = {
   isStandardBrowserEnv: isStandardBrowserEnv,
   forEach: forEach,
   merge: merge,
+  deepMerge: deepMerge,
   extend: extend,
   trim: trim
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+module.exports = function isBuffer (obj) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
 
 
 /***/ }),
@@ -6582,7 +6679,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.container .checkout-form {\n  display: flex;\n  flex-direction: column;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-family: \"Poiret One\", cursive;\n}", ""]);
+exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.checkout-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.checkout-container .checkout-form {\n  display: flex;\n  flex-direction: column;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-family: \"Poiret One\", cursive;\n}\n.checkout-container .checkout-form .change-sum {\n  margin: 30px;\n}\n.checkout-container .checkout-form .change-sum .value {\n  background-color: white;\n  border: 1px solid black;\n  padding: 8px;\n}", ""]);
 
 // exports
 
@@ -6738,7 +6835,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".container {\n  position: fixed;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 100;\n  background: rgba(0, 0, 0, 0.5);\n  max-width: 100%;\n}\n.container .check-list-form {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: fixed;\n  box-shadow: 0 0 20px black;\n  height: 50vh;\n  border-radius: 8px;\n  width: 50vw;\n  font-size: 25px;\n  background: #f1f1f1;\n  z-index: 200;\n}\n.container .check-list-form .form-action {\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  justify-content: center;\n  text-align: center;\n}\n.container .check-list-form .form-action .input {\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  margin: 10px 0;\n}\n.container .check-list-form .form-action .submit-button {\n  background: #e74c3c;\n  font-size: 25px;\n  font-family: \"Poiret One\", cursive;\n  color: white;\n  border: none;\n  padding: 5px;\n}\n@media (max-width: 400px) {\n  .container .check-list-form {\n    width: 80vw;\n  }\n}\n@media (max-height: 500px) {\n  .container .check-list-form {\n    height: 80vh;\n  }\n}\n\n.button-check-list {\n  border: none;\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg);\n  position: fixed;\n  top: 50%;\n  left: 0;\n  margin-left: -114px;\n  font-family: \"Poiret One\", cursive;\n  font-size: 20px;\n  background: #e74c3c;\n  color: white;\n  text-transform: uppercase;\n  width: 280px;\n  z-index: 400;\n  cursor: pointer;\n}\n.button-check-list:hover {\n  color: #434343;\n}\n\n.close-button {\n  position: fixed;\n  top: 50%;\n  left: 0;\n  margin-left: 34px;\n  margin-top: 148px;\n  font-size: 55px;\n  color: black;\n  cursor: pointer;\n  z-index: 400;\n}\n.close-button:hover {\n  color: #434343;\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg);\n  transition: 1s;\n}\n\n.open-button {\n  position: fixed;\n  top: 50%;\n  left: 0;\n  margin-left: 10px;\n  font-size: 55px;\n  color: black;\n  cursor: pointer;\n  z-index: 400;\n  -webkit-animation: snake 0.5s infinite alternate;\n          animation: snake 0.5s infinite alternate;\n}\n.open-button:hover {\n  -webkit-animation: none;\n          animation: none;\n}\n\n@-webkit-keyframes snake {\n  from {\n    color: darkblue;\n  }\n  to {\n    margin-left: 14px;\n  }\n}\n\n@keyframes snake {\n  from {\n    color: darkblue;\n  }\n  to {\n    margin-left: 14px;\n  }\n}", ""]);
+exports.push([module.i, ".container {\n  position: fixed;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 100;\n  background: rgba(0, 0, 0, 0.5);\n  max-width: 100%;\n}\n.container .check-list-form {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: fixed;\n  box-shadow: 0 0 20px black;\n  height: 22em;\n  border-radius: 8px;\n  width: 22em;\n  font-size: 25px;\n  background: #f1f1f1;\n  z-index: 200;\n}\n.container .check-list-form .form-action {\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  justify-content: center;\n  text-align: center;\n}\n.container .check-list-form .form-action .input {\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  margin: 10px 0;\n}\n.container .check-list-form .form-action .submit-button {\n  background: #e74c3c;\n  font-size: 25px;\n  font-family: \"Poiret One\", cursive;\n  color: white;\n  border: none;\n  padding: 5px;\n}\n.container .check-list-form .error-message {\n  color: red;\n  font-size: 1.3rem;\n  margin-bottom: 10px;\n}\n@media (max-width: 800px) {\n  .container .check-list-form {\n    width: 70vw;\n    height: 70vh;\n  }\n}\n@media (max-height: 500px) {\n  .container .check-list-form {\n    height: 80vh;\n  }\n}\n@media (max-width: 400px) {\n  .container .check-list-form {\n    width: 100vw;\n  }\n}\n\n.button-check-list {\n  border: none;\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg);\n  position: fixed;\n  top: 50%;\n  left: 0;\n  margin-left: -114px;\n  font-family: \"Poiret One\", cursive;\n  font-size: 20px;\n  background: #e74c3c;\n  color: white;\n  text-transform: uppercase;\n  width: 280px;\n  z-index: 400;\n  cursor: pointer;\n}\n.button-check-list:hover {\n  color: #434343;\n}\n\n.close-button {\n  position: fixed;\n  top: 50%;\n  left: 0;\n  margin-left: 34px;\n  margin-top: 148px;\n  font-size: 55px;\n  color: black;\n  cursor: pointer;\n  z-index: 400;\n}\n.close-button:hover {\n  color: #434343;\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg);\n  transition: 1s;\n}\n\n.open-button {\n  position: fixed;\n  top: 50%;\n  left: 0;\n  margin-left: 10px;\n  font-size: 55px;\n  color: black;\n  cursor: pointer;\n  z-index: 400;\n  -webkit-animation: snake 0.5s infinite alternate;\n          animation: snake 0.5s infinite alternate;\n}\n.open-button:hover {\n  -webkit-animation: none;\n          animation: none;\n}\n\n@-webkit-keyframes snake {\n  from {\n    color: darkblue;\n  }\n  to {\n    margin-left: 14px;\n  }\n}\n\n@keyframes snake {\n  from {\n    color: darkblue;\n  }\n  to {\n    margin-left: 14px;\n  }\n}", ""]);
 
 // exports
 
@@ -8489,38 +8586,6 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 }
 
 module.exports = hoistNonReactStatics;
-
-
-/***/ }),
-
-/***/ "./node_modules/is-buffer/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/is-buffer/index.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-// The _isBuffer check is for Safari 5-7 support, because it's missing
-// Object.prototype.constructor. Remove this eventually
-module.exports = function (obj) {
-  return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
-}
-
-function isBuffer (obj) {
-  return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
-
-// For Node v0.10 support. Remove this eventually.
-function isSlowBuffer (obj) {
-  return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
-}
 
 
 /***/ }),
@@ -71208,7 +71273,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _CheckoutView_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckoutView.scss */ "./resources/js/CheckoutView.scss");
 /* harmony import */ var _CheckoutView_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_CheckoutView_scss__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Components_Header_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/Header/Header */ "./resources/js/Components/Header/Header.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -71218,13 +71286,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -71240,15 +71311,34 @@ function (_Component) {
     _classCallCheck(this, MainPageView);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(MainPageView).call(this, props));
-    _this.state = {};
+
+    _defineProperty(_assertThisInitialized(_this), "changeDefaultValue", function (event) {
+      _this.span = event.target;
+      _this.span.id = event.target.id;
+
+      _this.setState({
+        defaultValue: _this.span.id,
+        defaultSpan: _this.span
+      });
+    });
+
+    _this.state = {
+      defaultValue: 1,
+      defaultSpan: ''
+    };
     return _this;
   }
 
   _createClass(MainPageView, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container"
+      var walletNumber = 410012712600459;
+
+      _objectDestructuringEmpty(this.props);
+
+      var sum;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Header_Header__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "checkout-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         method: "POST",
         action: "https://money.yandex.ru/quickpay/confirm.xml",
@@ -71256,15 +71346,15 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "hidden",
         name: "receiver",
-        value: "41001xxxxxxxxxxxx"
+        value: walletNumber
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "hidden",
         name: "formcomment",
-        value: "\u041F\u0440\u043E\u0435\u043A\u0442 \xAB\u0416\u0435\u043B\u0435\u0437\u043D\u044B\u0439 \u0447\u0435\u043B\u043E\u0432\u0435\u043A\xBB: \u0440\u0435\u0430\u043A\u0442\u043E\u0440 \u0445\u043E\u043B\u043E\u0434\u043D\u043E\u0433\u043E \u044F\u0434\u0435\u0440\u043D\u043E\u0433\u043E \u0441\u0438\u043D\u0442\u0435\u0437\u0430"
+        value: "text"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "hidden",
         name: "short-dest",
-        value: "\u041F\u0440\u043E\u0435\u043A\u0442 \xAB\u0416\u0435\u043B\u0435\u0437\u043D\u044B\u0439 \u0447\u0435\u043B\u043E\u0432\u0435\u043A\xBB: \u0440\u0435\u0430\u043A\u0442\u043E\u0440 \u0445\u043E\u043B\u043E\u0434\u043D\u043E\u0433\u043E \u044F\u0434\u0435\u0440\u043D\u043E\u0433\u043E \u0441\u0438\u043D\u0442\u0435\u0437\u0430"
+        value: "test"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "hidden",
         name: "label",
@@ -71280,12 +71370,12 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "hidden",
         name: "sum",
-        value: "4568.25",
+        value: sum,
         "data-type": "number"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "hidden",
         name: "comment",
-        value: "\u0425\u043E\u0442\u0435\u043B\u043E\u0441\u044C \u0431\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0434\u0438\u0441\u0442\u0430\u043D\u0446\u0438\u043E\u043D\u043D\u043E\u0435 \u0443\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435."
+        value: ""
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "hidden",
         name: "need-fio",
@@ -71302,7 +71392,21 @@ function (_Component) {
         type: "hidden",
         name: "need-address",
         value: "false"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), this.span && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.state.defaultSpan)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "change-sum"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "value",
+        onClick: this.changeDefaultValue,
+        id: 1
+      }, "\u0411\u0430\u0437\u043E\u0432\u044B\u0439 1999 \u0440"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "value",
+        onClick: this.changeDefaultValue,
+        id: 2
+      }, "\u041F\u0440\u043E\u0434\u0432\u0438\u043D\u0443\u0442\u044B\u0439 2999 \u0440"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "value",
+        onClick: this.changeDefaultValue,
+        id: 3
+      }, "\u041C\u0430\u043A\u0441\u0438\u043C\u0443\u043C 4999 \u0440")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio",
         name: "paymentType",
         value: "PC"
@@ -71312,9 +71416,12 @@ function (_Component) {
         value: "AC"
       }), "\u0411\u0430\u043D\u043A\u043E\u0432\u0441\u043A\u043E\u0439 \u043A\u0430\u0440\u0442\u043E\u0439"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
-        value: ""
-      })));
+        value: "\u041E\u043F\u043B\u0430\u0442\u0438\u0442\u044C"
+      }))));
     }
+  }, {
+    key: "changeDefaultSum",
+    value: function changeDefaultSum() {}
   }]);
 
   return MainPageView;
@@ -71863,7 +71970,6 @@ function (_Component) {
         className: this.state.isOpen && !this.state.modalIsShow ? 'menu menu_active' : 'menu'
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "buy",
-        onClick: this.openModalWindow,
         href: "/checkout"
       }, "\u043A\u0443\u043F\u0438\u0442\u044C")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#about-me",
@@ -72259,6 +72365,10 @@ function (_Component) {
           setTimeout(closeAndRemove, 2000);
 
           _this.send();
+        } else {
+          _this.setState({
+            errors: res.data
+          });
         }
       })["catch"](function (err) {
         console.log(err);
@@ -72331,7 +72441,7 @@ function (_Component) {
         onChange: this.onChange,
         required: true,
         name: "email",
-        placeholder: "\u0412\u0430\u0448\u0435 e-mail",
+        placeholder: "\u0412\u0430\u0448 e-mail",
         value: this.state.email
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input"
@@ -73133,8 +73243,8 @@ module.exports = "/images/whatsapp-logo.png?392ad4544a502022b3c98672b3f36f32";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/roman/Repositorii/laravel-react/react-laravel/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/roman/Repositorii/laravel-react/react-laravel/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/roman/Repositorii/Laravel-react/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/roman/Repositorii/Laravel-react/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

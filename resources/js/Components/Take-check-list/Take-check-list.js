@@ -32,7 +32,7 @@ class TakeCheckList extends Component {
                     onChange={this.onChange}
                     required
                     name='email'
-                    placeholder='Ваше e-mail'
+                    placeholder='Ваш e-mail'
                     value={this.state.email}
                   />
                 </div>
@@ -96,6 +96,9 @@ class TakeCheckList extends Component {
           this.setState({errors: res.data});
           setTimeout(closeAndRemove, 2000);
           this.send();
+        }
+        else {
+          this.setState({errors: res.data});
         }
       })
       .catch(err => {

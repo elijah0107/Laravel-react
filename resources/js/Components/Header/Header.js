@@ -21,7 +21,7 @@ class Header extends Component {
           <div className='block-menu'>
             <ul className={this.state.isOpen && !this.state.modalIsShow ? 'menu menu_active' : 'menu'}>
               <li>
-                <a className="buy" onClick={this.openModalWindow} href="/checkout">купить</a>
+                <a className="buy" href="/checkout">купить</a>
               </li>
               <li><a href="#about-me" data-hover="обо мне" className="menu-link">обо мне</a></li>
               <li><a href="#about-courses" data-hover="тарифы" className="menu-link">тарифы</a></li>
