@@ -11,6 +11,7 @@
     margin: auto;
     overflow: hidden;
     padding: 0 20px;
+    cursor: pointer;
 
     .border {
       width: 160px;
@@ -55,7 +56,9 @@
           }
         }
       }
-
+      .block-gray {
+        background-color: gray;
+      }
       @media (max-width: 960px) {
         .col {
           flex: 100%;
@@ -68,6 +71,16 @@
           max-width: 100%;
         }
       }
+    }
+  }
+  .small-size {
+    max-width: 70vw;
+    .row .col .testimonial img {
+      height: 100px;
+      width: 100px;
+    }
+    .row .col .testimonial {
+      min-height: 360px;
     }
   }
 }

@@ -1569,7 +1569,7 @@ module.exports = function spread(callback) {
 
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1900,28 +1900,6 @@ module.exports = {
   extend: extend,
   trim: trim
 };
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
-/*!************************************************************!*\
-  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-module.exports = function isBuffer (obj) {
-  return obj != null && obj.constructor != null &&
-    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
 
 
 /***/ }),
@@ -6717,7 +6695,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.testimonials {\n  font-family: \"Montserrat\", sans-serif;\n  padding: 40px;\n  color: #434343;\n  text-align: center;\n}\n.testimonials .inner {\n  max-width: 100vw;\n  margin: auto;\n  overflow: hidden;\n  padding: 0 20px;\n}\n.testimonials .inner .border {\n  width: 160px;\n  height: 5px;\n  background: #6ab04c;\n  margin: 26px auto;\n}\n.testimonials .inner .row {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.testimonials .inner .row .col {\n  flex: 33.33%;\n  max-width: 33.33%;\n  box-sizing: border-box;\n  padding: 15px;\n}\n.testimonials .inner .row .col .testimonial {\n  box-shadow: #434343 1px 1px 20px;\n  min-height: 400px;\n  background-color: #fff;\n  padding: 30px;\n}\n.testimonials .inner .row .col .testimonial img {\n  width: 150px;\n  height: 150px;\n  border-radius: 50%;\n}\n.testimonials .inner .row .col .testimonial .name {\n  font-size: 1.2rem;\n  text-transform: uppercase;\n  margin: 20px 0;\n}\n.testimonials .inner .row .col .testimonial .price {\n  font-weight: bold;\n  margin-bottom: 20px;\n  font-size: 1.65rem;\n}\n@media (max-width: 960px) {\n  .testimonials .inner .row .col {\n    flex: 100%;\n    max-width: 80%;\n  }\n}\n@media (max-width: 600px) {\n  .testimonials .inner .row .col {\n    flex: 100%;\n    max-width: 100%;\n  }\n}", ""]);
+exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.testimonials {\n  font-family: \"Montserrat\", sans-serif;\n  padding: 40px;\n  color: #434343;\n  text-align: center;\n}\n.testimonials .inner {\n  max-width: 100vw;\n  margin: auto;\n  overflow: hidden;\n  padding: 0 20px;\n  cursor: pointer;\n}\n.testimonials .inner .border {\n  width: 160px;\n  height: 5px;\n  background: #6ab04c;\n  margin: 26px auto;\n}\n.testimonials .inner .row {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.testimonials .inner .row .col {\n  flex: 33.33%;\n  max-width: 33.33%;\n  box-sizing: border-box;\n  padding: 15px;\n}\n.testimonials .inner .row .col .testimonial {\n  box-shadow: #434343 1px 1px 20px;\n  min-height: 400px;\n  background-color: #fff;\n  padding: 30px;\n}\n.testimonials .inner .row .col .testimonial img {\n  width: 150px;\n  height: 150px;\n  border-radius: 50%;\n}\n.testimonials .inner .row .col .testimonial .name {\n  font-size: 1.2rem;\n  text-transform: uppercase;\n  margin: 20px 0;\n}\n.testimonials .inner .row .col .testimonial .price {\n  font-weight: bold;\n  margin-bottom: 20px;\n  font-size: 1.65rem;\n}\n.testimonials .inner .row .block-gray {\n  background-color: gray;\n}\n@media (max-width: 960px) {\n  .testimonials .inner .row .col {\n    flex: 100%;\n    max-width: 80%;\n  }\n}\n@media (max-width: 600px) {\n  .testimonials .inner .row .col {\n    flex: 100%;\n    max-width: 100%;\n  }\n}\n.testimonials .small-size {\n  max-width: 70vw;\n}\n.testimonials .small-size .row .col .testimonial img {\n  height: 100px;\n  width: 100px;\n}\n.testimonials .small-size .row .col .testimonial {\n  min-height: 360px;\n}", ""]);
 
 // exports
 
@@ -8586,6 +8564,38 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 }
 
 module.exports = hoistNonReactStatics;
+
+
+/***/ }),
+
+/***/ "./node_modules/is-buffer/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/is-buffer/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+// The _isBuffer check is for Safari 5-7 support, because it's missing
+// Object.prototype.constructor. Remove this eventually
+module.exports = function (obj) {
+  return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
+}
+
+function isBuffer (obj) {
+  return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
+
+// For Node v0.10 support. Remove this eventually.
+function isSlowBuffer (obj) {
+  return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
+}
 
 
 /***/ }),
@@ -71274,6 +71284,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CheckoutView_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckoutView.scss */ "./resources/js/CheckoutView.scss");
 /* harmony import */ var _CheckoutView_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_CheckoutView_scss__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Components_Header_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/Header/Header */ "./resources/js/Components/Header/Header.js");
+/* harmony import */ var _Components_Courses_Courses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Courses/Courses */ "./resources/js/Components/Courses/Courses.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
@@ -71300,6 +71311,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var MainPageView =
 /*#__PURE__*/
 function (_Component) {
@@ -71312,19 +71324,20 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(MainPageView).call(this, props));
 
-    _defineProperty(_assertThisInitialized(_this), "changeDefaultValue", function (event) {
-      _this.span = event.target;
-      _this.span.id = event.target.id;
+    _defineProperty(_assertThisInitialized(_this), "sum", '');
 
-      _this.setState({
-        defaultValue: _this.span.id,
-        defaultSpan: _this.span
+    _defineProperty(_assertThisInitialized(_this), "updateCurrentSum", function (value) {
+      _this.sum = value;
+
+      _this.setState(function (prevState) {
+        return {
+          defaultValue: prevState.defaultValue = value
+        };
       });
     });
 
     _this.state = {
-      defaultValue: 1,
-      defaultSpan: ''
+      defaultValue: ''
     };
     return _this;
   }
@@ -71336,8 +71349,14 @@ function (_Component) {
 
       _objectDestructuringEmpty(this.props);
 
-      var sum;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Header_Header__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Header_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        needShowBlockMenu: false
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Courses_Courses__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        needShowTitle: false,
+        smallSize: "small-size",
+        needUpdateCurrentSum: true,
+        updateCurrentSum: this.updateCurrentSum
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "checkout-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         method: "POST",
@@ -71370,7 +71389,7 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "hidden",
         name: "sum",
-        value: sum,
+        value: this.sum,
         "data-type": "number"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "hidden",
@@ -71392,21 +71411,7 @@ function (_Component) {
         type: "hidden",
         name: "need-address",
         value: "false"
-      }), this.span && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.state.defaultSpan)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "change-sum"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "value",
-        onClick: this.changeDefaultValue,
-        id: 1
-      }, "\u0411\u0430\u0437\u043E\u0432\u044B\u0439 1999 \u0440"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "value",
-        onClick: this.changeDefaultValue,
-        id: 2
-      }, "\u041F\u0440\u043E\u0434\u0432\u0438\u043D\u0443\u0442\u044B\u0439 2999 \u0440"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "value",
-        onClick: this.changeDefaultValue,
-        id: 3
-      }, "\u041C\u0430\u043A\u0441\u0438\u043C\u0443\u043C 4999 \u0440")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio",
         name: "paymentType",
         value: "PC"
@@ -71419,9 +71424,6 @@ function (_Component) {
         value: "\u041E\u043F\u043B\u0430\u0442\u0438\u0442\u044C"
       }))));
     }
-  }, {
-    key: "changeDefaultSum",
-    value: function changeDefaultSum() {}
   }]);
 
   return MainPageView;
@@ -71603,56 +71605,157 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Courses_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Courses.scss */ "./resources/js/Components/Courses/Courses.scss");
 /* harmony import */ var _Courses_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Courses_scss__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
-var Courses = function Courses() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-    className: "courses",
-    id: "about-courses"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "testimonials"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "inner"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "\u041C\u043E\u0438 \u041A\u0443\u0440\u0441\u044B"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "border"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "testimonial"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: __webpack_require__(/*! ./../../images/light.jpg */ "./resources/js/images/light.jpg"),
-    alt: ""
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "name"
-  }, "\u0411\u0430\u0437\u043E\u0432\u044B\u0439"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "price"
-  }, "1999 \u20BD"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430, \u0434\u043E\u0441\u0442\u0443\u043F \u0432 \u0447\u0430\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "testimonial"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: __webpack_require__(/*! ./../../images/middle.jpg */ "./resources/js/images/middle.jpg"),
-    alt: ""
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "name"
-  }, "\u041F\u0440\u043E\u0434\u0432\u0438\u043D\u0443\u0442\u044B\u0439"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "price"
-  }, "2999 \u20BD"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430, \u0434\u043E\u0441\u0442\u0443\u043F \u0432 \u0447\u0430\u0442, \u043E\u0442\u0432\u0435\u0442\u044B \u043D\u0430 \u0432\u043E\u043F\u0440\u043E\u0441\u044B \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043D\u0435\u0434\u0435\u043B\u0438"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "testimonial"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: __webpack_require__(/*! ./../../images/hard.jpg */ "./resources/js/images/hard.jpg"),
-    alt: ""
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "name"
-  }, "\u041C\u0430\u043A\u0441\u0438\u043C\u0443\u043C"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "price"
-  }, "4999 \u20BD"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430, \u0434\u043E\u0441\u0442\u0443\u043F \u0432 \u0447\u0430\u0442, \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u044C \u043F\u0438\u0449\u0435\u0432\u043E\u0433\u043E \u0434\u043D\u0435\u0432\u043D\u0438\u043A\u0430 \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043C\u0435\u0441\u044F\u0446\u0430 \u0438 \u043E\u0442\u0432\u0435\u0442\u044B \u043D\u0430 \u0432\u043E\u043F\u0440\u043E\u0441\u044B")))))));
-};
+
+
+var Courses =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Courses, _Component);
+
+  function Courses(props) {
+    var _this;
+
+    _classCallCheck(this, Courses);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Courses).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_this), "sumToPay", {
+      easy: 1999,
+      medium: 2999,
+      hard: 4999
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "updateState", function (event) {
+      if (_this.props.needUpdateCurrentSum) {
+        _this.changeBlock(event);
+
+        _this.props.updateCurrentSum(event.currentTarget.id);
+      }
+    });
+
+    _this.state = {
+      blocksState: {
+        easyBlock: '',
+        mediumBlock: '',
+        hardBlock: ''
+      }
+    };
+    return _this;
+  }
+
+  _createClass(Courses, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          needShowTitle = _this$props.needShowTitle,
+          smallSize = _this$props.smallSize;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "courses",
+        id: "about-courses"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "testimonials"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: 'inner ' + smallSize
+      }, needShowTitle && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "\u041C\u043E\u0438 \u041A\u0443\u0440\u0441\u044B"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "border"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('col', this.state.blockState),
+        onClick: this.updateState,
+        id: this.sumToPay.easy
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "testimonial"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: __webpack_require__(/*! ./../../images/easy.jpg */ "./resources/js/images/easy.jpg"),
+        alt: ""
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "name"
+      }, "\u0411\u0430\u0437\u043E\u0432\u044B\u0439"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "price"
+      }, this.sumToPay.easy, " \u20BD"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430, \u0434\u043E\u0441\u0442\u0443\u043F \u0432 \u0447\u0430\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('col', this.state.blockState),
+        onClick: this.updateState,
+        id: this.sumToPay.medium
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "testimonial"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: __webpack_require__(/*! ./../../images/middle.jpg */ "./resources/js/images/middle.jpg"),
+        alt: ""
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "name"
+      }, "\u041F\u0440\u043E\u0434\u0432\u0438\u043D\u0443\u0442\u044B\u0439"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "price"
+      }, this.sumToPay.medium, " \u20BD"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430, \u0434\u043E\u0441\u0442\u0443\u043F \u0432 \u0447\u0430\u0442, \u043E\u0442\u0432\u0435\u0442\u044B \u043D\u0430 \u0432\u043E\u043F\u0440\u043E\u0441\u044B \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043D\u0435\u0434\u0435\u043B\u0438"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('col', this.state.blockState),
+        onClick: this.updateState,
+        id: this.sumToPay.hard
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "testimonial"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: __webpack_require__(/*! ./../../images/hard.jpg */ "./resources/js/images/hard.jpg"),
+        alt: ""
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "name"
+      }, "\u041C\u0430\u043A\u0441\u0438\u043C\u0443\u043C"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "price"
+      }, this.sumToPay.hard, " \u20BD"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430, \u0434\u043E\u0441\u0442\u0443\u043F \u0432 \u0447\u0430\u0442, \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u044C \u043F\u0438\u0449\u0435\u0432\u043E\u0433\u043E \u0434\u043D\u0435\u0432\u043D\u0438\u043A\u0430 \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043C\u0435\u0441\u044F\u0446\u0430 \u0438 \u043E\u0442\u0432\u0435\u0442\u044B \u043D\u0430 \u0432\u043E\u043F\u0440\u043E\u0441\u044B")))))));
+    }
+  }, {
+    key: "changeBlock",
+    value: function changeBlock(event) {
+      var currentBlock = event.currentTarget.id;
+      var blockToChange;
+      this.setState({
+        blockState: {
+          easy: '',
+          medium: '',
+          hard: ''
+        }
+      });
+
+      if (currentBlock === this.sumToPay.easy) {
+        blockToChange = 'easy';
+      }
+
+      if (currentBlock === this.sumToPay.medium) {
+        blockToChange = 'medium';
+      }
+
+      if (currentBlock === this.sumToPay.hard) {
+        blockToChange = 'hard';
+      }
+
+      this.setState({});
+    }
+  }]);
+
+  return Courses;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Courses);
 
@@ -71955,16 +72058,19 @@ function (_Component) {
   _createClass(Header, [{
     key: "render",
     value: function render() {
+      var needShowBlockMenu = this.props.needShowBlockMenu;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
         className: "header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "header-block"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "/"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "logo"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: __webpack_require__(/*! ./../../images/logo.jpg */ "./resources/js/images/logo.jpg"),
         alt: ""
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), needShowBlockMenu && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "block-menu"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: this.state.isOpen && !this.state.modalIsShow ? 'menu menu_active' : 'menu'
@@ -72761,7 +72867,13 @@ function (_Component) {
   _createClass(MainPageView, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Header_Header__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Take_check_list_Take_check_list__WEBPACK_IMPORTED_MODULE_11__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Motto_Motto__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_About_me_About_me__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_What_I_teach_What_I_teach__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Reviews_Reviews__WEBPACK_IMPORTED_MODULE_7__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Courses_Courses__WEBPACK_IMPORTED_MODULE_8__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Who_can_not_Who_can_not__WEBPACK_IMPORTED_MODULE_9__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Footer_Footer__WEBPACK_IMPORTED_MODULE_10__["default"], null));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Header_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        needShowBlockMenu: true
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Take_check_list_Take_check_list__WEBPACK_IMPORTED_MODULE_11__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Motto_Motto__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_About_me_About_me__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_What_I_teach_What_I_teach__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Reviews_Reviews__WEBPACK_IMPORTED_MODULE_7__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Courses_Courses__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        needShowTitle: true,
+        smallSize: "",
+        needUpdateCurrentSum: false
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Who_can_not_Who_can_not__WEBPACK_IMPORTED_MODULE_9__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Footer_Footer__WEBPACK_IMPORTED_MODULE_10__["default"], null));
     }
   }]);
 
@@ -73093,6 +73205,17 @@ module.exports = "/images/5.jpg?9a68b12a990994c41fc706328b4ebb85";
 
 /***/ }),
 
+/***/ "./resources/js/images/easy.jpg":
+/*!**************************************!*\
+  !*** ./resources/js/images/easy.jpg ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/easy.jpg?527b7383c2d2ed7c4498e177e9c8ffec";
+
+/***/ }),
+
 /***/ "./resources/js/images/hard.jpg":
 /*!**************************************!*\
   !*** ./resources/js/images/hard.jpg ***!
@@ -73112,17 +73235,6 @@ module.exports = "/images/hard.jpg?9f67eb966bc37b9ac2724b0ead929373";
 /***/ (function(module, exports) {
 
 module.exports = "/images/insta-logo.png?3c953ab80e0eb9f9680a20c7f2897345";
-
-/***/ }),
-
-/***/ "./resources/js/images/light.jpg":
-/*!***************************************!*\
-  !*** ./resources/js/images/light.jpg ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/light.jpg?527b7383c2d2ed7c4498e177e9c8ffec";
 
 /***/ }),
 
@@ -73243,8 +73355,8 @@ module.exports = "/images/whatsapp-logo.png?392ad4544a502022b3c98672b3f36f32";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/roman/Repositorii/Laravel-react/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/roman/Repositorii/Laravel-react/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/roman/Repositorii/laravel-react/react-laravel/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/roman/Repositorii/laravel-react/react-laravel/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

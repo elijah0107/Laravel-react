@@ -21,13 +21,17 @@ class MainPageView extends Component {
   render() {
     return (
       <>
-        <Header/>
+        <Header needShowBlockMenu={true} />
         <TakeCheckList/>
         <Motto/>
         <AboutMe/>
         <WhatITeach/>
         <SlideView/>
-        <Courses/>
+        <Courses
+          needShowTitle={true}
+          smallSize=''
+          needUpdateCurrentSum={false}
+        />
         <WhoCanNot/>
         <Footer/>
       </>

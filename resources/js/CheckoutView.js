@@ -1,25 +1,30 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component } from 'react';
 import './CheckoutView.scss'
 import Header from "./Components/Header/Header";
+import Courses from "./Components/Courses/Courses";
 
 class MainPageView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      defaultValue: 1,
-      defaultSpan: '',
+      defaultValue: '',
     }
   };
-
+  sum = '';
   render() {
     const walletNumber = 410012712600459;
     const {
 
     } = this.props;
-    let sum;
     return (
       <>
-        <Header/>
+        <Header needShowBlockMenu={false} />
+        <Courses
+          needShowTitle={false}
+          smallSize='small-size'
+          needUpdateCurrentSum={true}
+          updateCurrentSum={this.updateCurrentSum}
+        />
         <div className='checkout-container'>
           <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml" className="checkout-form">
             <input type="hidden" name="receiver" value={walletNumber}/>
@@ -28,20 +33,12 @@ class MainPageView extends Component {
             <input type="hidden" name="label" value="$order_id"/>
             <input type="hidden" name="quickpay-form" value="donate"/>
             <input type="hidden" name="targets" value="транзакция {order_id}"/>
-            <input type="hidden" name="sum" value={sum} data-type="number"/>
+            <input type="hidden" name="sum" value={this.sum} data-type="number"/>
             <input type="hidden" name="comment" value=""/>
             <input type="hidden" name="need-fio" value="true"/>
             <input type="hidden" name="need-email" value="true"/>
             <input type="hidden" name="need-phone" value="false"/>
             <input type="hidden" name="need-address" value="false"/>
-            {this.span && (
-              <div>{<span>{this.state.defaultSpan}</span>}</div>
-            )}
-            <div className='change-sum'>
-              <span className='value' onClick={this.changeDefaultValue} id={1}>Базовый 1999 р</span>
-              <span className='value' onClick={this.changeDefaultValue} id={2}>Продвинутый 2999 р</span>
-              <span className='value' onClick={this.changeDefaultValue} id={3}>Максимум 4999 р</span>
-            </div>
             <label><input type="radio" name="paymentType" value="PC"/>Яндекс.Деньгами</label>
             <label><input type="radio" name="paymentType" value="AC"/>Банковской картой</label>
             <input type="submit" value="Оплатить"/>
@@ -50,18 +47,11 @@ class MainPageView extends Component {
       </>
     )
   };
-  changeDefaultSum() {
-
-  }
-
-  changeDefaultValue = event => {
-    this.span = event.target;
-    this.span.id = event.target.id;
-    this.setState({
-      defaultValue: this.span.id,
-      defaultSpan: this.span,
-    });
+  updateCurrentSum = (value) => {
+    this.sum = value;
+    this.setState(prevState => ({ defaultValue: prevState.defaultValue = value }));
   };
 }
 
-export default MainPageView;
+
+  export default MainPageView;
