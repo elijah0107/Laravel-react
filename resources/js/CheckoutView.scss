@@ -44,6 +44,11 @@
         background-color: #e74c3c;
       }
     }
+    @media (max-width: 500px) {
+      .payment-type {
+        flex-direction: column;
+      }
+    }
     .button-submit {
       background-color: #e74c3c;
       color: white;

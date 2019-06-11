@@ -6679,7 +6679,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.checkout-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.checkout-container .checkout-form {\n  display: flex;\n  flex-direction: column;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-family: \"Poiret One\", cursive;\n}\n.checkout-container .checkout-form .change-sum {\n  margin: 30px;\n}\n.checkout-container .checkout-form .change-sum .value {\n  background-color: white;\n  border: 1px solid black;\n  padding: 8px;\n}\n.checkout-container .checkout-form .payment-type {\n  display: flex;\n  flex-direction: row;\n}\n.checkout-container .checkout-form .payment-type input[type=radio] {\n  display: none;\n}\n.checkout-container .checkout-form .payment-type .label {\n  padding-left: 20px;\n}\n.checkout-container .checkout-form .payment-type .label::before {\n  content: \"\";\n  display: inline-block;\n  height: 20px;\n  width: 20px;\n  vertical-align: middle;\n  border-radius: 50%;\n  border: 2px solid #000000;\n  margin-right: 5px;\n}\n.checkout-container .checkout-form .payment-type input[type=radio]:checked + .label::before {\n  background-color: #e74c3c;\n}\n.checkout-container .checkout-form .button-submit {\n  background-color: #e74c3c;\n  color: white;\n  margin-top: 15px;\n}\n.checkout-container .checkout-form .button-submit:hover {\n  color: #000000;\n}", ""]);
+exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.checkout-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.checkout-container .checkout-form {\n  display: flex;\n  flex-direction: column;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-family: \"Poiret One\", cursive;\n}\n.checkout-container .checkout-form .change-sum {\n  margin: 30px;\n}\n.checkout-container .checkout-form .change-sum .value {\n  background-color: white;\n  border: 1px solid black;\n  padding: 8px;\n}\n.checkout-container .checkout-form .payment-type {\n  display: flex;\n  flex-direction: row;\n}\n.checkout-container .checkout-form .payment-type input[type=radio] {\n  display: none;\n}\n.checkout-container .checkout-form .payment-type .label {\n  padding-left: 20px;\n}\n.checkout-container .checkout-form .payment-type .label::before {\n  content: \"\";\n  display: inline-block;\n  height: 20px;\n  width: 20px;\n  vertical-align: middle;\n  border-radius: 50%;\n  border: 2px solid #000000;\n  margin-right: 5px;\n}\n.checkout-container .checkout-form .payment-type input[type=radio]:checked + .label::before {\n  background-color: #e74c3c;\n}\n@media (max-width: 500px) {\n  .checkout-container .checkout-form .payment-type {\n    flex-direction: column;\n  }\n}\n.checkout-container .checkout-form .button-submit {\n  background-color: #e74c3c;\n  color: white;\n  margin-top: 15px;\n}\n.checkout-container .checkout-form .button-submit:hover {\n  color: #000000;\n}", ""]);
 
 // exports
 
@@ -71342,7 +71342,7 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Header_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {
         needShowBlockMenu: false
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Courses_Courses__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        title: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0442\u0430\u0440\u0438\u0444",
+        title: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0442\u0430\u0440\u0438\u0444 \u0438 \u0441\u043F\u043E\u0441\u043E\u0431 \u043E\u043F\u043B\u0430\u0442\u044B",
         smallSize: "small-size",
         needUpdateCurrentSum: true,
         updateCurrentSum: this.updateCurrentSum
@@ -71406,20 +71406,21 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio",
         name: "paymentType",
+        value: "AC",
+        id: "payment-visa",
+        checked: true
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "label",
+        "for": "payment-visa"
+      }, "\u0411\u0430\u043D\u043A\u043E\u0432\u0441\u043A\u043E\u0439 \u043A\u0430\u0440\u0442\u043E\u0439"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio",
+        name: "paymentType",
         value: "PC",
         id: "payment-yandex"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "label",
         "for": "payment-yandex"
-      }, "\u042F\u043D\u0434\u0435\u043A\u0441.\u0414\u0435\u043D\u044C\u0433\u0430\u043C\u0438"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "radio",
-        name: "paymentType",
-        value: "AC",
-        id: "payment-visa"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "label",
-        "for": "payment-visa"
-      }, "\u0411\u0430\u043D\u043A\u043E\u0432\u0441\u043A\u043E\u0439 \u043A\u0430\u0440\u0442\u043E\u0439")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "\u042F\u043D\u0434\u0435\u043A\u0441.\u0414\u0435\u043D\u044C\u0433\u0430\u043C\u0438")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
         value: "\u041E\u043F\u043B\u0430\u0442\u0438\u0442\u044C",
         className: "button-submit"

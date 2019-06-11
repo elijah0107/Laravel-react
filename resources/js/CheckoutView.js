@@ -20,7 +20,7 @@ class MainPageView extends Component {
       <>
         <Header needShowBlockMenu={false} />
         <Courses
-          title='Выберите тариф'
+          title='Выберите тариф и способ оплаты'
           smallSize='small-size'
           needUpdateCurrentSum={true}
           updateCurrentSum={this.updateCurrentSum}
@@ -40,8 +40,8 @@ class MainPageView extends Component {
             <input type="hidden" name="need-phone" value="false"/>
             <input type="hidden" name="need-address" value="false"/>
             <div className='payment-type'>
-              <input type="radio" name="paymentType" value="PC" id="payment-yandex"/><label className='label' for="payment-yandex">Яндекс.Деньгами</label>
-              <input type="radio" name="paymentType" value="AC" id="payment-visa"/><label className='label' for="payment-visa">Банковской картой</label>
+              <input type="radio" name="paymentType" value="AC" id="payment-visa" checked /><label className='label' for="payment-visa">Банковской картой</label>
+              <input type="radio" name="paymentType" value="PC" id="payment-yandex" /><label className='label' for="payment-yandex">Яндекс.Деньгами</label>
             </div>
             <input type="submit" value="Оплатить" className='button-submit'/>
           </form>
