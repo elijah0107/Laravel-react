@@ -20,19 +20,19 @@ class Courses extends Component {
     hard: 4999,
   };
   render() {
-    const { needShowTitle, smallSize } = this.props;
+    const { title, smallSize } = this.props;
     return (
       <section className="courses" id="about-courses">
         <div className="testimonials">
           <div className={'inner ' + smallSize}>
-            {needShowTitle && (
+            {title && (
               <Fragment>
-                <h1>Мои Курсы</h1>
+                <h1>{title}</h1>
                 <div className="border"/>
               </Fragment>
             )}
             <div className="row">
-              <div className={cn('col', this.state.blockState)} onClick={ this.updateState } id={this.sumToPay.easy} >
+              <div className={cn('col', this.state.blocksState.easy)} onClick={ this.updateState } id={this.sumToPay.easy} >
                 <div className="testimonial">
                   <img src={require('./../../images/easy.jpg')} alt=""/>
                   <div className="name">Базовый</div>
@@ -42,7 +42,7 @@ class Courses extends Component {
                   </p>
                 </div>
               </div>
-              <div className={cn('col', this.state.blockState)} onClick={ this.updateState } id={this.sumToPay.medium} >
+              <div className={cn('col', this.state.blocksState.medium)} onClick={ this.updateState } id={this.sumToPay.medium} >
                 <div className="testimonial">
                   <img src={require('./../../images/middle.jpg')} alt=""/>
                   <div className="name">Продвинутый</div>
@@ -52,7 +52,7 @@ class Courses extends Component {
                   </p>
                 </div>
               </div>
-              <div className={cn('col', this.state.blockState)} onClick={ this.updateState } id={this.sumToPay.hard} >
+              <div className={cn('col', this.state.blocksState.hard)} onClick={ this.updateState } id={this.sumToPay.hard} >
                 <div className="testimonial">
                   <img src={require('./../../images/hard.jpg')} alt=""/>
                   <div className="name">Максимум</div>
@@ -77,26 +77,22 @@ class Courses extends Component {
   };
   changeBlock(event) {
     let currentBlock = event.currentTarget.id;
-    let blockToChange;
     this.setState({
-      blockState: {
+      blocksState: {
         easy: '',
         medium: '',
         hard: '',
       }
     });
-    if (currentBlock === this.sumToPay.easy) {
-      blockToChange = 'easy';
+    if (currentBlock == this.sumToPay.easy) {
+      this.setState({blocksState: {easy: 'block-gray'}})
     }
-    if (currentBlock === this.sumToPay.medium) {
-      blockToChange = 'medium';
+    if (currentBlock == this.sumToPay.medium) {
+      this.setState({blocksState: {medium: 'block-gray'}})
     }
-    if (currentBlock === this.sumToPay.hard) {
-      blockToChange = 'hard';
+    if (currentBlock == this.sumToPay.hard) {
+      this.setState({blocksState: {hard: 'block-gray'}})
     }
-    this.setState({
-
-    });
   }
 }
 

@@ -1569,7 +1569,7 @@ module.exports = function spread(callback) {
 
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1900,6 +1900,28 @@ module.exports = {
   extend: extend,
   trim: trim
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+module.exports = function isBuffer (obj) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
 
 
 /***/ }),
@@ -6657,7 +6679,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.checkout-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.checkout-container .checkout-form {\n  display: flex;\n  flex-direction: column;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-family: \"Poiret One\", cursive;\n}\n.checkout-container .checkout-form .change-sum {\n  margin: 30px;\n}\n.checkout-container .checkout-form .change-sum .value {\n  background-color: white;\n  border: 1px solid black;\n  padding: 8px;\n}", ""]);
+exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.checkout-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.checkout-container .checkout-form {\n  display: flex;\n  flex-direction: column;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-family: \"Poiret One\", cursive;\n}\n.checkout-container .checkout-form .change-sum {\n  margin: 30px;\n}\n.checkout-container .checkout-form .change-sum .value {\n  background-color: white;\n  border: 1px solid black;\n  padding: 8px;\n}\n.checkout-container .checkout-form .payment-type {\n  display: flex;\n  flex-direction: row;\n}\n.checkout-container .checkout-form .payment-type input[type=radio] {\n  display: none;\n}\n.checkout-container .checkout-form .payment-type .label {\n  padding-left: 20px;\n}\n.checkout-container .checkout-form .payment-type .label::before {\n  content: \"\";\n  display: inline-block;\n  height: 20px;\n  width: 20px;\n  vertical-align: middle;\n  border-radius: 50%;\n  border: 2px solid #000000;\n  margin-right: 5px;\n}\n.checkout-container .checkout-form .payment-type input[type=radio]:checked + .label::before {\n  background-color: #e74c3c;\n}\n.checkout-container .checkout-form .button-submit {\n  background-color: #e74c3c;\n  color: white;\n  margin-top: 15px;\n}\n.checkout-container .checkout-form .button-submit:hover {\n  color: #000000;\n}", ""]);
 
 // exports
 
@@ -8564,38 +8586,6 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 }
 
 module.exports = hoistNonReactStatics;
-
-
-/***/ }),
-
-/***/ "./node_modules/is-buffer/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/is-buffer/index.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-// The _isBuffer check is for Safari 5-7 support, because it's missing
-// Object.prototype.constructor. Remove this eventually
-module.exports = function (obj) {
-  return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
-}
-
-function isBuffer (obj) {
-  return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
-
-// For Node v0.10 support. Remove this eventually.
-function isSlowBuffer (obj) {
-  return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
-}
 
 
 /***/ }),
@@ -71352,7 +71342,7 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Header_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {
         needShowBlockMenu: false
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Courses_Courses__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        needShowTitle: false,
+        title: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0442\u0430\u0440\u0438\u0444",
         smallSize: "small-size",
         needUpdateCurrentSum: true,
         updateCurrentSum: this.updateCurrentSum
@@ -71411,17 +71401,28 @@ function (_Component) {
         type: "hidden",
         name: "need-address",
         value: "false"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "payment-type"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio",
         name: "paymentType",
-        value: "PC"
-      }), "\u042F\u043D\u0434\u0435\u043A\u0441.\u0414\u0435\u043D\u044C\u0433\u0430\u043C\u0438"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        value: "PC",
+        id: "payment-yandex"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "label",
+        "for": "payment-yandex"
+      }, "\u042F\u043D\u0434\u0435\u043A\u0441.\u0414\u0435\u043D\u044C\u0433\u0430\u043C\u0438"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio",
         name: "paymentType",
-        value: "AC"
-      }), "\u0411\u0430\u043D\u043A\u043E\u0432\u0441\u043A\u043E\u0439 \u043A\u0430\u0440\u0442\u043E\u0439"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        value: "AC",
+        id: "payment-visa"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "label",
+        "for": "payment-visa"
+      }, "\u0411\u0430\u043D\u043A\u043E\u0432\u0441\u043A\u043E\u0439 \u043A\u0430\u0440\u0442\u043E\u0439")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
-        value: "\u041E\u043F\u043B\u0430\u0442\u0438\u0442\u044C"
+        value: "\u041E\u043F\u043B\u0430\u0442\u0438\u0442\u044C",
+        className: "button-submit"
       }))));
     }
   }]);
@@ -71671,7 +71672,7 @@ function (_Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          needShowTitle = _this$props.needShowTitle,
+          title = _this$props.title,
           smallSize = _this$props.smallSize;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "courses",
@@ -71680,12 +71681,12 @@ function (_Component) {
         className: "testimonials"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'inner ' + smallSize
-      }, needShowTitle && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "\u041C\u043E\u0438 \u041A\u0443\u0440\u0441\u044B"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, title && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "border"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('col', this.state.blockState),
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('col', this.state.blocksState.easy),
         onClick: this.updateState,
         id: this.sumToPay.easy
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71698,7 +71699,7 @@ function (_Component) {
       }, "\u0411\u0430\u0437\u043E\u0432\u044B\u0439"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "price"
       }, this.sumToPay.easy, " \u20BD"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430, \u0434\u043E\u0441\u0442\u0443\u043F \u0432 \u0447\u0430\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('col', this.state.blockState),
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('col', this.state.blocksState.medium),
         onClick: this.updateState,
         id: this.sumToPay.medium
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71711,7 +71712,7 @@ function (_Component) {
       }, "\u041F\u0440\u043E\u0434\u0432\u0438\u043D\u0443\u0442\u044B\u0439"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "price"
       }, this.sumToPay.medium, " \u20BD"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430, \u0434\u043E\u0441\u0442\u0443\u043F \u0432 \u0447\u0430\u0442, \u043E\u0442\u0432\u0435\u0442\u044B \u043D\u0430 \u0432\u043E\u043F\u0440\u043E\u0441\u044B \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043D\u0435\u0434\u0435\u043B\u0438"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('col', this.state.blockState),
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('col', this.state.blocksState.hard),
         onClick: this.updateState,
         id: this.sumToPay.hard
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71729,28 +71730,37 @@ function (_Component) {
     key: "changeBlock",
     value: function changeBlock(event) {
       var currentBlock = event.currentTarget.id;
-      var blockToChange;
       this.setState({
-        blockState: {
+        blocksState: {
           easy: '',
           medium: '',
           hard: ''
         }
       });
 
-      if (currentBlock === this.sumToPay.easy) {
-        blockToChange = 'easy';
+      if (currentBlock == this.sumToPay.easy) {
+        this.setState({
+          blocksState: {
+            easy: 'block-gray'
+          }
+        });
       }
 
-      if (currentBlock === this.sumToPay.medium) {
-        blockToChange = 'medium';
+      if (currentBlock == this.sumToPay.medium) {
+        this.setState({
+          blocksState: {
+            medium: 'block-gray'
+          }
+        });
       }
 
-      if (currentBlock === this.sumToPay.hard) {
-        blockToChange = 'hard';
+      if (currentBlock == this.sumToPay.hard) {
+        this.setState({
+          blocksState: {
+            hard: 'block-gray'
+          }
+        });
       }
-
-      this.setState({});
     }
   }]);
 
@@ -72870,7 +72880,7 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Header_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {
         needShowBlockMenu: true
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Take_check_list_Take_check_list__WEBPACK_IMPORTED_MODULE_11__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Motto_Motto__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_About_me_About_me__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_What_I_teach_What_I_teach__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Reviews_Reviews__WEBPACK_IMPORTED_MODULE_7__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Courses_Courses__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        needShowTitle: true,
+        title: "\u041C\u043E\u0438 \u043A\u0443\u0440\u0441\u044B",
         smallSize: "",
         needUpdateCurrentSum: false
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Who_can_not_Who_can_not__WEBPACK_IMPORTED_MODULE_9__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Footer_Footer__WEBPACK_IMPORTED_MODULE_10__["default"], null));
@@ -73355,8 +73365,8 @@ module.exports = "/images/whatsapp-logo.png?392ad4544a502022b3c98672b3f36f32";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/roman/Repositorii/laravel-react/react-laravel/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/roman/Repositorii/laravel-react/react-laravel/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/roman/Repositorii/Laravel-react/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/roman/Repositorii/Laravel-react/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -28,7 +28,7 @@ class MainPageView extends Component {
         <WhatITeach/>
         <SlideView/>
         <Courses
-          needShowTitle={true}
+          title='Мои курсы'
           smallSize=''
           needUpdateCurrentSum={false}
         />
