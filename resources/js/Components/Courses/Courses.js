@@ -32,7 +32,10 @@ class Courses extends Component {
               </Fragment>
             )}
             <div className="row">
-              <div className={cn('col', this.state.blocksState.easy)} onClick={ this.updateState } id={this.sumToPay.easy} >
+              <div className={cn('col', this.state.blocksState.easy)}
+                   onClick={ this.updateState }
+                   id={this.sumToPay.easy}
+              >
                 <div className="testimonial">
                   <img src={require('./../../images/easy.jpg')} alt=""/>
                   <div className="name">Базовый</div>
@@ -42,23 +45,33 @@ class Courses extends Component {
                   </p>
                 </div>
               </div>
-              <div className={cn('col', this.state.blocksState.medium)} onClick={ this.updateState } id={this.sumToPay.medium} >
+              <div className={cn('col', this.state.blocksState.medium)}
+                   onClick={this.updateState}
+                   id={this.sumToPay.medium}
+              >
                 <div className="testimonial">
                   <img src={require('./../../images/middle.jpg')} alt=""/>
                   <div className="name">Продвинутый</div>
                   <span className="price">{ this.sumToPay.medium } &#8381;</span>
                   <p>
-                    4 вебинара, доступ в чат, ответы на вопросы в течение недели
+                    4 вебинара, доступ в чат,
+                    ответы на вопросы
+                    в течение недели
                   </p>
                 </div>
               </div>
-              <div className={cn('col', this.state.blocksState.hard)} onClick={ this.updateState } id={this.sumToPay.hard} >
+              <div className={cn('col', this.state.blocksState.hard)}
+                   onClick={ this.updateState }
+                   id={this.sumToPay.hard}
+              >
                 <div className="testimonial">
                   <img src={require('./../../images/hard.jpg')} alt=""/>
                   <div className="name">Максимум</div>
                   <span className="price">{this.sumToPay.hard} &#8381;</span>
                   <p>
-                    4 вебинара, доступ в чат, контроль пищевого дневника в течение месяца и ответы на
+                    4 вебинара, доступ в чат,
+                    контроль пищевого дневника
+                    в течение месяца и ответы на
                     вопросы
                   </p>
                 </div>
@@ -85,13 +98,22 @@ class Courses extends Component {
       }
     });
     if (currentBlock == this.sumToPay.easy) {
-      this.setState({blocksState: {easy: 'block-gray'}})
+      this.setState({
+        blocksState: {
+          easy: 'block-gray'
+        }})
     }
     if (currentBlock == this.sumToPay.medium) {
-      this.setState({blocksState: {medium: 'block-gray'}})
+      this.setState({
+        blocksState: {
+          medium: 'block-gray'
+        }})
     }
     if (currentBlock == this.sumToPay.hard) {
-      this.setState({blocksState: {hard: 'block-gray'}})
+      this.setState({
+        blocksState: {
+          hard: 'block-gray'
+        }})
     }
   }
 }

@@ -1,0 +1,32 @@
+[
+  {
+    "type": "header",
+    "version": "4.8.3",
+    "comment": "Export to JSON plugin for PHPMyAdmin"
+  },
+  {
+    "type": "database",
+    "name": "spider777_user"
+  },
+  {
+    "type": "table",
+    "name": "notices",
+    "database": "spider777_user",
+    "data": [
+      {
+        "id": "1",
+        "email": "rgaev@mail.ru",
+        "name": "Роман2",
+        "created_at": "2019-06-12 10:42:08",
+        "updated_at": "2019-06-12 10:42:08"
+      },
+      {
+        "id": "2",
+        "email": "rgaev39@mail.ru",
+        "name": "Роман",
+        "created_at": "2019-06-12 10:44:29",
+        "updated_at": "2019-06-12 10:44:29"
+      }
+    ]
+  }
+]

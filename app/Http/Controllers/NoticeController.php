@@ -14,14 +14,14 @@ class NoticeController extends Controller
         $email = $request->input('email');
         $emailExist = empty($notice::where('email', 'LIKE', $email)->get()->toArray());
         if(!$emailExist) {
-            return "Пользователь с таким email уже существует";
+            return "Мы уже отправляли файл на эту почту, пожалуйста проверьте в своих сообщениях";
         }
         $notice->email = $email;
         $notice->name = $request->input('name');
         $result = $notice->save();
 
         if ($result == 1) {
-            return "Данные записались";
+            return "Файл успешно отправлен вам на почту, если не пришло проверьте папку спам";
         }
         else {
             return "Что-то пошло не так";

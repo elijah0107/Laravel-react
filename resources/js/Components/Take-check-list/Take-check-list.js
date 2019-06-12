@@ -23,7 +23,7 @@ class TakeCheckList extends Component {
           <div className='container' onClick={this.closeCheckList}>
             <div className='check-list-form'>
               <form className='form-action' noValidate onSubmit={this.onTestSubmit}>
-                <legend>Для получения чек листа введите ваши данные</legend>
+                <legend>Для получения шпаргалки введите ваши данные</legend>
                 <div className='input'>
                   <label htmlFor=''>
                     Ваш e-mail
@@ -92,7 +92,7 @@ class TakeCheckList extends Component {
       })
       .then(res => {
         localStorage.setItem('usertoken', res.data.token);
-        if (res && res.data === 'Данные записались') {
+        if (res && res.data === 'Файл успешно отправлен вам на почту, если не пришло проверьте папку спам') {
           this.setState({errors: res.data});
           setTimeout(closeAndRemove, 2000);
           this.send();
