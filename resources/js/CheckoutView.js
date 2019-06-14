@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import './CheckoutView.scss'
-import Header from "./Components/Header/Header";
-import Courses from "./Components/Courses/Courses";
+import React, {Component} from 'react';
+import './CheckoutView.scss';
+import Header from './Components/Header/Header';
+import Courses from './Components/Courses/Courses';
 
 class MainPageView extends Component {
   constructor(props) {
@@ -9,13 +9,13 @@ class MainPageView extends Component {
     this.state = {
       defaultValue: '',
       needDisabled: '',
-    }
+    };
   };
   sum = '';
 
   componentDidMount() {
     if (this.sum == '') {
-      this.setState({needDisabled: 'disabled'})
+      this.setState({needDisabled: 'disabled'});
     }
   }
 
@@ -35,8 +35,8 @@ class MainPageView extends Component {
         />
         <div className='checkout-container'>
           <form method="POST"
-                action="https://money.yandex.ru/quickpay/confirm.xml"
-                className="checkout-form">
+            action="https://money.yandex.ru/quickpay/confirm.xml"
+            className="checkout-form">
             <input type="hidden" name="receiver" value={walletNumber}/>
             <input type="hidden" name="formcomment" value="text"/>
             <input type="hidden" name="short-dest" value="test"/>
@@ -59,12 +59,12 @@ class MainPageView extends Component {
           </form>
         </div>
       </>
-    )
+    );
   };
 
   updateCurrentSum = (value) => {
     this.sum = value;
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       defaultValue: prevState.defaultValue = value,
       needDisabled: '',
     }));
@@ -72,4 +72,4 @@ class MainPageView extends Component {
 }
 
 
-  export default MainPageView;
+export default MainPageView;
