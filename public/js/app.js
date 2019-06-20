@@ -72122,7 +72122,7 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Courses).call(this, props));
 
     _defineProperty(_assertThisInitialized(_this), "sumToPay", {
-      easy: 1999,
+      easy: 10,
       medium: 2999,
       hard: 4999
     });
