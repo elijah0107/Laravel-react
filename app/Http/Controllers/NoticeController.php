@@ -26,7 +26,7 @@ class NoticeController extends Controller
       'Почта' => $name,
     );
     $result = $notice->save();
-    $txt = '';
+    $txt = "Кто-то заказал шпаргалку <br>%0A";
     foreach ($arr as $key => $value) {
       $txt .= "<b>".$key."</b> ".$value."%0A";
     }
