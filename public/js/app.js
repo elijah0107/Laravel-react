@@ -161,6 +161,4122 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 /***/ }),
 
+/***/ "./node_modules/apisauce/dist/apisauce.js":
+/*!************************************************!*\
+  !*** ./node_modules/apisauce/dist/apisauce.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+function _interopDefault(e){return e&&"object"==typeof e&&"default"in e?e.default:e}Object.defineProperty(exports,"__esModule",{value:!0});var _partial=_interopDefault(__webpack_require__(/*! ramda/src/partial */ "./node_modules/apisauce/node_modules/ramda/src/partial.js")),_curry=_interopDefault(__webpack_require__(/*! ramda/src/curry */ "./node_modules/apisauce/node_modules/ramda/src/curry.js")),_pipe=_interopDefault(__webpack_require__(/*! ramda/src/pipe */ "./node_modules/apisauce/node_modules/ramda/src/pipe.js")),_keys=_interopDefault(__webpack_require__(/*! ramda/src/keys */ "./node_modules/apisauce/node_modules/ramda/src/keys.js")),_forEach=_interopDefault(__webpack_require__(/*! ramda/src/forEach */ "./node_modules/apisauce/node_modules/ramda/src/forEach.js")),_dissoc=_interopDefault(__webpack_require__(/*! ramda/src/dissoc */ "./node_modules/apisauce/node_modules/ramda/src/dissoc.js")),_merge=_interopDefault(__webpack_require__(/*! ramda/src/merge */ "./node_modules/apisauce/node_modules/ramda/src/merge.js")),_prop=_interopDefault(__webpack_require__(/*! ramda/src/prop */ "./node_modules/apisauce/node_modules/ramda/src/prop.js")),_always=_interopDefault(__webpack_require__(/*! ramda/src/always */ "./node_modules/apisauce/node_modules/ramda/src/always.js")),_ifElse=_interopDefault(__webpack_require__(/*! ramda/src/ifElse */ "./node_modules/apisauce/node_modules/ramda/src/ifElse.js")),_contains=_interopDefault(__webpack_require__(/*! ramda/src/contains */ "./node_modules/apisauce/node_modules/ramda/src/contains.js")),_gte=_interopDefault(__webpack_require__(/*! ramda/src/gte */ "./node_modules/apisauce/node_modules/ramda/src/gte.js")),_curryN=_interopDefault(__webpack_require__(/*! ramda/src/curryN */ "./node_modules/apisauce/node_modules/ramda/src/curryN.js")),_T=_interopDefault(__webpack_require__(/*! ramda/src/T */ "./node_modules/apisauce/node_modules/ramda/src/T.js")),_is=_interopDefault(__webpack_require__(/*! ramda/src/is */ "./node_modules/apisauce/node_modules/ramda/src/is.js")),_identity=_interopDefault(__webpack_require__(/*! ramda/src/identity */ "./node_modules/apisauce/node_modules/ramda/src/identity.js")),_isNil=_interopDefault(__webpack_require__(/*! ramda/src/isNil */ "./node_modules/apisauce/node_modules/ramda/src/isNil.js")),_cond=_interopDefault(__webpack_require__(/*! ramda/src/cond */ "./node_modules/apisauce/node_modules/ramda/src/cond.js")),axios=_interopDefault(__webpack_require__(/*! axios */ "./node_modules/apisauce/node_modules/axios/index.js")),__assign=function(){return(__assign=Object.assign||function(e){for(var r,t=1,n=arguments.length;t<n;t++)for(var a in r=arguments[t])Object.prototype.hasOwnProperty.call(r,a)&&(e[a]=r[a]);return e}).apply(this,arguments)},__awaiter=function(e,r,t,n){return new(t||(t=Promise))(function(a,i){function o(e){try{u(n.next(e))}catch(e){i(e)}}function s(e){try{u(n.throw(e))}catch(e){i(e)}}function u(e){e.done?a(e.value):new t(function(r){r(e.value)}).then(o,s)}u((n=n.apply(e,r||[])).next())})},__generator=function(e,r){var t,n,a,i,o={label:0,sent:function(){if(1&a[0])throw a[1];return a[1]},trys:[],ops:[]};return i={next:s(0),throw:s(1),return:s(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function s(i){return function(s){return function(i){if(t)throw new TypeError("Generator is already executing.");for(;o;)try{if(t=1,n&&(a=2&i[0]?n.return:i[0]?n.throw||((a=n.return)&&a.call(n),0):n.next)&&!(a=a.call(n,i[1])).done)return a;switch(n=0,a&&(i=[2&i[0],a.value]),i[0]){case 0:case 1:a=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,n=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(a=(a=o.trys).length>0&&a[a.length-1])&&(6===i[0]||2===i[0])){o=0;continue}if(3===i[0]&&(!a||i[1]>a[0]&&i[1]<a[3])){o.label=i[1];break}if(6===i[0]&&o.label<a[1]){o.label=a[1],a=i;break}if(a&&o.label<a[2]){o.label=a[2],o.ops.push(i);break}a[2]&&o.ops.pop(),o.trys.pop();continue}i=r.call(e,o)}catch(e){i=[6,e],n=0}finally{t=a=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,s])}}},_this=void 0,toNumber=_cond([[_isNil,_identity],[_is(Number),_identity],[_T,function(e){return Number(e)}]]),isWithin=_curryN(3,function(e,r,t){var n=_is(Number);return n(e)&&n(r)&&n(t)&&_gte(t,e)&&_gte(r,t)}),containsText=_curryN(2,function(e,r){return _contains(r,e)}),isPromise=function(e){return!!e&&("object"==typeof e||"function"==typeof e)&&"function"==typeof e.then},DEFAULT_HEADERS={Accept:"application/json","Content-Type":"application/json"},DEFAULT_CONFIG={timeout:0},NONE=null,CLIENT_ERROR="CLIENT_ERROR",SERVER_ERROR="SERVER_ERROR",TIMEOUT_ERROR="TIMEOUT_ERROR",CONNECTION_ERROR="CONNECTION_ERROR",NETWORK_ERROR="NETWORK_ERROR",UNKNOWN_ERROR="UNKNOWN_ERROR",CANCEL_ERROR="CANCEL_ERROR",TIMEOUT_ERROR_CODES=["ECONNABORTED"],NODEJS_CONNECTION_ERROR_CODES=["ENOTFOUND","ECONNREFUSED","ECONNRESET"],in200s=isWithin(200,299),in400s=isWithin(400,499),in500s=isWithin(500,599),statusNil=_ifElse(_isNil,_always(void 0),_prop("status")),getProblemFromError=function(e){return"Network Error"===e.message?NETWORK_ERROR:axios.isCancel(e)?CANCEL_ERROR:_cond([[_isNil,function(){return getProblemFromStatus(statusNil(e.response))}],[containsText(TIMEOUT_ERROR_CODES),_always(TIMEOUT_ERROR)],[containsText(NODEJS_CONNECTION_ERROR_CODES),_always(CONNECTION_ERROR)],[_T,_always(UNKNOWN_ERROR)]])(e.code)},getProblemFromStatus=function(e){return _cond([[_isNil,_always(UNKNOWN_ERROR)],[in200s,_always(NONE)],[in400s,_always(CLIENT_ERROR)],[in500s,_always(SERVER_ERROR)],[_T,_always(UNKNOWN_ERROR)]])(e)},create=function(e){var r=_merge(DEFAULT_HEADERS,e.headers||{}),t=_merge(DEFAULT_CONFIG,_dissoc("headers",e)),n=axios.create(t),a=[],i=[],o=[],s=[],u=function(e,t){return r[e]=t,n},R=function(e,r,t,n){return void 0===t&&(t={}),void 0===n&&(n={}),c(_merge({url:r,params:t,method:e},n))},_=function(e,r,t,n){return void 0===t&&(t=null),void 0===n&&(n={}),c(_merge({url:r,method:e,data:t},n))},c=function(e){return __awaiter(_this,void 0,void 0,function(){var t,a,s;return __generator(this,function(u){switch(u.label){case 0:if(e.headers=__assign({},r,e.headers),i.length>0&&_forEach(function(r){return r(e)},i),!(o.length>0))return[3,6];t=0,u.label=1;case 1:return t<o.length?(a=o[t](e),isPromise(a)?[4,a]:[3,3]):[3,6];case 2:return u.sent(),[3,5];case 3:return[4,a(e)];case 4:u.sent(),u.label=5;case 5:return t++,[3,1];case 6:return s=_pipe(l(toNumber(new Date)),E),[2,n.request(e).then(s).catch(s)]}})})},E=function(e){return a.forEach(function(r){try{r(e)}catch(e){}}),e},l=_curry(function(e,r){var t=toNumber(new Date)-e,n=r instanceof Error||axios.isCancel(r),a=r,i=r,o=n?i.response:a,u=o&&o.status||null,R=n?getProblemFromError(r):getProblemFromStatus(u),_=n?i:null,c=in200s(u),E=r.config||null,l={duration:t,problem:R,originalError:_,ok:c,status:u,headers:o&&o.headers||null,config:E,data:o&&o.data||null};return s.length>0&&_forEach(function(e){return e(l)},s),l});return{axiosInstance:n,monitors:a,addMonitor:function(e){a.push(e)},requestTransforms:i,asyncRequestTransforms:o,responseTransforms:s,addRequestTransform:function(e){return i.push(e)},addAsyncRequestTransform:function(e){return o.push(e)},addResponseTransform:function(e){return s.push(e)},setHeader:u,setHeaders:function(e){return _forEach(function(r){return u(r,e[r])},_keys(e)),n},deleteHeader:function(e){return delete r[e],n},headers:r,setBaseURL:function(e){return n.defaults.baseURL=e,n},getBaseURL:function(){return n.defaults.baseURL},get:_partial(R,["get"]),delete:_partial(R,["delete"]),head:_partial(R,["head"]),post:_partial(_,["post"]),put:_partial(_,["put"]),patch:_partial(_,["patch"]),link:_partial(R,["link"]),unlink:_partial(R,["unlink"])}},isCancel=axios.isCancel,CancelToken=axios.CancelToken,apisauce={DEFAULT_HEADERS:DEFAULT_HEADERS,NONE:NONE,CLIENT_ERROR:CLIENT_ERROR,SERVER_ERROR:SERVER_ERROR,TIMEOUT_ERROR:TIMEOUT_ERROR,CONNECTION_ERROR:CONNECTION_ERROR,NETWORK_ERROR:NETWORK_ERROR,UNKNOWN_ERROR:UNKNOWN_ERROR,create:create,isCancel:isCancel,CancelToken:CancelToken};exports.DEFAULT_HEADERS=DEFAULT_HEADERS,exports.NONE=NONE,exports.CLIENT_ERROR=CLIENT_ERROR,exports.SERVER_ERROR=SERVER_ERROR,exports.TIMEOUT_ERROR=TIMEOUT_ERROR,exports.CONNECTION_ERROR=CONNECTION_ERROR,exports.NETWORK_ERROR=NETWORK_ERROR,exports.UNKNOWN_ERROR=UNKNOWN_ERROR,exports.CANCEL_ERROR=CANCEL_ERROR,exports.getProblemFromError=getProblemFromError,exports.getProblemFromStatus=getProblemFromStatus,exports.create=create,exports.isCancel=isCancel,exports.CancelToken=CancelToken,exports.default=apisauce;
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/index.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/index.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/apisauce/node_modules/axios/lib/axios.js");
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/adapters/xhr.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/adapters/xhr.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/apisauce/node_modules/axios/lib/utils.js");
+var settle = __webpack_require__(/*! ./../core/settle */ "./node_modules/apisauce/node_modules/axios/lib/core/settle.js");
+var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/apisauce/node_modules/axios/lib/helpers/buildURL.js");
+var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/apisauce/node_modules/axios/lib/helpers/parseHeaders.js");
+var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/apisauce/node_modules/axios/lib/helpers/isURLSameOrigin.js");
+var createError = __webpack_require__(/*! ../core/createError */ "./node_modules/apisauce/node_modules/axios/lib/core/createError.js");
+
+module.exports = function xhrAdapter(config) {
+  return new Promise(function dispatchXhrRequest(resolve, reject) {
+    var requestData = config.data;
+    var requestHeaders = config.headers;
+
+    if (utils.isFormData(requestData)) {
+      delete requestHeaders['Content-Type']; // Let the browser set it
+    }
+
+    var request = new XMLHttpRequest();
+
+    // HTTP basic authentication
+    if (config.auth) {
+      var username = config.auth.username || '';
+      var password = config.auth.password || '';
+      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+    }
+
+    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+
+    // Set the request timeout in MS
+    request.timeout = config.timeout;
+
+    // Listen for ready state
+    request.onreadystatechange = function handleLoad() {
+      if (!request || request.readyState !== 4) {
+        return;
+      }
+
+      // The request errored out and we didn't get a response, this will be
+      // handled by onerror instead
+      // With one exception: request that using file: protocol, most browsers
+      // will return status as 0 even though it's a successful request
+      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+        return;
+      }
+
+      // Prepare the response
+      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+      var response = {
+        data: responseData,
+        status: request.status,
+        statusText: request.statusText,
+        headers: responseHeaders,
+        config: config,
+        request: request
+      };
+
+      settle(resolve, reject, response);
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle low level network errors
+    request.onerror = function handleError() {
+      // Real errors are hidden from us by the browser
+      // onerror should only fire if it's a network error
+      reject(createError('Network Error', config, null, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle timeout
+    request.ontimeout = function handleTimeout() {
+      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
+        request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Add xsrf header
+    // This is only done if running in a standard browser environment.
+    // Specifically not if we're in a web worker, or react-native.
+    if (utils.isStandardBrowserEnv()) {
+      var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/apisauce/node_modules/axios/lib/helpers/cookies.js");
+
+      // Add xsrf header
+      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
+          cookies.read(config.xsrfCookieName) :
+          undefined;
+
+      if (xsrfValue) {
+        requestHeaders[config.xsrfHeaderName] = xsrfValue;
+      }
+    }
+
+    // Add headers to the request
+    if ('setRequestHeader' in request) {
+      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+          // Remove Content-Type if data is undefined
+          delete requestHeaders[key];
+        } else {
+          // Otherwise add header to the request
+          request.setRequestHeader(key, val);
+        }
+      });
+    }
+
+    // Add withCredentials to request if needed
+    if (config.withCredentials) {
+      request.withCredentials = true;
+    }
+
+    // Add responseType to request if needed
+    if (config.responseType) {
+      try {
+        request.responseType = config.responseType;
+      } catch (e) {
+        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
+        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
+        if (config.responseType !== 'json') {
+          throw e;
+        }
+      }
+    }
+
+    // Handle progress if needed
+    if (typeof config.onDownloadProgress === 'function') {
+      request.addEventListener('progress', config.onDownloadProgress);
+    }
+
+    // Not all browsers support upload events
+    if (typeof config.onUploadProgress === 'function' && request.upload) {
+      request.upload.addEventListener('progress', config.onUploadProgress);
+    }
+
+    if (config.cancelToken) {
+      // Handle cancellation
+      config.cancelToken.promise.then(function onCanceled(cancel) {
+        if (!request) {
+          return;
+        }
+
+        request.abort();
+        reject(cancel);
+        // Clean up request
+        request = null;
+      });
+    }
+
+    if (requestData === undefined) {
+      requestData = null;
+    }
+
+    // Send the request
+    request.send(requestData);
+  });
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/axios.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/axios.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/apisauce/node_modules/axios/lib/utils.js");
+var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/apisauce/node_modules/axios/lib/helpers/bind.js");
+var Axios = __webpack_require__(/*! ./core/Axios */ "./node_modules/apisauce/node_modules/axios/lib/core/Axios.js");
+var defaults = __webpack_require__(/*! ./defaults */ "./node_modules/apisauce/node_modules/axios/lib/defaults.js");
+
+/**
+ * Create an instance of Axios
+ *
+ * @param {Object} defaultConfig The default config for the instance
+ * @return {Axios} A new instance of Axios
+ */
+function createInstance(defaultConfig) {
+  var context = new Axios(defaultConfig);
+  var instance = bind(Axios.prototype.request, context);
+
+  // Copy axios.prototype to instance
+  utils.extend(instance, Axios.prototype, context);
+
+  // Copy context to instance
+  utils.extend(instance, context);
+
+  return instance;
+}
+
+// Create the default instance to be exported
+var axios = createInstance(defaults);
+
+// Expose Axios class to allow class inheritance
+axios.Axios = Axios;
+
+// Factory for creating new instances
+axios.create = function create(instanceConfig) {
+  return createInstance(utils.merge(defaults, instanceConfig));
+};
+
+// Expose Cancel & CancelToken
+axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ "./node_modules/apisauce/node_modules/axios/lib/cancel/Cancel.js");
+axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ "./node_modules/apisauce/node_modules/axios/lib/cancel/CancelToken.js");
+axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ "./node_modules/apisauce/node_modules/axios/lib/cancel/isCancel.js");
+
+// Expose all/spread
+axios.all = function all(promises) {
+  return Promise.all(promises);
+};
+axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/apisauce/node_modules/axios/lib/helpers/spread.js");
+
+module.exports = axios;
+
+// Allow use of default import syntax in TypeScript
+module.exports.default = axios;
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/cancel/Cancel.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/cancel/Cancel.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * A `Cancel` is an object that is thrown when an operation is canceled.
+ *
+ * @class
+ * @param {string=} message The message.
+ */
+function Cancel(message) {
+  this.message = message;
+}
+
+Cancel.prototype.toString = function toString() {
+  return 'Cancel' + (this.message ? ': ' + this.message : '');
+};
+
+Cancel.prototype.__CANCEL__ = true;
+
+module.exports = Cancel;
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/cancel/CancelToken.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/cancel/CancelToken.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var Cancel = __webpack_require__(/*! ./Cancel */ "./node_modules/apisauce/node_modules/axios/lib/cancel/Cancel.js");
+
+/**
+ * A `CancelToken` is an object that can be used to request cancellation of an operation.
+ *
+ * @class
+ * @param {Function} executor The executor function.
+ */
+function CancelToken(executor) {
+  if (typeof executor !== 'function') {
+    throw new TypeError('executor must be a function.');
+  }
+
+  var resolvePromise;
+  this.promise = new Promise(function promiseExecutor(resolve) {
+    resolvePromise = resolve;
+  });
+
+  var token = this;
+  executor(function cancel(message) {
+    if (token.reason) {
+      // Cancellation has already been requested
+      return;
+    }
+
+    token.reason = new Cancel(message);
+    resolvePromise(token.reason);
+  });
+}
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+CancelToken.prototype.throwIfRequested = function throwIfRequested() {
+  if (this.reason) {
+    throw this.reason;
+  }
+};
+
+/**
+ * Returns an object that contains a new `CancelToken` and a function that, when called,
+ * cancels the `CancelToken`.
+ */
+CancelToken.source = function source() {
+  var cancel;
+  var token = new CancelToken(function executor(c) {
+    cancel = c;
+  });
+  return {
+    token: token,
+    cancel: cancel
+  };
+};
+
+module.exports = CancelToken;
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/cancel/isCancel.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/cancel/isCancel.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function isCancel(value) {
+  return !!(value && value.__CANCEL__);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/core/Axios.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/core/Axios.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var defaults = __webpack_require__(/*! ./../defaults */ "./node_modules/apisauce/node_modules/axios/lib/defaults.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/apisauce/node_modules/axios/lib/utils.js");
+var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ "./node_modules/apisauce/node_modules/axios/lib/core/InterceptorManager.js");
+var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ "./node_modules/apisauce/node_modules/axios/lib/core/dispatchRequest.js");
+
+/**
+ * Create a new instance of Axios
+ *
+ * @param {Object} instanceConfig The default config for the instance
+ */
+function Axios(instanceConfig) {
+  this.defaults = instanceConfig;
+  this.interceptors = {
+    request: new InterceptorManager(),
+    response: new InterceptorManager()
+  };
+}
+
+/**
+ * Dispatch a request
+ *
+ * @param {Object} config The config specific for this request (merged with this.defaults)
+ */
+Axios.prototype.request = function request(config) {
+  /*eslint no-param-reassign:0*/
+  // Allow for axios('example/url'[, config]) a la fetch API
+  if (typeof config === 'string') {
+    config = utils.merge({
+      url: arguments[0]
+    }, arguments[1]);
+  }
+
+  config = utils.merge(defaults, {method: 'get'}, this.defaults, config);
+  config.method = config.method.toLowerCase();
+
+  // Hook up interceptors middleware
+  var chain = [dispatchRequest, undefined];
+  var promise = Promise.resolve(config);
+
+  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+    chain.unshift(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+    chain.push(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  while (chain.length) {
+    promise = promise.then(chain.shift(), chain.shift());
+  }
+
+  return promise;
+};
+
+// Provide aliases for supported request methods
+utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, config) {
+    return this.request(utils.merge(config || {}, {
+      method: method,
+      url: url
+    }));
+  };
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, data, config) {
+    return this.request(utils.merge(config || {}, {
+      method: method,
+      url: url,
+      data: data
+    }));
+  };
+});
+
+module.exports = Axios;
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/core/InterceptorManager.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/core/InterceptorManager.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/apisauce/node_modules/axios/lib/utils.js");
+
+function InterceptorManager() {
+  this.handlers = [];
+}
+
+/**
+ * Add a new interceptor to the stack
+ *
+ * @param {Function} fulfilled The function to handle `then` for a `Promise`
+ * @param {Function} rejected The function to handle `reject` for a `Promise`
+ *
+ * @return {Number} An ID used to remove interceptor later
+ */
+InterceptorManager.prototype.use = function use(fulfilled, rejected) {
+  this.handlers.push({
+    fulfilled: fulfilled,
+    rejected: rejected
+  });
+  return this.handlers.length - 1;
+};
+
+/**
+ * Remove an interceptor from the stack
+ *
+ * @param {Number} id The ID that was returned by `use`
+ */
+InterceptorManager.prototype.eject = function eject(id) {
+  if (this.handlers[id]) {
+    this.handlers[id] = null;
+  }
+};
+
+/**
+ * Iterate over all the registered interceptors
+ *
+ * This method is particularly useful for skipping over any
+ * interceptors that may have become `null` calling `eject`.
+ *
+ * @param {Function} fn The function to call for each interceptor
+ */
+InterceptorManager.prototype.forEach = function forEach(fn) {
+  utils.forEach(this.handlers, function forEachHandler(h) {
+    if (h !== null) {
+      fn(h);
+    }
+  });
+};
+
+module.exports = InterceptorManager;
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/core/createError.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/core/createError.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var enhanceError = __webpack_require__(/*! ./enhanceError */ "./node_modules/apisauce/node_modules/axios/lib/core/enhanceError.js");
+
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The created error.
+ */
+module.exports = function createError(message, config, code, request, response) {
+  var error = new Error(message);
+  return enhanceError(error, config, code, request, response);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/core/dispatchRequest.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/core/dispatchRequest.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/apisauce/node_modules/axios/lib/utils.js");
+var transformData = __webpack_require__(/*! ./transformData */ "./node_modules/apisauce/node_modules/axios/lib/core/transformData.js");
+var isCancel = __webpack_require__(/*! ../cancel/isCancel */ "./node_modules/apisauce/node_modules/axios/lib/cancel/isCancel.js");
+var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/apisauce/node_modules/axios/lib/defaults.js");
+var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ "./node_modules/apisauce/node_modules/axios/lib/helpers/isAbsoluteURL.js");
+var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ "./node_modules/apisauce/node_modules/axios/lib/helpers/combineURLs.js");
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+function throwIfCancellationRequested(config) {
+  if (config.cancelToken) {
+    config.cancelToken.throwIfRequested();
+  }
+}
+
+/**
+ * Dispatch a request to the server using the configured adapter.
+ *
+ * @param {object} config The config that is to be used for the request
+ * @returns {Promise} The Promise to be fulfilled
+ */
+module.exports = function dispatchRequest(config) {
+  throwIfCancellationRequested(config);
+
+  // Support baseURL config
+  if (config.baseURL && !isAbsoluteURL(config.url)) {
+    config.url = combineURLs(config.baseURL, config.url);
+  }
+
+  // Ensure headers exist
+  config.headers = config.headers || {};
+
+  // Transform request data
+  config.data = transformData(
+    config.data,
+    config.headers,
+    config.transformRequest
+  );
+
+  // Flatten headers
+  config.headers = utils.merge(
+    config.headers.common || {},
+    config.headers[config.method] || {},
+    config.headers || {}
+  );
+
+  utils.forEach(
+    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+    function cleanHeaderConfig(method) {
+      delete config.headers[method];
+    }
+  );
+
+  var adapter = config.adapter || defaults.adapter;
+
+  return adapter(config).then(function onAdapterResolution(response) {
+    throwIfCancellationRequested(config);
+
+    // Transform response data
+    response.data = transformData(
+      response.data,
+      response.headers,
+      config.transformResponse
+    );
+
+    return response;
+  }, function onAdapterRejection(reason) {
+    if (!isCancel(reason)) {
+      throwIfCancellationRequested(config);
+
+      // Transform response data
+      if (reason && reason.response) {
+        reason.response.data = transformData(
+          reason.response.data,
+          reason.response.headers,
+          config.transformResponse
+        );
+      }
+    }
+
+    return Promise.reject(reason);
+  });
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/core/enhanceError.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/core/enhanceError.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Update an Error with the specified config, error code, and response.
+ *
+ * @param {Error} error The error to update.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The error.
+ */
+module.exports = function enhanceError(error, config, code, request, response) {
+  error.config = config;
+  if (code) {
+    error.code = code;
+  }
+  error.request = request;
+  error.response = response;
+  return error;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/core/settle.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/core/settle.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var createError = __webpack_require__(/*! ./createError */ "./node_modules/apisauce/node_modules/axios/lib/core/createError.js");
+
+/**
+ * Resolve or reject a Promise based on response status.
+ *
+ * @param {Function} resolve A function that resolves the promise.
+ * @param {Function} reject A function that rejects the promise.
+ * @param {object} response The response.
+ */
+module.exports = function settle(resolve, reject, response) {
+  var validateStatus = response.config.validateStatus;
+  // Note: status is not exposed by XDomainRequest
+  if (!response.status || !validateStatus || validateStatus(response.status)) {
+    resolve(response);
+  } else {
+    reject(createError(
+      'Request failed with status code ' + response.status,
+      response.config,
+      null,
+      response.request,
+      response
+    ));
+  }
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/core/transformData.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/core/transformData.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/apisauce/node_modules/axios/lib/utils.js");
+
+/**
+ * Transform the data for a request or a response
+ *
+ * @param {Object|String} data The data to be transformed
+ * @param {Array} headers The headers for the request or response
+ * @param {Array|Function} fns A single function or Array of functions
+ * @returns {*} The resulting transformed data
+ */
+module.exports = function transformData(data, headers, fns) {
+  /*eslint no-param-reassign:0*/
+  utils.forEach(fns, function transform(fn) {
+    data = fn(data, headers);
+  });
+
+  return data;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/defaults.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/defaults.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/apisauce/node_modules/axios/lib/utils.js");
+var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ "./node_modules/apisauce/node_modules/axios/lib/helpers/normalizeHeaderName.js");
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(/*! ./adapters/xhr */ "./node_modules/apisauce/node_modules/axios/lib/adapters/xhr.js");
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(/*! ./adapters/http */ "./node_modules/apisauce/node_modules/axios/lib/adapters/xhr.js");
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/helpers/bind.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/helpers/bind.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function bind(fn, thisArg) {
+  return function wrap() {
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+    return fn.apply(thisArg, args);
+  };
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/helpers/buildURL.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/helpers/buildURL.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/apisauce/node_modules/axios/lib/utils.js");
+
+function encode(val) {
+  return encodeURIComponent(val).
+    replace(/%40/gi, '@').
+    replace(/%3A/gi, ':').
+    replace(/%24/g, '$').
+    replace(/%2C/gi, ',').
+    replace(/%20/g, '+').
+    replace(/%5B/gi, '[').
+    replace(/%5D/gi, ']');
+}
+
+/**
+ * Build a URL by appending params to the end
+ *
+ * @param {string} url The base of the url (e.g., http://www.google.com)
+ * @param {object} [params] The params to be appended
+ * @returns {string} The formatted url
+ */
+module.exports = function buildURL(url, params, paramsSerializer) {
+  /*eslint no-param-reassign:0*/
+  if (!params) {
+    return url;
+  }
+
+  var serializedParams;
+  if (paramsSerializer) {
+    serializedParams = paramsSerializer(params);
+  } else if (utils.isURLSearchParams(params)) {
+    serializedParams = params.toString();
+  } else {
+    var parts = [];
+
+    utils.forEach(params, function serialize(val, key) {
+      if (val === null || typeof val === 'undefined') {
+        return;
+      }
+
+      if (utils.isArray(val)) {
+        key = key + '[]';
+      } else {
+        val = [val];
+      }
+
+      utils.forEach(val, function parseValue(v) {
+        if (utils.isDate(v)) {
+          v = v.toISOString();
+        } else if (utils.isObject(v)) {
+          v = JSON.stringify(v);
+        }
+        parts.push(encode(key) + '=' + encode(v));
+      });
+    });
+
+    serializedParams = parts.join('&');
+  }
+
+  if (serializedParams) {
+    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+  }
+
+  return url;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/helpers/combineURLs.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/helpers/combineURLs.js ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Creates a new URL by combining the specified URLs
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} relativeURL The relative URL
+ * @returns {string} The combined URL
+ */
+module.exports = function combineURLs(baseURL, relativeURL) {
+  return relativeURL
+    ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
+    : baseURL;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/helpers/cookies.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/helpers/cookies.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/apisauce/node_modules/axios/lib/utils.js");
+
+module.exports = (
+  utils.isStandardBrowserEnv() ?
+
+  // Standard browser envs support document.cookie
+  (function standardBrowserEnv() {
+    return {
+      write: function write(name, value, expires, path, domain, secure) {
+        var cookie = [];
+        cookie.push(name + '=' + encodeURIComponent(value));
+
+        if (utils.isNumber(expires)) {
+          cookie.push('expires=' + new Date(expires).toGMTString());
+        }
+
+        if (utils.isString(path)) {
+          cookie.push('path=' + path);
+        }
+
+        if (utils.isString(domain)) {
+          cookie.push('domain=' + domain);
+        }
+
+        if (secure === true) {
+          cookie.push('secure');
+        }
+
+        document.cookie = cookie.join('; ');
+      },
+
+      read: function read(name) {
+        var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+        return (match ? decodeURIComponent(match[3]) : null);
+      },
+
+      remove: function remove(name) {
+        this.write(name, '', Date.now() - 86400000);
+      }
+    };
+  })() :
+
+  // Non standard browser env (web workers, react-native) lack needed support.
+  (function nonStandardBrowserEnv() {
+    return {
+      write: function write() {},
+      read: function read() { return null; },
+      remove: function remove() {}
+    };
+  })()
+);
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/helpers/isAbsoluteURL.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Determines whether the specified URL is absolute
+ *
+ * @param {string} url The URL to test
+ * @returns {boolean} True if the specified URL is absolute, otherwise false
+ */
+module.exports = function isAbsoluteURL(url) {
+  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+  // by any combination of letters, digits, plus, period, or hyphen.
+  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/helpers/isURLSameOrigin.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/apisauce/node_modules/axios/lib/utils.js");
+
+module.exports = (
+  utils.isStandardBrowserEnv() ?
+
+  // Standard browser envs have full support of the APIs needed to test
+  // whether the request URL is of the same origin as current location.
+  (function standardBrowserEnv() {
+    var msie = /(msie|trident)/i.test(navigator.userAgent);
+    var urlParsingNode = document.createElement('a');
+    var originURL;
+
+    /**
+    * Parse a URL to discover it's components
+    *
+    * @param {String} url The URL to be parsed
+    * @returns {Object}
+    */
+    function resolveURL(url) {
+      var href = url;
+
+      if (msie) {
+        // IE needs attribute set twice to normalize properties
+        urlParsingNode.setAttribute('href', href);
+        href = urlParsingNode.href;
+      }
+
+      urlParsingNode.setAttribute('href', href);
+
+      // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+      return {
+        href: urlParsingNode.href,
+        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+        host: urlParsingNode.host,
+        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+        hostname: urlParsingNode.hostname,
+        port: urlParsingNode.port,
+        pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+                  urlParsingNode.pathname :
+                  '/' + urlParsingNode.pathname
+      };
+    }
+
+    originURL = resolveURL(window.location.href);
+
+    /**
+    * Determine if a URL shares the same origin as the current location
+    *
+    * @param {String} requestURL The URL to test
+    * @returns {boolean} True if URL shares the same origin, otherwise false
+    */
+    return function isURLSameOrigin(requestURL) {
+      var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+      return (parsed.protocol === originURL.protocol &&
+            parsed.host === originURL.host);
+    };
+  })() :
+
+  // Non standard browser envs (web workers, react-native) lack needed support.
+  (function nonStandardBrowserEnv() {
+    return function isURLSameOrigin() {
+      return true;
+    };
+  })()
+);
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/helpers/normalizeHeaderName.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/apisauce/node_modules/axios/lib/utils.js");
+
+module.exports = function normalizeHeaderName(headers, normalizedName) {
+  utils.forEach(headers, function processHeader(value, name) {
+    if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
+      headers[normalizedName] = value;
+      delete headers[name];
+    }
+  });
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/helpers/parseHeaders.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/helpers/parseHeaders.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/apisauce/node_modules/axios/lib/utils.js");
+
+// Headers whose duplicates are ignored by node
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+var ignoreDuplicateOf = [
+  'age', 'authorization', 'content-length', 'content-type', 'etag',
+  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
+  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
+  'referer', 'retry-after', 'user-agent'
+];
+
+/**
+ * Parse headers into an object
+ *
+ * ```
+ * Date: Wed, 27 Aug 2014 08:58:49 GMT
+ * Content-Type: application/json
+ * Connection: keep-alive
+ * Transfer-Encoding: chunked
+ * ```
+ *
+ * @param {String} headers Headers needing to be parsed
+ * @returns {Object} Headers parsed into an object
+ */
+module.exports = function parseHeaders(headers) {
+  var parsed = {};
+  var key;
+  var val;
+  var i;
+
+  if (!headers) { return parsed; }
+
+  utils.forEach(headers.split('\n'), function parser(line) {
+    i = line.indexOf(':');
+    key = utils.trim(line.substr(0, i)).toLowerCase();
+    val = utils.trim(line.substr(i + 1));
+
+    if (key) {
+      if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
+        return;
+      }
+      if (key === 'set-cookie') {
+        parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
+      } else {
+        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+      }
+    }
+  });
+
+  return parsed;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/helpers/spread.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/helpers/spread.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Syntactic sugar for invoking a function and expanding an array for arguments.
+ *
+ * Common use case would be to use `Function.prototype.apply`.
+ *
+ *  ```js
+ *  function f(x, y, z) {}
+ *  var args = [1, 2, 3];
+ *  f.apply(null, args);
+ *  ```
+ *
+ * With `spread` this example can be re-written.
+ *
+ *  ```js
+ *  spread(function(x, y, z) {})([1, 2, 3]);
+ *  ```
+ *
+ * @param {Function} callback
+ * @returns {Function}
+ */
+module.exports = function spread(callback) {
+  return function wrap(arr) {
+    return callback.apply(null, arr);
+  };
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/axios/lib/utils.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/axios/lib/utils.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/apisauce/node_modules/axios/lib/helpers/bind.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/apisauce/node_modules/is-buffer/index.js");
+
+/*global toString:true*/
+
+// utils is a library of generic helper functions non-specific to axios
+
+var toString = Object.prototype.toString;
+
+/**
+ * Determine if a value is an Array
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Array, otherwise false
+ */
+function isArray(val) {
+  return toString.call(val) === '[object Array]';
+}
+
+/**
+ * Determine if a value is an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+ */
+function isArrayBuffer(val) {
+  return toString.call(val) === '[object ArrayBuffer]';
+}
+
+/**
+ * Determine if a value is a FormData
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an FormData, otherwise false
+ */
+function isFormData(val) {
+  return (typeof FormData !== 'undefined') && (val instanceof FormData);
+}
+
+/**
+ * Determine if a value is a view on an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+ */
+function isArrayBufferView(val) {
+  var result;
+  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+    result = ArrayBuffer.isView(val);
+  } else {
+    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
+  }
+  return result;
+}
+
+/**
+ * Determine if a value is a String
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a String, otherwise false
+ */
+function isString(val) {
+  return typeof val === 'string';
+}
+
+/**
+ * Determine if a value is a Number
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Number, otherwise false
+ */
+function isNumber(val) {
+  return typeof val === 'number';
+}
+
+/**
+ * Determine if a value is undefined
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if the value is undefined, otherwise false
+ */
+function isUndefined(val) {
+  return typeof val === 'undefined';
+}
+
+/**
+ * Determine if a value is an Object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Object, otherwise false
+ */
+function isObject(val) {
+  return val !== null && typeof val === 'object';
+}
+
+/**
+ * Determine if a value is a Date
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Date, otherwise false
+ */
+function isDate(val) {
+  return toString.call(val) === '[object Date]';
+}
+
+/**
+ * Determine if a value is a File
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a File, otherwise false
+ */
+function isFile(val) {
+  return toString.call(val) === '[object File]';
+}
+
+/**
+ * Determine if a value is a Blob
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Blob, otherwise false
+ */
+function isBlob(val) {
+  return toString.call(val) === '[object Blob]';
+}
+
+/**
+ * Determine if a value is a Function
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Function, otherwise false
+ */
+function isFunction(val) {
+  return toString.call(val) === '[object Function]';
+}
+
+/**
+ * Determine if a value is a Stream
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Stream, otherwise false
+ */
+function isStream(val) {
+  return isObject(val) && isFunction(val.pipe);
+}
+
+/**
+ * Determine if a value is a URLSearchParams object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+ */
+function isURLSearchParams(val) {
+  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+}
+
+/**
+ * Trim excess whitespace off the beginning and end of a string
+ *
+ * @param {String} str The String to trim
+ * @returns {String} The String freed of excess whitespace
+ */
+function trim(str) {
+  return str.replace(/^\s*/, '').replace(/\s*$/, '');
+}
+
+/**
+ * Determine if we're running in a standard browser environment
+ *
+ * This allows axios to run in a web worker, and react-native.
+ * Both environments support XMLHttpRequest, but not fully standard globals.
+ *
+ * web workers:
+ *  typeof window -> undefined
+ *  typeof document -> undefined
+ *
+ * react-native:
+ *  navigator.product -> 'ReactNative'
+ */
+function isStandardBrowserEnv() {
+  if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+    return false;
+  }
+  return (
+    typeof window !== 'undefined' &&
+    typeof document !== 'undefined'
+  );
+}
+
+/**
+ * Iterate over an Array or an Object invoking a function for each item.
+ *
+ * If `obj` is an Array callback will be called passing
+ * the value, index, and complete array for each item.
+ *
+ * If 'obj' is an Object callback will be called passing
+ * the value, key, and complete object for each property.
+ *
+ * @param {Object|Array} obj The object to iterate
+ * @param {Function} fn The callback to invoke for each item
+ */
+function forEach(obj, fn) {
+  // Don't bother if no value provided
+  if (obj === null || typeof obj === 'undefined') {
+    return;
+  }
+
+  // Force an array if not already something iterable
+  if (typeof obj !== 'object') {
+    /*eslint no-param-reassign:0*/
+    obj = [obj];
+  }
+
+  if (isArray(obj)) {
+    // Iterate over array values
+    for (var i = 0, l = obj.length; i < l; i++) {
+      fn.call(null, obj[i], i, obj);
+    }
+  } else {
+    // Iterate over object keys
+    for (var key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        fn.call(null, obj[key], key, obj);
+      }
+    }
+  }
+}
+
+/**
+ * Accepts varargs expecting each argument to be an object, then
+ * immutably merges the properties of each object and returns result.
+ *
+ * When multiple objects contain the same key the later object in
+ * the arguments list will take precedence.
+ *
+ * Example:
+ *
+ * ```js
+ * var result = merge({foo: 123}, {foo: 456});
+ * console.log(result.foo); // outputs 456
+ * ```
+ *
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+function merge(/* obj1, obj2, obj3, ... */) {
+  var result = {};
+  function assignValue(val, key) {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
+      result[key] = merge(result[key], val);
+    } else {
+      result[key] = val;
+    }
+  }
+
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
+ * Extends object a by mutably adding to it the properties of object b.
+ *
+ * @param {Object} a The object to be extended
+ * @param {Object} b The object to copy properties from
+ * @param {Object} thisArg The object to bind function to
+ * @return {Object} The resulting value of object a
+ */
+function extend(a, b, thisArg) {
+  forEach(b, function assignValue(val, key) {
+    if (thisArg && typeof val === 'function') {
+      a[key] = bind(val, thisArg);
+    } else {
+      a[key] = val;
+    }
+  });
+  return a;
+}
+
+module.exports = {
+  isArray: isArray,
+  isArrayBuffer: isArrayBuffer,
+  isBuffer: isBuffer,
+  isFormData: isFormData,
+  isArrayBufferView: isArrayBufferView,
+  isString: isString,
+  isNumber: isNumber,
+  isObject: isObject,
+  isUndefined: isUndefined,
+  isDate: isDate,
+  isFile: isFile,
+  isBlob: isBlob,
+  isFunction: isFunction,
+  isStream: isStream,
+  isURLSearchParams: isURLSearchParams,
+  isStandardBrowserEnv: isStandardBrowserEnv,
+  forEach: forEach,
+  merge: merge,
+  extend: extend,
+  trim: trim
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/is-buffer/index.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/is-buffer/index.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+module.exports = function isBuffer (obj) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/T.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/T.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var always = /*#__PURE__*/__webpack_require__(/*! ./always */ "./node_modules/apisauce/node_modules/ramda/src/always.js");
+
+/**
+ * A function that always returns `true`. Any passed in parameters are ignored.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Function
+ * @sig * -> Boolean
+ * @param {*}
+ * @return {Boolean}
+ * @see R.always, R.F
+ * @example
+ *
+ *      R.T(); //=> true
+ */
+
+
+var T = /*#__PURE__*/always(true);
+module.exports = T;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/always.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/always.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry1 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry1 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry1.js");
+
+/**
+ * Returns a function that always returns the given value. Note that for
+ * non-primitives the value returned is a reference to the original value.
+ *
+ * This function is known as `const`, `constant`, or `K` (for K combinator) in
+ * other languages and libraries.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig a -> (* -> a)
+ * @param {*} val The value to wrap in a function
+ * @return {Function} A Function :: * -> val.
+ * @example
+ *
+ *      var t = R.always('Tee');
+ *      t(); //=> 'Tee'
+ */
+
+
+var always = /*#__PURE__*/_curry1(function always(val) {
+  return function () {
+    return val;
+  };
+});
+module.exports = always;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/bind.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/bind.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _arity = /*#__PURE__*/__webpack_require__(/*! ./internal/_arity */ "./node_modules/apisauce/node_modules/ramda/src/internal/_arity.js");
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+/**
+ * Creates a function that is bound to a context.
+ * Note: `R.bind` does not provide the additional argument-binding capabilities of
+ * [Function.prototype.bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+ *
+ * @func
+ * @memberOf R
+ * @since v0.6.0
+ * @category Function
+ * @category Object
+ * @sig (* -> *) -> {*} -> (* -> *)
+ * @param {Function} fn The function to bind to context
+ * @param {Object} thisObj The context to bind `fn` to
+ * @return {Function} A function that will execute in the context of `thisObj`.
+ * @see R.partial
+ * @example
+ *
+ *      var log = R.bind(console.log, console);
+ *      R.pipe(R.assoc('a', 2), R.tap(log), R.assoc('a', 3))({a: 1}); //=> {a: 3}
+ *      // logs {a: 2}
+ * @symb R.bind(f, o)(a, b) = f.call(o, a, b)
+ */
+
+
+var bind = /*#__PURE__*/_curry2(function bind(fn, thisObj) {
+  return _arity(fn.length, function () {
+    return fn.apply(thisObj, arguments);
+  });
+});
+module.exports = bind;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/cond.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/cond.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _arity = /*#__PURE__*/__webpack_require__(/*! ./internal/_arity */ "./node_modules/apisauce/node_modules/ramda/src/internal/_arity.js");
+
+var _curry1 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry1 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry1.js");
+
+var map = /*#__PURE__*/__webpack_require__(/*! ./map */ "./node_modules/apisauce/node_modules/ramda/src/map.js");
+
+var max = /*#__PURE__*/__webpack_require__(/*! ./max */ "./node_modules/apisauce/node_modules/ramda/src/max.js");
+
+var reduce = /*#__PURE__*/__webpack_require__(/*! ./reduce */ "./node_modules/apisauce/node_modules/ramda/src/reduce.js");
+
+/**
+ * Returns a function, `fn`, which encapsulates `if/else, if/else, ...` logic.
+ * `R.cond` takes a list of [predicate, transformer] pairs. All of the arguments
+ * to `fn` are applied to each of the predicates in turn until one returns a
+ * "truthy" value, at which point `fn` returns the result of applying its
+ * arguments to the corresponding transformer. If none of the predicates
+ * matches, `fn` returns undefined.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.6.0
+ * @category Logic
+ * @sig [[(*... -> Boolean),(*... -> *)]] -> (*... -> *)
+ * @param {Array} pairs A list of [predicate, transformer]
+ * @return {Function}
+ * @example
+ *
+ *      var fn = R.cond([
+ *        [R.equals(0),   R.always('water freezes at 0°C')],
+ *        [R.equals(100), R.always('water boils at 100°C')],
+ *        [R.T,           temp => 'nothing special happens at ' + temp + '°C']
+ *      ]);
+ *      fn(0); //=> 'water freezes at 0°C'
+ *      fn(50); //=> 'nothing special happens at 50°C'
+ *      fn(100); //=> 'water boils at 100°C'
+ */
+
+
+var cond = /*#__PURE__*/_curry1(function cond(pairs) {
+  var arity = reduce(max, 0, map(function (pair) {
+    return pair[0].length;
+  }, pairs));
+  return _arity(arity, function () {
+    var idx = 0;
+    while (idx < pairs.length) {
+      if (pairs[idx][0].apply(this, arguments)) {
+        return pairs[idx][1].apply(this, arguments);
+      }
+      idx += 1;
+    }
+  });
+});
+module.exports = cond;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/contains.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/contains.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _contains = /*#__PURE__*/__webpack_require__(/*! ./internal/_contains */ "./node_modules/apisauce/node_modules/ramda/src/internal/_contains.js");
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+/**
+ * Returns `true` if the specified value is equal, in [`R.equals`](#equals)
+ * terms, to at least one element of the given list; `false` otherwise.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig a -> [a] -> Boolean
+ * @param {Object} a The item to compare against.
+ * @param {Array} list The array to consider.
+ * @return {Boolean} `true` if an equivalent item is in the list, `false` otherwise.
+ * @see R.any
+ * @example
+ *
+ *      R.contains(3, [1, 2, 3]); //=> true
+ *      R.contains(4, [1, 2, 3]); //=> false
+ *      R.contains({ name: 'Fred' }, [{ name: 'Fred' }]); //=> true
+ *      R.contains([42], [[42]]); //=> true
+ */
+
+
+var contains = /*#__PURE__*/_curry2(_contains);
+module.exports = contains;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/curry.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/curry.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry1 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry1 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry1.js");
+
+var curryN = /*#__PURE__*/__webpack_require__(/*! ./curryN */ "./node_modules/apisauce/node_modules/ramda/src/curryN.js");
+
+/**
+ * Returns a curried equivalent of the provided function. The curried function
+ * has two unusual capabilities. First, its arguments needn't be provided one
+ * at a time. If `f` is a ternary function and `g` is `R.curry(f)`, the
+ * following are equivalent:
+ *
+ *   - `g(1)(2)(3)`
+ *   - `g(1)(2, 3)`
+ *   - `g(1, 2)(3)`
+ *   - `g(1, 2, 3)`
+ *
+ * Secondly, the special placeholder value [`R.__`](#__) may be used to specify
+ * "gaps", allowing partial application of any combination of arguments,
+ * regardless of their positions. If `g` is as above and `_` is [`R.__`](#__),
+ * the following are equivalent:
+ *
+ *   - `g(1, 2, 3)`
+ *   - `g(_, 2, 3)(1)`
+ *   - `g(_, _, 3)(1)(2)`
+ *   - `g(_, _, 3)(1, 2)`
+ *   - `g(_, 2)(1)(3)`
+ *   - `g(_, 2)(1, 3)`
+ *   - `g(_, 2)(_, 3)(1)`
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig (* -> a) -> (* -> a)
+ * @param {Function} fn The function to curry.
+ * @return {Function} A new, curried function.
+ * @see R.curryN
+ * @example
+ *
+ *      var addFourNumbers = (a, b, c, d) => a + b + c + d;
+ *
+ *      var curriedAddFourNumbers = R.curry(addFourNumbers);
+ *      var f = curriedAddFourNumbers(1, 2);
+ *      var g = f(3);
+ *      g(4); //=> 10
+ */
+
+
+var curry = /*#__PURE__*/_curry1(function curry(fn) {
+  return curryN(fn.length, fn);
+});
+module.exports = curry;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/curryN.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/curryN.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _arity = /*#__PURE__*/__webpack_require__(/*! ./internal/_arity */ "./node_modules/apisauce/node_modules/ramda/src/internal/_arity.js");
+
+var _curry1 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry1 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry1.js");
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+var _curryN = /*#__PURE__*/__webpack_require__(/*! ./internal/_curryN */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curryN.js");
+
+/**
+ * Returns a curried equivalent of the provided function, with the specified
+ * arity. The curried function has two unusual capabilities. First, its
+ * arguments needn't be provided one at a time. If `g` is `R.curryN(3, f)`, the
+ * following are equivalent:
+ *
+ *   - `g(1)(2)(3)`
+ *   - `g(1)(2, 3)`
+ *   - `g(1, 2)(3)`
+ *   - `g(1, 2, 3)`
+ *
+ * Secondly, the special placeholder value [`R.__`](#__) may be used to specify
+ * "gaps", allowing partial application of any combination of arguments,
+ * regardless of their positions. If `g` is as above and `_` is [`R.__`](#__),
+ * the following are equivalent:
+ *
+ *   - `g(1, 2, 3)`
+ *   - `g(_, 2, 3)(1)`
+ *   - `g(_, _, 3)(1)(2)`
+ *   - `g(_, _, 3)(1, 2)`
+ *   - `g(_, 2)(1)(3)`
+ *   - `g(_, 2)(1, 3)`
+ *   - `g(_, 2)(_, 3)(1)`
+ *
+ * @func
+ * @memberOf R
+ * @since v0.5.0
+ * @category Function
+ * @sig Number -> (* -> a) -> (* -> a)
+ * @param {Number} length The arity for the returned function.
+ * @param {Function} fn The function to curry.
+ * @return {Function} A new, curried function.
+ * @see R.curry
+ * @example
+ *
+ *      var sumArgs = (...args) => R.sum(args);
+ *
+ *      var curriedAddFourNumbers = R.curryN(4, sumArgs);
+ *      var f = curriedAddFourNumbers(1, 2);
+ *      var g = f(3);
+ *      g(4); //=> 10
+ */
+
+
+var curryN = /*#__PURE__*/_curry2(function curryN(length, fn) {
+  if (length === 1) {
+    return _curry1(fn);
+  }
+  return _arity(length, _curryN(length, [], fn));
+});
+module.exports = curryN;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/dissoc.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/dissoc.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+/**
+ * Returns a new object that does not contain a `prop` property.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.10.0
+ * @category Object
+ * @sig String -> {k: v} -> {k: v}
+ * @param {String} prop The name of the property to dissociate
+ * @param {Object} obj The object to clone
+ * @return {Object} A new object equivalent to the original but without the specified property
+ * @see R.assoc
+ * @example
+ *
+ *      R.dissoc('b', {a: 1, b: 2, c: 3}); //=> {a: 1, c: 3}
+ */
+
+
+var dissoc = /*#__PURE__*/_curry2(function dissoc(prop, obj) {
+  var result = {};
+  for (var p in obj) {
+    result[p] = obj[p];
+  }
+  delete result[prop];
+  return result;
+});
+module.exports = dissoc;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/equals.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/equals.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+var _equals = /*#__PURE__*/__webpack_require__(/*! ./internal/_equals */ "./node_modules/apisauce/node_modules/ramda/src/internal/_equals.js");
+
+/**
+ * Returns `true` if its arguments are equivalent, `false` otherwise. Handles
+ * cyclical data structures.
+ *
+ * Dispatches symmetrically to the `equals` methods of both arguments, if
+ * present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.15.0
+ * @category Relation
+ * @sig a -> b -> Boolean
+ * @param {*} a
+ * @param {*} b
+ * @return {Boolean}
+ * @example
+ *
+ *      R.equals(1, 1); //=> true
+ *      R.equals(1, '1'); //=> false
+ *      R.equals([1, 2, 3], [1, 2, 3]); //=> true
+ *
+ *      var a = {}; a.v = a;
+ *      var b = {}; b.v = b;
+ *      R.equals(a, b); //=> true
+ */
+
+
+var equals = /*#__PURE__*/_curry2(function equals(a, b) {
+  return _equals(a, b, [], []);
+});
+module.exports = equals;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/forEach.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/forEach.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _checkForMethod = /*#__PURE__*/__webpack_require__(/*! ./internal/_checkForMethod */ "./node_modules/apisauce/node_modules/ramda/src/internal/_checkForMethod.js");
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+/**
+ * Iterate over an input `list`, calling a provided function `fn` for each
+ * element in the list.
+ *
+ * `fn` receives one argument: *(value)*.
+ *
+ * Note: `R.forEach` does not skip deleted or unassigned indices (sparse
+ * arrays), unlike the native `Array.prototype.forEach` method. For more
+ * details on this behavior, see:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#Description
+ *
+ * Also note that, unlike `Array.prototype.forEach`, Ramda's `forEach` returns
+ * the original array. In some libraries this function is named `each`.
+ *
+ * Dispatches to the `forEach` method of the second argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.1
+ * @category List
+ * @sig (a -> *) -> [a] -> [a]
+ * @param {Function} fn The function to invoke. Receives one argument, `value`.
+ * @param {Array} list The list to iterate over.
+ * @return {Array} The original list.
+ * @see R.addIndex
+ * @example
+ *
+ *      var printXPlusFive = x => console.log(x + 5);
+ *      R.forEach(printXPlusFive, [1, 2, 3]); //=> [1, 2, 3]
+ *      // logs 6
+ *      // logs 7
+ *      // logs 8
+ * @symb R.forEach(f, [a, b, c]) = [a, b, c]
+ */
+
+
+var forEach = /*#__PURE__*/_curry2( /*#__PURE__*/_checkForMethod('forEach', function forEach(fn, list) {
+  var len = list.length;
+  var idx = 0;
+  while (idx < len) {
+    fn(list[idx]);
+    idx += 1;
+  }
+  return list;
+}));
+module.exports = forEach;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/gte.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/gte.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+/**
+ * Returns `true` if the first argument is greater than or equal to the second;
+ * `false` otherwise.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig Ord a => a -> a -> Boolean
+ * @param {Number} a
+ * @param {Number} b
+ * @return {Boolean}
+ * @see R.lte
+ * @example
+ *
+ *      R.gte(2, 1); //=> true
+ *      R.gte(2, 2); //=> true
+ *      R.gte(2, 3); //=> false
+ *      R.gte('a', 'z'); //=> false
+ *      R.gte('z', 'a'); //=> true
+ */
+
+
+var gte = /*#__PURE__*/_curry2(function gte(a, b) {
+  return a >= b;
+});
+module.exports = gte;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/identical.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/identical.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+/**
+ * Returns true if its arguments are identical, false otherwise. Values are
+ * identical if they reference the same memory. `NaN` is identical to `NaN`;
+ * `0` and `-0` are not identical.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.15.0
+ * @category Relation
+ * @sig a -> a -> Boolean
+ * @param {*} a
+ * @param {*} b
+ * @return {Boolean}
+ * @example
+ *
+ *      var o = {};
+ *      R.identical(o, o); //=> true
+ *      R.identical(1, 1); //=> true
+ *      R.identical(1, '1'); //=> false
+ *      R.identical([], []); //=> false
+ *      R.identical(0, -0); //=> false
+ *      R.identical(NaN, NaN); //=> true
+ */
+
+
+var identical = /*#__PURE__*/_curry2(function identical(a, b) {
+  // SameValue algorithm
+  if (a === b) {
+    // Steps 1-5, 7-10
+    // Steps 6.b-6.e: +0 != -0
+    return a !== 0 || 1 / a === 1 / b;
+  } else {
+    // Step 6.a: NaN == NaN
+    return a !== a && b !== b;
+  }
+});
+module.exports = identical;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/identity.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/identity.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry1 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry1 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry1.js");
+
+var _identity = /*#__PURE__*/__webpack_require__(/*! ./internal/_identity */ "./node_modules/apisauce/node_modules/ramda/src/internal/_identity.js");
+
+/**
+ * A function that does nothing but return the parameter supplied to it. Good
+ * as a default or placeholder function.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig a -> a
+ * @param {*} x The value to return.
+ * @return {*} The input value, `x`.
+ * @example
+ *
+ *      R.identity(1); //=> 1
+ *
+ *      var obj = {};
+ *      R.identity(obj) === obj; //=> true
+ * @symb R.identity(a) = a
+ */
+
+
+var identity = /*#__PURE__*/_curry1(_identity);
+module.exports = identity;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/ifElse.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/ifElse.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry3 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry3 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry3.js");
+
+var curryN = /*#__PURE__*/__webpack_require__(/*! ./curryN */ "./node_modules/apisauce/node_modules/ramda/src/curryN.js");
+
+/**
+ * Creates a function that will process either the `onTrue` or the `onFalse`
+ * function depending upon the result of the `condition` predicate.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.8.0
+ * @category Logic
+ * @sig (*... -> Boolean) -> (*... -> *) -> (*... -> *) -> (*... -> *)
+ * @param {Function} condition A predicate function
+ * @param {Function} onTrue A function to invoke when the `condition` evaluates to a truthy value.
+ * @param {Function} onFalse A function to invoke when the `condition` evaluates to a falsy value.
+ * @return {Function} A new unary function that will process either the `onTrue` or the `onFalse`
+ *                    function depending upon the result of the `condition` predicate.
+ * @see R.unless, R.when
+ * @example
+ *
+ *      var incCount = R.ifElse(
+ *        R.has('count'),
+ *        R.over(R.lensProp('count'), R.inc),
+ *        R.assoc('count', 1)
+ *      );
+ *      incCount({});           //=> { count: 1 }
+ *      incCount({ count: 1 }); //=> { count: 2 }
+ */
+
+
+var ifElse = /*#__PURE__*/_curry3(function ifElse(condition, onTrue, onFalse) {
+  return curryN(Math.max(condition.length, onTrue.length, onFalse.length), function _ifElse() {
+    return condition.apply(this, arguments) ? onTrue.apply(this, arguments) : onFalse.apply(this, arguments);
+  });
+});
+module.exports = ifElse;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_arity.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_arity.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arity(n, fn) {
+  /* eslint-disable no-unused-vars */
+  switch (n) {
+    case 0:
+      return function () {
+        return fn.apply(this, arguments);
+      };
+    case 1:
+      return function (a0) {
+        return fn.apply(this, arguments);
+      };
+    case 2:
+      return function (a0, a1) {
+        return fn.apply(this, arguments);
+      };
+    case 3:
+      return function (a0, a1, a2) {
+        return fn.apply(this, arguments);
+      };
+    case 4:
+      return function (a0, a1, a2, a3) {
+        return fn.apply(this, arguments);
+      };
+    case 5:
+      return function (a0, a1, a2, a3, a4) {
+        return fn.apply(this, arguments);
+      };
+    case 6:
+      return function (a0, a1, a2, a3, a4, a5) {
+        return fn.apply(this, arguments);
+      };
+    case 7:
+      return function (a0, a1, a2, a3, a4, a5, a6) {
+        return fn.apply(this, arguments);
+      };
+    case 8:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7) {
+        return fn.apply(this, arguments);
+      };
+    case 9:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8) {
+        return fn.apply(this, arguments);
+      };
+    case 10:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+        return fn.apply(this, arguments);
+      };
+    default:
+      throw new Error('First argument to _arity must be a non-negative integer no greater than ten');
+  }
+}
+module.exports = _arity;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_arrayFromIterator.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_arrayFromIterator.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayFromIterator(iter) {
+  var list = [];
+  var next;
+  while (!(next = iter.next()).done) {
+    list.push(next.value);
+  }
+  return list;
+}
+module.exports = _arrayFromIterator;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_assign.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_assign.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _objectAssign = /*#__PURE__*/__webpack_require__(/*! ./_objectAssign */ "./node_modules/apisauce/node_modules/ramda/src/internal/_objectAssign.js");
+
+module.exports = typeof Object.assign === 'function' ? Object.assign : _objectAssign;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_checkForMethod.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_checkForMethod.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _isArray = /*#__PURE__*/__webpack_require__(/*! ./_isArray */ "./node_modules/apisauce/node_modules/ramda/src/internal/_isArray.js");
+
+/**
+ * This checks whether a function has a [methodname] function. If it isn't an
+ * array it will execute that function otherwise it will default to the ramda
+ * implementation.
+ *
+ * @private
+ * @param {Function} fn ramda implemtation
+ * @param {String} methodname property to check for a custom implementation
+ * @return {Object} Whatever the return value of the method is.
+ */
+
+
+function _checkForMethod(methodname, fn) {
+  return function () {
+    var length = arguments.length;
+    if (length === 0) {
+      return fn();
+    }
+    var obj = arguments[length - 1];
+    return _isArray(obj) || typeof obj[methodname] !== 'function' ? fn.apply(this, arguments) : obj[methodname].apply(obj, Array.prototype.slice.call(arguments, 0, length - 1));
+  };
+}
+module.exports = _checkForMethod;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_concat.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_concat.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Private `concat` function to merge two array-like objects.
+ *
+ * @private
+ * @param {Array|Arguments} [set1=[]] An array-like object.
+ * @param {Array|Arguments} [set2=[]] An array-like object.
+ * @return {Array} A new, merged array.
+ * @example
+ *
+ *      _concat([4, 5, 6], [1, 2, 3]); //=> [4, 5, 6, 1, 2, 3]
+ */
+function _concat(set1, set2) {
+  set1 = set1 || [];
+  set2 = set2 || [];
+  var idx;
+  var len1 = set1.length;
+  var len2 = set2.length;
+  var result = [];
+
+  idx = 0;
+  while (idx < len1) {
+    result[result.length] = set1[idx];
+    idx += 1;
+  }
+  idx = 0;
+  while (idx < len2) {
+    result[result.length] = set2[idx];
+    idx += 1;
+  }
+  return result;
+}
+module.exports = _concat;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_contains.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_contains.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _indexOf = /*#__PURE__*/__webpack_require__(/*! ./_indexOf */ "./node_modules/apisauce/node_modules/ramda/src/internal/_indexOf.js");
+
+function _contains(a, list) {
+  return _indexOf(list, a, 0) >= 0;
+}
+module.exports = _contains;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_containsWith.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_containsWith.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _containsWith(pred, x, list) {
+  var idx = 0;
+  var len = list.length;
+
+  while (idx < len) {
+    if (pred(x, list[idx])) {
+      return true;
+    }
+    idx += 1;
+  }
+  return false;
+}
+module.exports = _containsWith;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_createPartialApplicator.js":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_createPartialApplicator.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _arity = /*#__PURE__*/__webpack_require__(/*! ./_arity */ "./node_modules/apisauce/node_modules/ramda/src/internal/_arity.js");
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+function _createPartialApplicator(concat) {
+  return _curry2(function (fn, args) {
+    return _arity(Math.max(0, fn.length - args.length), function () {
+      return fn.apply(this, concat(args, arguments));
+    });
+  });
+}
+module.exports = _createPartialApplicator;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry1.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_curry1.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _isPlaceholder = /*#__PURE__*/__webpack_require__(/*! ./_isPlaceholder */ "./node_modules/apisauce/node_modules/ramda/src/internal/_isPlaceholder.js");
+
+/**
+ * Optimized internal one-arity curry function.
+ *
+ * @private
+ * @category Function
+ * @param {Function} fn The function to curry.
+ * @return {Function} The curried function.
+ */
+
+
+function _curry1(fn) {
+  return function f1(a) {
+    if (arguments.length === 0 || _isPlaceholder(a)) {
+      return f1;
+    } else {
+      return fn.apply(this, arguments);
+    }
+  };
+}
+module.exports = _curry1;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry1 = /*#__PURE__*/__webpack_require__(/*! ./_curry1 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry1.js");
+
+var _isPlaceholder = /*#__PURE__*/__webpack_require__(/*! ./_isPlaceholder */ "./node_modules/apisauce/node_modules/ramda/src/internal/_isPlaceholder.js");
+
+/**
+ * Optimized internal two-arity curry function.
+ *
+ * @private
+ * @category Function
+ * @param {Function} fn The function to curry.
+ * @return {Function} The curried function.
+ */
+
+
+function _curry2(fn) {
+  return function f2(a, b) {
+    switch (arguments.length) {
+      case 0:
+        return f2;
+      case 1:
+        return _isPlaceholder(a) ? f2 : _curry1(function (_b) {
+          return fn(a, _b);
+        });
+      default:
+        return _isPlaceholder(a) && _isPlaceholder(b) ? f2 : _isPlaceholder(a) ? _curry1(function (_a) {
+          return fn(_a, b);
+        }) : _isPlaceholder(b) ? _curry1(function (_b) {
+          return fn(a, _b);
+        }) : fn(a, b);
+    }
+  };
+}
+module.exports = _curry2;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry3.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_curry3.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry1 = /*#__PURE__*/__webpack_require__(/*! ./_curry1 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry1.js");
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+var _isPlaceholder = /*#__PURE__*/__webpack_require__(/*! ./_isPlaceholder */ "./node_modules/apisauce/node_modules/ramda/src/internal/_isPlaceholder.js");
+
+/**
+ * Optimized internal three-arity curry function.
+ *
+ * @private
+ * @category Function
+ * @param {Function} fn The function to curry.
+ * @return {Function} The curried function.
+ */
+
+
+function _curry3(fn) {
+  return function f3(a, b, c) {
+    switch (arguments.length) {
+      case 0:
+        return f3;
+      case 1:
+        return _isPlaceholder(a) ? f3 : _curry2(function (_b, _c) {
+          return fn(a, _b, _c);
+        });
+      case 2:
+        return _isPlaceholder(a) && _isPlaceholder(b) ? f3 : _isPlaceholder(a) ? _curry2(function (_a, _c) {
+          return fn(_a, b, _c);
+        }) : _isPlaceholder(b) ? _curry2(function (_b, _c) {
+          return fn(a, _b, _c);
+        }) : _curry1(function (_c) {
+          return fn(a, b, _c);
+        });
+      default:
+        return _isPlaceholder(a) && _isPlaceholder(b) && _isPlaceholder(c) ? f3 : _isPlaceholder(a) && _isPlaceholder(b) ? _curry2(function (_a, _b) {
+          return fn(_a, _b, c);
+        }) : _isPlaceholder(a) && _isPlaceholder(c) ? _curry2(function (_a, _c) {
+          return fn(_a, b, _c);
+        }) : _isPlaceholder(b) && _isPlaceholder(c) ? _curry2(function (_b, _c) {
+          return fn(a, _b, _c);
+        }) : _isPlaceholder(a) ? _curry1(function (_a) {
+          return fn(_a, b, c);
+        }) : _isPlaceholder(b) ? _curry1(function (_b) {
+          return fn(a, _b, c);
+        }) : _isPlaceholder(c) ? _curry1(function (_c) {
+          return fn(a, b, _c);
+        }) : fn(a, b, c);
+    }
+  };
+}
+module.exports = _curry3;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_curryN.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_curryN.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _arity = /*#__PURE__*/__webpack_require__(/*! ./_arity */ "./node_modules/apisauce/node_modules/ramda/src/internal/_arity.js");
+
+var _isPlaceholder = /*#__PURE__*/__webpack_require__(/*! ./_isPlaceholder */ "./node_modules/apisauce/node_modules/ramda/src/internal/_isPlaceholder.js");
+
+/**
+ * Internal curryN function.
+ *
+ * @private
+ * @category Function
+ * @param {Number} length The arity of the curried function.
+ * @param {Array} received An array of arguments received thus far.
+ * @param {Function} fn The function to curry.
+ * @return {Function} The curried function.
+ */
+
+
+function _curryN(length, received, fn) {
+  return function () {
+    var combined = [];
+    var argsIdx = 0;
+    var left = length;
+    var combinedIdx = 0;
+    while (combinedIdx < received.length || argsIdx < arguments.length) {
+      var result;
+      if (combinedIdx < received.length && (!_isPlaceholder(received[combinedIdx]) || argsIdx >= arguments.length)) {
+        result = received[combinedIdx];
+      } else {
+        result = arguments[argsIdx];
+        argsIdx += 1;
+      }
+      combined[combinedIdx] = result;
+      if (!_isPlaceholder(result)) {
+        left -= 1;
+      }
+      combinedIdx += 1;
+    }
+    return left <= 0 ? fn.apply(this, combined) : _arity(left, _curryN(length, combined, fn));
+  };
+}
+module.exports = _curryN;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_dispatchable.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_dispatchable.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _isArray = /*#__PURE__*/__webpack_require__(/*! ./_isArray */ "./node_modules/apisauce/node_modules/ramda/src/internal/_isArray.js");
+
+var _isTransformer = /*#__PURE__*/__webpack_require__(/*! ./_isTransformer */ "./node_modules/apisauce/node_modules/ramda/src/internal/_isTransformer.js");
+
+/**
+ * Returns a function that dispatches with different strategies based on the
+ * object in list position (last argument). If it is an array, executes [fn].
+ * Otherwise, if it has a function with one of the given method names, it will
+ * execute that function (functor case). Otherwise, if it is a transformer,
+ * uses transducer [xf] to return a new transformer (transducer case).
+ * Otherwise, it will default to executing [fn].
+ *
+ * @private
+ * @param {Array} methodNames properties to check for a custom implementation
+ * @param {Function} xf transducer to initialize if object is transformer
+ * @param {Function} fn default ramda implementation
+ * @return {Function} A function that dispatches on object in list position
+ */
+
+
+function _dispatchable(methodNames, xf, fn) {
+  return function () {
+    if (arguments.length === 0) {
+      return fn();
+    }
+    var args = Array.prototype.slice.call(arguments, 0);
+    var obj = args.pop();
+    if (!_isArray(obj)) {
+      var idx = 0;
+      while (idx < methodNames.length) {
+        if (typeof obj[methodNames[idx]] === 'function') {
+          return obj[methodNames[idx]].apply(obj, args);
+        }
+        idx += 1;
+      }
+      if (_isTransformer(obj)) {
+        var transducer = xf.apply(null, args);
+        return transducer(obj);
+      }
+    }
+    return fn.apply(this, arguments);
+  };
+}
+module.exports = _dispatchable;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_equals.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_equals.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _arrayFromIterator = /*#__PURE__*/__webpack_require__(/*! ./_arrayFromIterator */ "./node_modules/apisauce/node_modules/ramda/src/internal/_arrayFromIterator.js");
+
+var _containsWith = /*#__PURE__*/__webpack_require__(/*! ./_containsWith */ "./node_modules/apisauce/node_modules/ramda/src/internal/_containsWith.js");
+
+var _functionName = /*#__PURE__*/__webpack_require__(/*! ./_functionName */ "./node_modules/apisauce/node_modules/ramda/src/internal/_functionName.js");
+
+var _has = /*#__PURE__*/__webpack_require__(/*! ./_has */ "./node_modules/apisauce/node_modules/ramda/src/internal/_has.js");
+
+var identical = /*#__PURE__*/__webpack_require__(/*! ../identical */ "./node_modules/apisauce/node_modules/ramda/src/identical.js");
+
+var keys = /*#__PURE__*/__webpack_require__(/*! ../keys */ "./node_modules/apisauce/node_modules/ramda/src/keys.js");
+
+var type = /*#__PURE__*/__webpack_require__(/*! ../type */ "./node_modules/apisauce/node_modules/ramda/src/type.js");
+
+/**
+ * private _uniqContentEquals function.
+ * That function is checking equality of 2 iterator contents with 2 assumptions
+ * - iterators lengths are the same
+ * - iterators values are unique
+ *
+ * false-positive result will be returned for comparision of, e.g.
+ * - [1,2,3] and [1,2,3,4]
+ * - [1,1,1] and [1,2,3]
+ * */
+
+function _uniqContentEquals(aIterator, bIterator, stackA, stackB) {
+  var a = _arrayFromIterator(aIterator);
+  var b = _arrayFromIterator(bIterator);
+
+  function eq(_a, _b) {
+    return _equals(_a, _b, stackA.slice(), stackB.slice());
+  }
+
+  // if *a* array contains any element that is not included in *b*
+  return !_containsWith(function (b, aItem) {
+    return !_containsWith(eq, aItem, b);
+  }, b, a);
+}
+
+function _equals(a, b, stackA, stackB) {
+  if (identical(a, b)) {
+    return true;
+  }
+
+  var typeA = type(a);
+
+  if (typeA !== type(b)) {
+    return false;
+  }
+
+  if (a == null || b == null) {
+    return false;
+  }
+
+  if (typeof a['fantasy-land/equals'] === 'function' || typeof b['fantasy-land/equals'] === 'function') {
+    return typeof a['fantasy-land/equals'] === 'function' && a['fantasy-land/equals'](b) && typeof b['fantasy-land/equals'] === 'function' && b['fantasy-land/equals'](a);
+  }
+
+  if (typeof a.equals === 'function' || typeof b.equals === 'function') {
+    return typeof a.equals === 'function' && a.equals(b) && typeof b.equals === 'function' && b.equals(a);
+  }
+
+  switch (typeA) {
+    case 'Arguments':
+    case 'Array':
+    case 'Object':
+      if (typeof a.constructor === 'function' && _functionName(a.constructor) === 'Promise') {
+        return a === b;
+      }
+      break;
+    case 'Boolean':
+    case 'Number':
+    case 'String':
+      if (!(typeof a === typeof b && identical(a.valueOf(), b.valueOf()))) {
+        return false;
+      }
+      break;
+    case 'Date':
+      if (!identical(a.valueOf(), b.valueOf())) {
+        return false;
+      }
+      break;
+    case 'Error':
+      return a.name === b.name && a.message === b.message;
+    case 'RegExp':
+      if (!(a.source === b.source && a.global === b.global && a.ignoreCase === b.ignoreCase && a.multiline === b.multiline && a.sticky === b.sticky && a.unicode === b.unicode)) {
+        return false;
+      }
+      break;
+  }
+
+  var idx = stackA.length - 1;
+  while (idx >= 0) {
+    if (stackA[idx] === a) {
+      return stackB[idx] === b;
+    }
+    idx -= 1;
+  }
+
+  switch (typeA) {
+    case 'Map':
+      if (a.size !== b.size) {
+        return false;
+      }
+
+      return _uniqContentEquals(a.entries(), b.entries(), stackA.concat([a]), stackB.concat([b]));
+    case 'Set':
+      if (a.size !== b.size) {
+        return false;
+      }
+
+      return _uniqContentEquals(a.values(), b.values(), stackA.concat([a]), stackB.concat([b]));
+    case 'Arguments':
+    case 'Array':
+    case 'Object':
+    case 'Boolean':
+    case 'Number':
+    case 'String':
+    case 'Date':
+    case 'Error':
+    case 'RegExp':
+    case 'Int8Array':
+    case 'Uint8Array':
+    case 'Uint8ClampedArray':
+    case 'Int16Array':
+    case 'Uint16Array':
+    case 'Int32Array':
+    case 'Uint32Array':
+    case 'Float32Array':
+    case 'Float64Array':
+    case 'ArrayBuffer':
+      break;
+    default:
+      // Values of other types are only equal if identical.
+      return false;
+  }
+
+  var keysA = keys(a);
+  if (keysA.length !== keys(b).length) {
+    return false;
+  }
+
+  var extendedStackA = stackA.concat([a]);
+  var extendedStackB = stackB.concat([b]);
+
+  idx = keysA.length - 1;
+  while (idx >= 0) {
+    var key = keysA[idx];
+    if (!(_has(key, b) && _equals(b[key], a[key], extendedStackA, extendedStackB))) {
+      return false;
+    }
+    idx -= 1;
+  }
+  return true;
+}
+module.exports = _equals;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_functionName.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_functionName.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _functionName(f) {
+  // String(x => x) evaluates to "x => x", so the pattern may not match.
+  var match = String(f).match(/^function (\w*)/);
+  return match == null ? '' : match[1];
+}
+module.exports = _functionName;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_has.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_has.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _has(prop, obj) {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
+}
+module.exports = _has;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_identity.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_identity.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _identity(x) {
+  return x;
+}
+module.exports = _identity;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_indexOf.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_indexOf.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var equals = /*#__PURE__*/__webpack_require__(/*! ../equals */ "./node_modules/apisauce/node_modules/ramda/src/equals.js");
+
+function _indexOf(list, a, idx) {
+  var inf, item;
+  // Array.prototype.indexOf doesn't exist below IE9
+  if (typeof list.indexOf === 'function') {
+    switch (typeof a) {
+      case 'number':
+        if (a === 0) {
+          // manually crawl the list to distinguish between +0 and -0
+          inf = 1 / a;
+          while (idx < list.length) {
+            item = list[idx];
+            if (item === 0 && 1 / item === inf) {
+              return idx;
+            }
+            idx += 1;
+          }
+          return -1;
+        } else if (a !== a) {
+          // NaN
+          while (idx < list.length) {
+            item = list[idx];
+            if (typeof item === 'number' && item !== item) {
+              return idx;
+            }
+            idx += 1;
+          }
+          return -1;
+        }
+        // non-zero numbers can utilise Set
+        return list.indexOf(a, idx);
+
+      // all these types can utilise Set
+      case 'string':
+      case 'boolean':
+      case 'function':
+      case 'undefined':
+        return list.indexOf(a, idx);
+
+      case 'object':
+        if (a === null) {
+          // null can utilise Set
+          return list.indexOf(a, idx);
+        }
+    }
+  }
+  // anything else not covered above, defer to R.equals
+  while (idx < list.length) {
+    if (equals(list[idx], a)) {
+      return idx;
+    }
+    idx += 1;
+  }
+  return -1;
+}
+module.exports = _indexOf;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_isArguments.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_isArguments.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _has = /*#__PURE__*/__webpack_require__(/*! ./_has */ "./node_modules/apisauce/node_modules/ramda/src/internal/_has.js");
+
+var toString = Object.prototype.toString;
+var _isArguments = function () {
+  return toString.call(arguments) === '[object Arguments]' ? function _isArguments(x) {
+    return toString.call(x) === '[object Arguments]';
+  } : function _isArguments(x) {
+    return _has('callee', x);
+  };
+};
+
+module.exports = _isArguments;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_isArray.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_isArray.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Tests whether or not an object is an array.
+ *
+ * @private
+ * @param {*} val The object to test.
+ * @return {Boolean} `true` if `val` is an array, `false` otherwise.
+ * @example
+ *
+ *      _isArray([]); //=> true
+ *      _isArray(null); //=> false
+ *      _isArray({}); //=> false
+ */
+module.exports = Array.isArray || function _isArray(val) {
+  return val != null && val.length >= 0 && Object.prototype.toString.call(val) === '[object Array]';
+};
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_isArrayLike.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_isArrayLike.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry1 = /*#__PURE__*/__webpack_require__(/*! ./_curry1 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry1.js");
+
+var _isArray = /*#__PURE__*/__webpack_require__(/*! ./_isArray */ "./node_modules/apisauce/node_modules/ramda/src/internal/_isArray.js");
+
+var _isString = /*#__PURE__*/__webpack_require__(/*! ./_isString */ "./node_modules/apisauce/node_modules/ramda/src/internal/_isString.js");
+
+/**
+ * Tests whether or not an object is similar to an array.
+ *
+ * @private
+ * @category Type
+ * @category List
+ * @sig * -> Boolean
+ * @param {*} x The object to test.
+ * @return {Boolean} `true` if `x` has a numeric length property and extreme indices defined; `false` otherwise.
+ * @example
+ *
+ *      _isArrayLike([]); //=> true
+ *      _isArrayLike(true); //=> false
+ *      _isArrayLike({}); //=> false
+ *      _isArrayLike({length: 10}); //=> false
+ *      _isArrayLike({0: 'zero', 9: 'nine', length: 10}); //=> true
+ */
+
+
+var _isArrayLike = /*#__PURE__*/_curry1(function isArrayLike(x) {
+  if (_isArray(x)) {
+    return true;
+  }
+  if (!x) {
+    return false;
+  }
+  if (typeof x !== 'object') {
+    return false;
+  }
+  if (_isString(x)) {
+    return false;
+  }
+  if (x.nodeType === 1) {
+    return !!x.length;
+  }
+  if (x.length === 0) {
+    return true;
+  }
+  if (x.length > 0) {
+    return x.hasOwnProperty(0) && x.hasOwnProperty(x.length - 1);
+  }
+  return false;
+});
+module.exports = _isArrayLike;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_isPlaceholder.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_isPlaceholder.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _isPlaceholder(a) {
+       return a != null && typeof a === 'object' && a['@@functional/placeholder'] === true;
+}
+module.exports = _isPlaceholder;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_isString.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_isString.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _isString(x) {
+  return Object.prototype.toString.call(x) === '[object String]';
+}
+module.exports = _isString;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_isTransformer.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_isTransformer.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _isTransformer(obj) {
+  return typeof obj['@@transducer/step'] === 'function';
+}
+module.exports = _isTransformer;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_map.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_map.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _map(fn, functor) {
+  var idx = 0;
+  var len = functor.length;
+  var result = Array(len);
+  while (idx < len) {
+    result[idx] = fn(functor[idx]);
+    idx += 1;
+  }
+  return result;
+}
+module.exports = _map;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_objectAssign.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_objectAssign.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _has = /*#__PURE__*/__webpack_require__(/*! ./_has */ "./node_modules/apisauce/node_modules/ramda/src/internal/_has.js");
+
+// Based on https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+
+
+function _objectAssign(target) {
+  if (target == null) {
+    throw new TypeError('Cannot convert undefined or null to object');
+  }
+
+  var output = Object(target);
+  var idx = 1;
+  var length = arguments.length;
+  while (idx < length) {
+    var source = arguments[idx];
+    if (source != null) {
+      for (var nextKey in source) {
+        if (_has(nextKey, source)) {
+          output[nextKey] = source[nextKey];
+        }
+      }
+    }
+    idx += 1;
+  }
+  return output;
+}
+module.exports = _objectAssign;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_pipe.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_pipe.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _pipe(f, g) {
+  return function () {
+    return g.call(this, f.apply(this, arguments));
+  };
+}
+module.exports = _pipe;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_reduce.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_reduce.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _isArrayLike = /*#__PURE__*/__webpack_require__(/*! ./_isArrayLike */ "./node_modules/apisauce/node_modules/ramda/src/internal/_isArrayLike.js");
+
+var _xwrap = /*#__PURE__*/__webpack_require__(/*! ./_xwrap */ "./node_modules/apisauce/node_modules/ramda/src/internal/_xwrap.js");
+
+var bind = /*#__PURE__*/__webpack_require__(/*! ../bind */ "./node_modules/apisauce/node_modules/ramda/src/bind.js");
+
+function _arrayReduce(xf, acc, list) {
+  var idx = 0;
+  var len = list.length;
+  while (idx < len) {
+    acc = xf['@@transducer/step'](acc, list[idx]);
+    if (acc && acc['@@transducer/reduced']) {
+      acc = acc['@@transducer/value'];
+      break;
+    }
+    idx += 1;
+  }
+  return xf['@@transducer/result'](acc);
+}
+
+function _iterableReduce(xf, acc, iter) {
+  var step = iter.next();
+  while (!step.done) {
+    acc = xf['@@transducer/step'](acc, step.value);
+    if (acc && acc['@@transducer/reduced']) {
+      acc = acc['@@transducer/value'];
+      break;
+    }
+    step = iter.next();
+  }
+  return xf['@@transducer/result'](acc);
+}
+
+function _methodReduce(xf, acc, obj, methodName) {
+  return xf['@@transducer/result'](obj[methodName](bind(xf['@@transducer/step'], xf), acc));
+}
+
+var symIterator = typeof Symbol !== 'undefined' ? Symbol.iterator : '@@iterator';
+
+function _reduce(fn, acc, list) {
+  if (typeof fn === 'function') {
+    fn = _xwrap(fn);
+  }
+  if (_isArrayLike(list)) {
+    return _arrayReduce(fn, acc, list);
+  }
+  if (typeof list['fantasy-land/reduce'] === 'function') {
+    return _methodReduce(fn, acc, list, 'fantasy-land/reduce');
+  }
+  if (list[symIterator] != null) {
+    return _iterableReduce(fn, acc, list[symIterator]());
+  }
+  if (typeof list.next === 'function') {
+    return _iterableReduce(fn, acc, list);
+  }
+  if (typeof list.reduce === 'function') {
+    return _methodReduce(fn, acc, list, 'reduce');
+  }
+
+  throw new TypeError('reduce: list must be array or iterable');
+}
+module.exports = _reduce;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_xfBase.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_xfBase.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  init: function () {
+    return this.xf['@@transducer/init']();
+  },
+  result: function (result) {
+    return this.xf['@@transducer/result'](result);
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_xmap.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_xmap.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+var _xfBase = /*#__PURE__*/__webpack_require__(/*! ./_xfBase */ "./node_modules/apisauce/node_modules/ramda/src/internal/_xfBase.js");
+
+var XMap = /*#__PURE__*/function () {
+
+  function XMap(f, xf) {
+    this.xf = xf;
+    this.f = f;
+  }
+  XMap.prototype['@@transducer/init'] = _xfBase.init;
+  XMap.prototype['@@transducer/result'] = _xfBase.result;
+  XMap.prototype['@@transducer/step'] = function (result, input) {
+    return this.xf['@@transducer/step'](result, this.f(input));
+  };
+
+  return XMap;
+}();
+
+var _xmap = /*#__PURE__*/_curry2(function _xmap(f, xf) {
+  return new XMap(f, xf);
+});
+module.exports = _xmap;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/internal/_xwrap.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/internal/_xwrap.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var XWrap = /*#__PURE__*/function () {
+  function XWrap(fn) {
+    this.f = fn;
+  }
+  XWrap.prototype['@@transducer/init'] = function () {
+    throw new Error('init not implemented on XWrap');
+  };
+  XWrap.prototype['@@transducer/result'] = function (acc) {
+    return acc;
+  };
+  XWrap.prototype['@@transducer/step'] = function (acc, x) {
+    return this.f(acc, x);
+  };
+
+  return XWrap;
+}();
+
+function _xwrap(fn) {
+  return new XWrap(fn);
+}
+module.exports = _xwrap;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/is.js":
+/*!************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/is.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+/**
+ * See if an object (`val`) is an instance of the supplied constructor. This
+ * function will check up the inheritance chain, if any.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.3.0
+ * @category Type
+ * @sig (* -> {*}) -> a -> Boolean
+ * @param {Object} ctor A constructor
+ * @param {*} val The value to test
+ * @return {Boolean}
+ * @example
+ *
+ *      R.is(Object, {}); //=> true
+ *      R.is(Number, 1); //=> true
+ *      R.is(Object, 1); //=> false
+ *      R.is(String, 's'); //=> true
+ *      R.is(String, new String('')); //=> true
+ *      R.is(Object, new String('')); //=> true
+ *      R.is(Object, 's'); //=> false
+ *      R.is(Number, {}); //=> false
+ */
+
+
+var is = /*#__PURE__*/_curry2(function is(Ctor, val) {
+  return val != null && val.constructor === Ctor || val instanceof Ctor;
+});
+module.exports = is;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/isNil.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/isNil.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry1 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry1 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry1.js");
+
+/**
+ * Checks if the input value is `null` or `undefined`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Type
+ * @sig * -> Boolean
+ * @param {*} x The value to test.
+ * @return {Boolean} `true` if `x` is `undefined` or `null`, otherwise `false`.
+ * @example
+ *
+ *      R.isNil(null); //=> true
+ *      R.isNil(undefined); //=> true
+ *      R.isNil(0); //=> false
+ *      R.isNil([]); //=> false
+ */
+
+
+var isNil = /*#__PURE__*/_curry1(function isNil(x) {
+  return x == null;
+});
+module.exports = isNil;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/keys.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/keys.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry1 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry1 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry1.js");
+
+var _has = /*#__PURE__*/__webpack_require__(/*! ./internal/_has */ "./node_modules/apisauce/node_modules/ramda/src/internal/_has.js");
+
+var _isArguments = /*#__PURE__*/__webpack_require__(/*! ./internal/_isArguments */ "./node_modules/apisauce/node_modules/ramda/src/internal/_isArguments.js");
+
+// cover IE < 9 keys issues
+
+
+var hasEnumBug = ! /*#__PURE__*/{ toString: null }.propertyIsEnumerable('toString');
+var nonEnumerableProps = ['constructor', 'valueOf', 'isPrototypeOf', 'toString', 'propertyIsEnumerable', 'hasOwnProperty', 'toLocaleString'];
+// Safari bug
+var hasArgsEnumBug = /*#__PURE__*/function () {
+  'use strict';
+
+  return arguments.propertyIsEnumerable('length');
+}();
+
+var contains = function contains(list, item) {
+  var idx = 0;
+  while (idx < list.length) {
+    if (list[idx] === item) {
+      return true;
+    }
+    idx += 1;
+  }
+  return false;
+};
+
+/**
+ * Returns a list containing the names of all the enumerable own properties of
+ * the supplied object.
+ * Note that the order of the output array is not guaranteed to be consistent
+ * across different JS platforms.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig {k: v} -> [k]
+ * @param {Object} obj The object to extract properties from
+ * @return {Array} An array of the object's own properties.
+ * @see R.keysIn, R.values
+ * @example
+ *
+ *      R.keys({a: 1, b: 2, c: 3}); //=> ['a', 'b', 'c']
+ */
+var _keys = typeof Object.keys === 'function' && !hasArgsEnumBug ? function keys(obj) {
+  return Object(obj) !== obj ? [] : Object.keys(obj);
+} : function keys(obj) {
+  if (Object(obj) !== obj) {
+    return [];
+  }
+  var prop, nIdx;
+  var ks = [];
+  var checkArgsLength = hasArgsEnumBug && _isArguments(obj);
+  for (prop in obj) {
+    if (_has(prop, obj) && (!checkArgsLength || prop !== 'length')) {
+      ks[ks.length] = prop;
+    }
+  }
+  if (hasEnumBug) {
+    nIdx = nonEnumerableProps.length - 1;
+    while (nIdx >= 0) {
+      prop = nonEnumerableProps[nIdx];
+      if (_has(prop, obj) && !contains(ks, prop)) {
+        ks[ks.length] = prop;
+      }
+      nIdx -= 1;
+    }
+  }
+  return ks;
+};
+var keys = /*#__PURE__*/_curry1(_keys);
+module.exports = keys;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/map.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/map.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+var _dispatchable = /*#__PURE__*/__webpack_require__(/*! ./internal/_dispatchable */ "./node_modules/apisauce/node_modules/ramda/src/internal/_dispatchable.js");
+
+var _map = /*#__PURE__*/__webpack_require__(/*! ./internal/_map */ "./node_modules/apisauce/node_modules/ramda/src/internal/_map.js");
+
+var _reduce = /*#__PURE__*/__webpack_require__(/*! ./internal/_reduce */ "./node_modules/apisauce/node_modules/ramda/src/internal/_reduce.js");
+
+var _xmap = /*#__PURE__*/__webpack_require__(/*! ./internal/_xmap */ "./node_modules/apisauce/node_modules/ramda/src/internal/_xmap.js");
+
+var curryN = /*#__PURE__*/__webpack_require__(/*! ./curryN */ "./node_modules/apisauce/node_modules/ramda/src/curryN.js");
+
+var keys = /*#__PURE__*/__webpack_require__(/*! ./keys */ "./node_modules/apisauce/node_modules/ramda/src/keys.js");
+
+/**
+ * Takes a function and
+ * a [functor](https://github.com/fantasyland/fantasy-land#functor),
+ * applies the function to each of the functor's values, and returns
+ * a functor of the same shape.
+ *
+ * Ramda provides suitable `map` implementations for `Array` and `Object`,
+ * so this function may be applied to `[1, 2, 3]` or `{x: 1, y: 2, z: 3}`.
+ *
+ * Dispatches to the `map` method of the second argument, if present.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * Also treats functions as functors and will compose them together.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig Functor f => (a -> b) -> f a -> f b
+ * @param {Function} fn The function to be called on every element of the input `list`.
+ * @param {Array} list The list to be iterated over.
+ * @return {Array} The new list.
+ * @see R.transduce, R.addIndex
+ * @example
+ *
+ *      var double = x => x * 2;
+ *
+ *      R.map(double, [1, 2, 3]); //=> [2, 4, 6]
+ *
+ *      R.map(double, {x: 1, y: 2, z: 3}); //=> {x: 2, y: 4, z: 6}
+ * @symb R.map(f, [a, b]) = [f(a), f(b)]
+ * @symb R.map(f, { x: a, y: b }) = { x: f(a), y: f(b) }
+ * @symb R.map(f, functor_o) = functor_o.map(f)
+ */
+
+
+var map = /*#__PURE__*/_curry2( /*#__PURE__*/_dispatchable(['fantasy-land/map', 'map'], _xmap, function map(fn, functor) {
+  switch (Object.prototype.toString.call(functor)) {
+    case '[object Function]':
+      return curryN(functor.length, function () {
+        return fn.call(this, functor.apply(this, arguments));
+      });
+    case '[object Object]':
+      return _reduce(function (acc, key) {
+        acc[key] = fn(functor[key]);
+        return acc;
+      }, {}, keys(functor));
+    default:
+      return _map(fn, functor);
+  }
+}));
+module.exports = map;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/max.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/max.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+/**
+ * Returns the larger of its two arguments.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig Ord a => a -> a -> a
+ * @param {*} a
+ * @param {*} b
+ * @return {*}
+ * @see R.maxBy, R.min
+ * @example
+ *
+ *      R.max(789, 123); //=> 789
+ *      R.max('a', 'b'); //=> 'b'
+ */
+
+
+var max = /*#__PURE__*/_curry2(function max(a, b) {
+  return b > a ? b : a;
+});
+module.exports = max;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/merge.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/merge.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _assign = /*#__PURE__*/__webpack_require__(/*! ./internal/_assign */ "./node_modules/apisauce/node_modules/ramda/src/internal/_assign.js");
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+/**
+ * Create a new object with the own properties of the first object merged with
+ * the own properties of the second object. If a key exists in both objects,
+ * the value from the second object will be used.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig {k: v} -> {k: v} -> {k: v}
+ * @param {Object} l
+ * @param {Object} r
+ * @return {Object}
+ * @see R.mergeDeepRight, R.mergeWith, R.mergeWithKey
+ * @example
+ *
+ *      R.merge({ 'name': 'fred', 'age': 10 }, { 'age': 40 });
+ *      //=> { 'name': 'fred', 'age': 40 }
+ *
+ *      var resetToDefault = R.merge(R.__, {x: 0});
+ *      resetToDefault({x: 5, y: 2}); //=> {x: 0, y: 2}
+ * @symb R.merge({ x: 1, y: 2 }, { y: 5, z: 3 }) = { x: 1, y: 5, z: 3 }
+ */
+
+
+var merge = /*#__PURE__*/_curry2(function merge(l, r) {
+  return _assign({}, l, r);
+});
+module.exports = merge;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/partial.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/partial.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _concat = /*#__PURE__*/__webpack_require__(/*! ./internal/_concat */ "./node_modules/apisauce/node_modules/ramda/src/internal/_concat.js");
+
+var _createPartialApplicator = /*#__PURE__*/__webpack_require__(/*! ./internal/_createPartialApplicator */ "./node_modules/apisauce/node_modules/ramda/src/internal/_createPartialApplicator.js");
+
+/**
+ * Takes a function `f` and a list of arguments, and returns a function `g`.
+ * When applied, `g` returns the result of applying `f` to the arguments
+ * provided initially followed by the arguments provided to `g`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.10.0
+ * @category Function
+ * @sig ((a, b, c, ..., n) -> x) -> [a, b, c, ...] -> ((d, e, f, ..., n) -> x)
+ * @param {Function} f
+ * @param {Array} args
+ * @return {Function}
+ * @see R.partialRight
+ * @example
+ *
+ *      var multiply2 = (a, b) => a * b;
+ *      var double = R.partial(multiply2, [2]);
+ *      double(2); //=> 4
+ *
+ *      var greet = (salutation, title, firstName, lastName) =>
+ *        salutation + ', ' + title + ' ' + firstName + ' ' + lastName + '!';
+ *
+ *      var sayHello = R.partial(greet, ['Hello']);
+ *      var sayHelloToMs = R.partial(sayHello, ['Ms.']);
+ *      sayHelloToMs('Jane', 'Jones'); //=> 'Hello, Ms. Jane Jones!'
+ * @symb R.partial(f, [a, b])(c, d) = f(a, b, c, d)
+ */
+
+
+var partial = /*#__PURE__*/_createPartialApplicator(_concat);
+module.exports = partial;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/path.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/path.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+/**
+ * Retrieve the value at a given path.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.2.0
+ * @category Object
+ * @typedefn Idx = String | Int
+ * @sig [Idx] -> {a} -> a | Undefined
+ * @param {Array} path The path to use.
+ * @param {Object} obj The object to retrieve the nested property from.
+ * @return {*} The data at `path`.
+ * @see R.prop
+ * @example
+ *
+ *      R.path(['a', 'b'], {a: {b: 2}}); //=> 2
+ *      R.path(['a', 'b'], {c: {b: 2}}); //=> undefined
+ */
+
+
+var path = /*#__PURE__*/_curry2(function path(paths, obj) {
+  var val = obj;
+  var idx = 0;
+  while (idx < paths.length) {
+    if (val == null) {
+      return;
+    }
+    val = val[paths[idx]];
+    idx += 1;
+  }
+  return val;
+});
+module.exports = path;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/pipe.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/pipe.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _arity = /*#__PURE__*/__webpack_require__(/*! ./internal/_arity */ "./node_modules/apisauce/node_modules/ramda/src/internal/_arity.js");
+
+var _pipe = /*#__PURE__*/__webpack_require__(/*! ./internal/_pipe */ "./node_modules/apisauce/node_modules/ramda/src/internal/_pipe.js");
+
+var reduce = /*#__PURE__*/__webpack_require__(/*! ./reduce */ "./node_modules/apisauce/node_modules/ramda/src/reduce.js");
+
+var tail = /*#__PURE__*/__webpack_require__(/*! ./tail */ "./node_modules/apisauce/node_modules/ramda/src/tail.js");
+
+/**
+ * Performs left-to-right function composition. The leftmost function may have
+ * any arity; the remaining functions must be unary.
+ *
+ * In some libraries this function is named `sequence`.
+ *
+ * **Note:** The result of pipe is not automatically curried.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig (((a, b, ..., n) -> o), (o -> p), ..., (x -> y), (y -> z)) -> ((a, b, ..., n) -> z)
+ * @param {...Function} functions
+ * @return {Function}
+ * @see R.compose
+ * @example
+ *
+ *      var f = R.pipe(Math.pow, R.negate, R.inc);
+ *
+ *      f(3, 4); // -(3^4) + 1
+ * @symb R.pipe(f, g, h)(a, b) = h(g(f(a, b)))
+ */
+
+
+function pipe() {
+  if (arguments.length === 0) {
+    throw new Error('pipe requires at least one argument');
+  }
+  return _arity(arguments[0].length, reduce(_pipe, arguments[0], tail(arguments)));
+}
+module.exports = pipe;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/prop.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/prop.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry2 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry2 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry2.js");
+
+var path = /*#__PURE__*/__webpack_require__(/*! ./path */ "./node_modules/apisauce/node_modules/ramda/src/path.js");
+
+/**
+ * Returns a function that when supplied an object returns the indicated
+ * property of that object, if it exists.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig s -> {s: a} -> a | Undefined
+ * @param {String} p The property name
+ * @param {Object} obj The object to query
+ * @return {*} The value at `obj.p`.
+ * @see R.path
+ * @example
+ *
+ *      R.prop('x', {x: 100}); //=> 100
+ *      R.prop('x', {}); //=> undefined
+ */
+
+var prop = /*#__PURE__*/_curry2(function prop(p, obj) {
+  return path([p], obj);
+});
+module.exports = prop;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/reduce.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/reduce.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry3 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry3 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry3.js");
+
+var _reduce = /*#__PURE__*/__webpack_require__(/*! ./internal/_reduce */ "./node_modules/apisauce/node_modules/ramda/src/internal/_reduce.js");
+
+/**
+ * Returns a single item by iterating through the list, successively calling
+ * the iterator function and passing it an accumulator value and the current
+ * value from the array, and then passing the result to the next call.
+ *
+ * The iterator function receives two values: *(acc, value)*. It may use
+ * [`R.reduced`](#reduced) to shortcut the iteration.
+ *
+ * The arguments' order of [`reduceRight`](#reduceRight)'s iterator function
+ * is *(value, acc)*.
+ *
+ * Note: `R.reduce` does not skip deleted or unassigned indices (sparse
+ * arrays), unlike the native `Array.prototype.reduce` method. For more details
+ * on this behavior, see:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce#Description
+ *
+ * Dispatches to the `reduce` method of the third argument, if present. When
+ * doing so, it is up to the user to handle the [`R.reduced`](#reduced)
+ * shortcuting, as this is not implemented by `reduce`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig ((a, b) -> a) -> a -> [b] -> a
+ * @param {Function} fn The iterator function. Receives two values, the accumulator and the
+ *        current element from the array.
+ * @param {*} acc The accumulator value.
+ * @param {Array} list The list to iterate over.
+ * @return {*} The final, accumulated value.
+ * @see R.reduced, R.addIndex, R.reduceRight
+ * @example
+ *
+ *      R.reduce(R.subtract, 0, [1, 2, 3, 4]) // => ((((0 - 1) - 2) - 3) - 4) = -10
+ *      //          -               -10
+ *      //         / \              / \
+ *      //        -   4           -6   4
+ *      //       / \              / \
+ *      //      -   3   ==>     -3   3
+ *      //     / \              / \
+ *      //    -   2           -1   2
+ *      //   / \              / \
+ *      //  0   1            0   1
+ *
+ * @symb R.reduce(f, a, [b, c, d]) = f(f(f(a, b), c), d)
+ */
+
+
+var reduce = /*#__PURE__*/_curry3(_reduce);
+module.exports = reduce;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/slice.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/slice.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _checkForMethod = /*#__PURE__*/__webpack_require__(/*! ./internal/_checkForMethod */ "./node_modules/apisauce/node_modules/ramda/src/internal/_checkForMethod.js");
+
+var _curry3 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry3 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry3.js");
+
+/**
+ * Returns the elements of the given list or string (or object with a `slice`
+ * method) from `fromIndex` (inclusive) to `toIndex` (exclusive).
+ *
+ * Dispatches to the `slice` method of the third argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.4
+ * @category List
+ * @sig Number -> Number -> [a] -> [a]
+ * @sig Number -> Number -> String -> String
+ * @param {Number} fromIndex The start index (inclusive).
+ * @param {Number} toIndex The end index (exclusive).
+ * @param {*} list
+ * @return {*}
+ * @example
+ *
+ *      R.slice(1, 3, ['a', 'b', 'c', 'd']);        //=> ['b', 'c']
+ *      R.slice(1, Infinity, ['a', 'b', 'c', 'd']); //=> ['b', 'c', 'd']
+ *      R.slice(0, -1, ['a', 'b', 'c', 'd']);       //=> ['a', 'b', 'c']
+ *      R.slice(-3, -1, ['a', 'b', 'c', 'd']);      //=> ['b', 'c']
+ *      R.slice(0, 3, 'ramda');                     //=> 'ram'
+ */
+
+
+var slice = /*#__PURE__*/_curry3( /*#__PURE__*/_checkForMethod('slice', function slice(fromIndex, toIndex, list) {
+  return Array.prototype.slice.call(list, fromIndex, toIndex);
+}));
+module.exports = slice;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/tail.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/tail.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _checkForMethod = /*#__PURE__*/__webpack_require__(/*! ./internal/_checkForMethod */ "./node_modules/apisauce/node_modules/ramda/src/internal/_checkForMethod.js");
+
+var _curry1 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry1 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry1.js");
+
+var slice = /*#__PURE__*/__webpack_require__(/*! ./slice */ "./node_modules/apisauce/node_modules/ramda/src/slice.js");
+
+/**
+ * Returns all but the first element of the given list or string (or object
+ * with a `tail` method).
+ *
+ * Dispatches to the `slice` method of the first argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig [a] -> [a]
+ * @sig String -> String
+ * @param {*} list
+ * @return {*}
+ * @see R.head, R.init, R.last
+ * @example
+ *
+ *      R.tail([1, 2, 3]);  //=> [2, 3]
+ *      R.tail([1, 2]);     //=> [2]
+ *      R.tail([1]);        //=> []
+ *      R.tail([]);         //=> []
+ *
+ *      R.tail('abc');  //=> 'bc'
+ *      R.tail('ab');   //=> 'b'
+ *      R.tail('a');    //=> ''
+ *      R.tail('');     //=> ''
+ */
+
+
+var tail = /*#__PURE__*/_curry1( /*#__PURE__*/_checkForMethod('tail', /*#__PURE__*/slice(1, Infinity)));
+module.exports = tail;
+
+/***/ }),
+
+/***/ "./node_modules/apisauce/node_modules/ramda/src/type.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/apisauce/node_modules/ramda/src/type.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _curry1 = /*#__PURE__*/__webpack_require__(/*! ./internal/_curry1 */ "./node_modules/apisauce/node_modules/ramda/src/internal/_curry1.js");
+
+/**
+ * Gives a single-word string description of the (native) type of a value,
+ * returning such answers as 'Object', 'Number', 'Array', or 'Null'. Does not
+ * attempt to distinguish user Object types any further, reporting them all as
+ * 'Object'.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.8.0
+ * @category Type
+ * @sig (* -> {*}) -> String
+ * @param {*} val The value to test
+ * @return {String}
+ * @example
+ *
+ *      R.type({}); //=> "Object"
+ *      R.type(1); //=> "Number"
+ *      R.type(false); //=> "Boolean"
+ *      R.type('s'); //=> "String"
+ *      R.type(null); //=> "Null"
+ *      R.type([]); //=> "Array"
+ *      R.type(/[A-z]/); //=> "RegExp"
+ *      R.type(() => {}); //=> "Function"
+ *      R.type(undefined); //=> "Undefined"
+ */
+
+
+var type = /*#__PURE__*/_curry1(function type(val) {
+  return val === null ? 'Null' : val === undefined ? 'Undefined' : Object.prototype.toString.call(val).slice(8, -1);
+});
+module.exports = type;
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -6679,7 +10795,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.checkout-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.checkout-container .checkout-form {\n  display: flex;\n  flex-direction: column;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-family: \"Poiret One\", cursive;\n}\n.checkout-container .checkout-form .change-sum {\n  margin: 30px;\n}\n.checkout-container .checkout-form .change-sum .value {\n  background-color: white;\n  border: 1px solid black;\n  padding: 8px;\n}\n.checkout-container .checkout-form .payment-type {\n  display: flex;\n  flex-direction: row;\n}\n.checkout-container .checkout-form .payment-type input[type=radio] {\n  display: none;\n}\n.checkout-container .checkout-form .payment-type .label {\n  padding-left: 20px;\n}\n.checkout-container .checkout-form .payment-type .label::before {\n  content: \"\";\n  display: inline-block;\n  height: 20px;\n  width: 20px;\n  vertical-align: middle;\n  border-radius: 50%;\n  border: 2px solid #000000;\n  margin-right: 5px;\n}\n.checkout-container .checkout-form .payment-type input[type=radio]:checked + .label::before {\n  background-color: #e74c3c;\n}\n@media (max-width: 500px) {\n  .checkout-container .checkout-form .payment-type {\n    flex-direction: column;\n  }\n}\n.checkout-container .checkout-form .button-submit {\n  background-color: #e74c3c;\n  color: white;\n  margin-top: 15px;\n}\n.checkout-container .checkout-form .button-submit:hover {\n  color: #000000;\n}", ""]);
+exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.checkout-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.checkout-container .checkout-form {\n  display: flex;\n  flex-direction: column;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-family: \"Poiret One\", cursive;\n}\n.checkout-container .checkout-form .change-sum {\n  margin: 30px;\n}\n.checkout-container .checkout-form .change-sum .value {\n  background-color: white;\n  border: 1px solid black;\n  padding: 8px;\n}\n.checkout-container .checkout-form .payment-type {\n  display: flex;\n  flex-direction: row;\n}\n.checkout-container .checkout-form .payment-type input[type=radio] {\n  display: none;\n}\n.checkout-container .checkout-form .payment-type .label {\n  padding-left: 20px;\n}\n.checkout-container .checkout-form .payment-type .label::before {\n  content: \"\";\n  display: inline-block;\n  height: 20px;\n  width: 20px;\n  vertical-align: middle;\n  border-radius: 50%;\n  border: 2px solid #000000;\n  margin-right: 5px;\n}\n.checkout-container .checkout-form .payment-type input[type=radio]:checked + .label::before {\n  background-color: #e74c3c;\n}\n@media (max-width: 500px) {\n  .checkout-container .checkout-form .payment-type {\n    flex-direction: column;\n  }\n}\n.checkout-container .checkout-form .error {\n  color: #e74c3c;\n  font-size: 1.5rem;\n}\n.checkout-container .checkout-form .button-submit {\n  background-color: #e74c3c;\n  color: white;\n  margin-top: 15px;\n}\n.checkout-container .checkout-form .button-submit:hover {\n  color: #000000;\n}\n\n.required {\n  border: 1px solid #e74c3c;\n}", ""]);
 
 // exports
 
@@ -71728,6 +75844,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CheckoutView_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_CheckoutView_scss__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Components_Header_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/Header/Header */ "./resources/js/Components/Header/Header.js");
 /* harmony import */ var _Components_Courses_Courses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Courses/Courses */ "./resources/js/Components/Courses/Courses.js");
+/* harmony import */ var _Components_Common_connectApi__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Components/Common/connectApi */ "./resources/js/Components/Common/connectApi.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -71747,6 +75864,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -71774,54 +75892,79 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "sum", '');
 
-    _defineProperty(_assertThisInitialized(_this), "updateCurrentSum", function (value) {
-      _this.sum = value;
+    _defineProperty(_assertThisInitialized(_this), "validateOrder", function (e) {
+      var errorMessage = 'Пожалуйста заполните выделенные поля';
+      var phone = _this.state.phone;
+      var name = _this.state.name;
+      var user = {
+        phone: phone,
+        name: name
+      };
 
-      _this.setState(function (prevState) {
-        return {
-          defaultValue: prevState.defaultValue = value,
-          needDisabled: ''
-        };
+      if (!_this.sum) {
+        e.preventDefault();
+
+        _this.setState({
+          errors: errorMessage,
+          needRequiredCourses: 'required'
+        });
+      }
+
+      if (!_this.state.name || !_this.state.phone) {
+        e.preventDefault();
+
+        _this.setState({
+          errors: errorMessage,
+          needRequiredInput: 'required'
+        });
+      }
+
+      Object(_Components_Common_connectApi__WEBPACK_IMPORTED_MODULE_4__["connectPost"])('api/order', user).then(function (response) {
+        if (response) {
+          console.log(response);
+        }
       });
+      return true;
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "updateCurrentSum", function (value) {
+      _this.setState({
+        needRequiredCourses: ''
+      });
+
+      _this.sum = value;
     });
 
     _this.state = {
       defaultValue: '',
-      needDisabled: ''
+      email: '',
+      name: '',
+      needRequiredCourses: '',
+      needRequiredInput: ''
     };
+    _this.onChange = _this.onChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(MainPageView, [{
-    key: "componentDidMount",
+    key: "render",
 
-    /**
-     *
-     */
-    value: function componentDidMount() {
-      if (this.sum == '') {
-        this.setState({
-          needDisabled: 'disabled'
-        });
-      }
-    }
     /**
      *
      * @returns {*}
      */
-
-  }, {
-    key: "render",
     value: function render() {
       var walletNumber = 410012712600459;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Header_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {
         needShowBlockMenu: false
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Courses_Courses__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: this.state.needRequiredCourses
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Courses_Courses__WEBPACK_IMPORTED_MODULE_3__["default"], {
         title: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0442\u0430\u0440\u0438\u0444 \u0438 \u0441\u043F\u043E\u0441\u043E\u0431 \u043E\u043F\u043B\u0430\u0442\u044B",
         smallSize: "small-size",
         needUpdateCurrentSum: true,
         updateCurrentSum: this.updateCurrentSum
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "checkout-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         method: "POST",
@@ -71895,12 +76038,34 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "label",
         htmlFor: "payment-yandex"
-      }, "\u042F\u043D\u0434\u0435\u043A\u0441.\u0414\u0435\u043D\u044C\u0433\u0430\u043C\u0438")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "\u042F\u043D\u0434\u0435\u043A\u0441.\u0414\u0435\u043D\u044C\u0433\u0430\u043C\u0438")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: this.state.needRequiredInput
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        name: "phone",
+        placeholder: "\u0412\u0430\u0448\u0435 \u0442\u0435\u043B\u0435\u0444\u043E\u043D",
+        value: this.state.phone
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.onChange,
+        name: "name",
+        placeholder: "\u0412\u0430\u0448\u044F \u0438\u043C\u044F",
+        value: this.state.name
+      })), this.state.errors && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error"
+      }, this.state.errors), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
         value: "\u041E\u043F\u043B\u0430\u0442\u0438\u0442\u044C",
-        className: "button-submit",
-        disabled: this.state.needDisabled
+        onClick: this.validateOrder,
+        className: "button-submit"
       }))));
+    }
+  }, {
+    key: "onChange",
+    value: function onChange(e) {
+      this.setState(_defineProperty({
+        needRequiredInput: '',
+        errors: ''
+      }, e.target.name, e.target.value));
     }
   }]);
 
@@ -72070,6 +76235,63 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./resources/js/Components/Common/connectApi.js":
+/*!******************************************************!*\
+  !*** ./resources/js/Components/Common/connectApi.js ***!
+  \******************************************************/
+/*! exports provided: connectGet, connectPost */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "connectGet", function() { return connectGet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "connectPost", function() { return connectPost; });
+/* harmony import */ var apisauce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apisauce */ "./node_modules/apisauce/dist/apisauce.js");
+/* harmony import */ var apisauce__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apisauce__WEBPACK_IMPORTED_MODULE_0__);
+
+var api = Object(apisauce__WEBPACK_IMPORTED_MODULE_0__["create"])({
+  headers: {
+    'Accept': 'application/vnd.github.v3+json'
+  }
+});
+var connectGet = function connectGet(url) {
+  return api.get(url).then(function (response) {
+    return response;
+  })["catch"](function (err) {
+    return console.log(err);
+  });
+};
+var connectPost = function connectPost(url, params) {
+  return api.post(url, params, {
+    headers: {
+      'x-gigawatts': '1.21'
+    }
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/Components/Common/sendToTelegram.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/Components/Common/sendToTelegram.js ***!
+  \**********************************************************/
+/*! exports provided: sendToTelegram */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendToTelegram", function() { return sendToTelegram; });
+/* harmony import */ var _connectApi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./connectApi */ "./resources/js/Components/Common/connectApi.js");
+
+var sendToTelegram = function sendToTelegram(message) {
+  var token = '716231571:AAEnjjHaoAoNjZZTrhC75cIjCZE7tG03cQ0';
+  var chatId = '-375012688';
+  var telegramUrl = "https://api.telegram.org/bot".concat(token, "/sendMessage?chat_id=").concat(chatId, "&text=").concat(message);
+  Object(_connectApi__WEBPACK_IMPORTED_MODULE_0__["connectGet"])(telegramUrl);
+};
+
+/***/ }),
+
 /***/ "./resources/js/Components/Courses/Courses.js":
 /*!****************************************************!*\
   !*** ./resources/js/Components/Courses/Courses.js ***!
@@ -72122,7 +76344,7 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Courses).call(this, props));
 
     _defineProperty(_assertThisInitialized(_this), "sumToPay", {
-      easy: 10,
+      easy: 1999,
       medium: 2999,
       hard: 4999
     });
@@ -72897,9 +77119,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Take_check_list_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Take-check-list.scss */ "./resources/js/Components/Take-check-list/Take-check-list.scss");
 /* harmony import */ var _Take_check_list_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Take_check_list_scss__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _connectApi__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./connectApi */ "./resources/js/Components/Take-check-list/connectApi.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Common_connectApi__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Common/connectApi */ "./resources/js/Components/Common/connectApi.js");
+/* harmony import */ var _Common_sendToTelegram__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Common/sendToTelegram */ "./resources/js/Components/Common/sendToTelegram.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -72956,28 +77177,21 @@ function (_Component) {
         });
       };
 
-      axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('api/notice', user, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then(function (res) {
-        localStorage.setItem('usertoken', res.data.token);
+      var message = "\u041A\u0442\u043E-\u0442\u043E \u0437\u0430\u043A\u0430\u0437\u0430\u043B \u0448\u043F\u0430\u0440\u0433\u0430\u043B\u043A\u0443 \u0438\u043C\u044F: ".concat(name, "%0A\u043F\u043E\u0447\u0442\u0430: ").concat(email);
+      Object(_Common_connectApi__WEBPACK_IMPORTED_MODULE_2__["connectPost"])('api/notice', user).then(function (response) {
+        var data = response && response.data || {};
 
-        if (res && res.data === 'Файл успешно отправлен вам на почту, если не пришло проверьте папку спам') {
+        if (!data.user_exist) {
           _this.setState({
-            errors: res.data
+            errors: data.message
           });
 
           setTimeout(closeAndRemove, 2000);
 
           _this.send();
-        } else {
-          _this.setState({
-            errors: res.data
-          });
+
+          Object(_Common_sendToTelegram__WEBPACK_IMPORTED_MODULE_3__["sendToTelegram"])(message);
         }
-      })["catch"](function (err) {
-        console.log(err);
       });
     });
 
@@ -72985,10 +77199,8 @@ function (_Component) {
       var user = {
         email: _this.state.email
       };
-      Object(_connectApi__WEBPACK_IMPORTED_MODULE_2__["sendEmail"])(user).then(function (res) {
-        if (res) {
-          console.log('email отправлен');
-        }
+      Object(_Common_connectApi__WEBPACK_IMPORTED_MODULE_2__["connectPost"])('api/send', user)["catch"](function (err) {
+        console.log(err);
       });
     });
 
@@ -73116,50 +77328,6 @@ var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/a
 if(content.locals) module.exports = content.locals;
 
 if(false) {}
-
-/***/ }),
-
-/***/ "./resources/js/Components/Take-check-list/connectApi.js":
-/*!***************************************************************!*\
-  !*** ./resources/js/Components/Take-check-list/connectApi.js ***!
-  \***************************************************************/
-/*! exports provided: connect, sendEmail */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "connect", function() { return connect; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendEmail", function() { return sendEmail; });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-var connect = function connect(user) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/notice', {
-    email: user.email,
-    name: user.name
-  }, {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then(function (res) {
-    localStorage.setItem('usertoken', res.data.token);
-  })["catch"](function (err) {
-    console.log(err);
-  });
-};
-var sendEmail = function sendEmail(user) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/send', {
-    email: user.email
-  }, {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then(function (res) {
-    localStorage.setItem('usertoken', res.data.token);
-  })["catch"](function (err) {
-    console.log(err);
-  });
-};
 
 /***/ }),
 

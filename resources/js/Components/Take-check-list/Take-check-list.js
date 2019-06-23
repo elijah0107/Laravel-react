@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import './Take-check-list.scss'
-import { sendEmail } from './connectApi'
-import axios from 'axios';
+import { connectPost } from '../Common/connectApi'
+import { sendToTelegram } from '../Common/sendToTelegram';
 
 class TakeCheckList extends Component {
   constructor(props) {
@@ -86,34 +86,26 @@ class TakeCheckList extends Component {
       this.setState({ isOpenCheckListPopup: false })
       this.setState({ errors: '' })
     };
-    axios
-      .post('api/notice', user, {
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .then(res => {
-        localStorage.setItem('usertoken', res.data.token);
-        if (res && res.data === 'Файл успешно отправлен вам на почту, если не пришло проверьте папку спам') {
-          this.setState({errors: res.data});
+    const message = `Кто-то заказал шпаргалку имя: ${name}%0Aпочта: ${email}`;
+    connectPost('api/notice', user)
+      .then(response => {
+        const data = response && response.data || {};
+        if (!data.user_exist) {
+          this.setState({errors: data.message});
           setTimeout(closeAndRemove, 2000);
           this.send();
+          sendToTelegram(message);
         }
-        else {
-          this.setState({errors: res.data});
-        }
-      })
-      .catch(err => {
-        console.log(err)
       });
   };
   send = () => {
     const user = {
       email: this.state.email,
     };
-    sendEmail(user).then(res => {
-      if(res) {
-        console.log('email отправлен')
-      }
-    });
+    connectPost('api/send', user)
+      .catch(err => {
+        console.log(err)
+      });
   };
   openCheckList = () => {
     this.setState({isOpenCheckListPopup: !this.state.isOpenCheckListPopup})

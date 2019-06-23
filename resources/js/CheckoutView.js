@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './CheckoutView.scss';
 import Header from './Components/Header/Header';
 import Courses from './Components/Courses/Courses';
+import { connectPost } from './Components/Common/connectApi';
 
 /**
  *
@@ -15,19 +16,14 @@ class MainPageView extends Component {
     super(props);
     this.state = {
       defaultValue: '',
-      needDisabled: '',
+      email: '',
+      name: '',
+      needRequiredCourses: '',
+      needRequiredInput: '',
     };
+    this.onChange = this.onChange.bind(this);
   }
   sum = '';
-
-  /**
-   *
-   */
-  componentDidMount () {
-    if (this.sum == '') {
-      this.setState({ needDisabled: 'disabled' });
-    }
-  }
 
   /**
    *
@@ -38,12 +34,14 @@ class MainPageView extends Component {
     return (
       <div>
         <Header needShowBlockMenu={false} />
-        <Courses
-          title='Выберите тариф и способ оплаты'
-          smallSize='small-size'
-          needUpdateCurrentSum={true}
-          updateCurrentSum={this.updateCurrentSum}
-        />
+        <div className={this.state.needRequiredCourses}>
+          <Courses
+            title='Выберите тариф и способ оплаты'
+            smallSize='small-size'
+            needUpdateCurrentSum={true}
+            updateCurrentSum={this.updateCurrentSum}
+          />
+        </div>
         <div className='checkout-container'>
           <form method='POST'
             action='https://money.yandex.ru/quickpay/confirm.xml'
@@ -66,19 +64,73 @@ class MainPageView extends Component {
               <input type='radio' name='paymentType' value='PC' id='payment-yandex' />
               <label className='label' htmlFor='payment-yandex'>Яндекс.Деньгами</label>
             </div>
-            <input type='submit' value='Оплатить' className='button-submit' disabled={this.state.needDisabled}/>
+            <div className={this.state.needRequiredInput}>
+              <input
+                onChange={this.onChange}
+                name='phone'
+                placeholder='Ваше телефон'
+                value={this.state.phone}
+              />
+              <input
+                onChange={this.onChange}
+                name='name'
+                placeholder='Вашя имя'
+                value={this.state.name}
+              />
+            </div>
+            {this.state.errors && (
+              <div className='error'>
+                {this.state.errors}
+              </div>
+            )}
+            <input type='submit' value='Оплатить' onClick={this.validateOrder} className='button-submit'/>
           </form>
         </div>
       </div>
     );
   }
 
+  validateOrder = (e) => {
+    const errorMessage = 'Пожалуйста заполните выделенные поля';
+    const phone = this.state.phone;
+    const name = this.state.name;
+    const user = {
+      phone,
+      name
+    };
+    if (!this.sum) {
+      e.preventDefault();
+      this.setState({
+        errors: errorMessage,
+        needRequiredCourses: 'required'
+      });
+    }
+    if (!this.state.name || !this.state.phone) {
+      e.preventDefault();
+      this.setState({
+        errors: errorMessage,
+        needRequiredInput: 'required'
+      });
+    }
+    connectPost('api/order', user).then((response) => {
+      if (response) {
+        console.log(response)
+      }
+    });
+    return true
+  };
+
+  onChange(e) {
+    this.setState({
+      needRequiredInput: '',
+      errors: '',
+      [e.target.name]: e.target.value
+    })
+  };
+
   updateCurrentSum = (value) => {
+    this.setState({  needRequiredCourses: '' });
     this.sum = value;
-    this.setState((prevState) => ({
-      defaultValue: prevState.defaultValue = value,
-      needDisabled: '',
-    }));
   };
 }
 

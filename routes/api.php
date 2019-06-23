@@ -17,3 +17,5 @@ Route::get('notice', 'NoticeController@insert');
 Route::post('notice', 'NoticeController@insert');
 
 Route::post('send', 'MailController@sendMail');
+
+Route::post('order', 'OrderController@order');

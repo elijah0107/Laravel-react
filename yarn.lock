@@ -1608,10 +1608,10 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apisauce@^0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/apisauce/-/apisauce-0.16.0.tgz#5620624ffe56d755f66a7ab738138e5ff74f25f6"
-  integrity sha512-aDHJLhpBjIpv9hxZPsajkYqLtNZAkcWHBqeJZfVNrDE9pj0HZVv60HQUqs6vjGsb5p2WR26exdGA5SdoAWAH5A==
+apisauce@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/apisauce/-/apisauce-1.0.2.tgz#3605dbf4f19896618a0199f2cb717546b8971a06"
+  integrity sha512-RwC0X4D20HH8t43J2mLNFv1ZNab+xTMcKyjRsajT0PbqiRXRjPfA9igBZ/f+2NaiIXHtyjLirqXY2SMLsUekTw==
   dependencies:
     axios "^0.18.0"
     ramda "^0.25.0"
