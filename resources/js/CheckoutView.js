@@ -16,7 +16,7 @@ class MainPageView extends Component {
     super(props);
     this.state = {
       defaultValue: '',
-      email: '',
+      phone: '',
       name: '',
       needRequiredCourses: '',
       needRequiredInput: '',
@@ -45,7 +45,9 @@ class MainPageView extends Component {
         <div className='checkout-container'>
           <form method='POST'
             action='https://money.yandex.ru/quickpay/confirm.xml'
-            className='checkout-form'>
+            className='checkout-form'
+            onSubmit={this.validateOrder}
+          >
             <input type='hidden' name='receiver' value={walletNumber}/>
             <input type='hidden' name='formcomment' value='text'/>
             <input type='hidden' name='short-dest' value='test'/>
@@ -83,7 +85,7 @@ class MainPageView extends Component {
                 {this.state.errors}
               </div>
             )}
-            <input type='submit' value='Оплатить' onClick={this.validateOrder} className='button-submit'/>
+            <input type='submit' value='Оплатить' className='button-submit'/>
           </form>
         </div>
       </div>
@@ -104,6 +106,7 @@ class MainPageView extends Component {
         errors: errorMessage,
         needRequiredCourses: 'required',
       });
+      return false
     }
     if (!this.state.name || !this.state.phone) {
       e.preventDefault();
@@ -111,9 +114,11 @@ class MainPageView extends Component {
         errors: errorMessage,
         needRequiredInput: 'required',
       });
+      return false
     }
     connectPost('api/order', user).then(response => {
       if (response) {
+        e.stopPropagation();
         console.log(response);
       }
     });
