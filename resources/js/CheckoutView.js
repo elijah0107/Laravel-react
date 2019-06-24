@@ -96,37 +96,37 @@ class MainPageView extends Component {
     const name = this.state.name;
     const user = {
       phone,
-      name
+      name,
     };
     if (!this.sum) {
       e.preventDefault();
       this.setState({
         errors: errorMessage,
-        needRequiredCourses: 'required'
+        needRequiredCourses: 'required',
       });
     }
     if (!this.state.name || !this.state.phone) {
       e.preventDefault();
       this.setState({
         errors: errorMessage,
-        needRequiredInput: 'required'
+        needRequiredInput: 'required',
       });
     }
-    connectPost('api/order', user).then((response) => {
+    connectPost('api/order', user).then(response => {
       if (response) {
-        console.log(response)
+        console.log(response);
       }
     });
-    return true
+    return true;
   };
 
-  onChange(e) {
+  onChange (e) {
     this.setState({
       needRequiredInput: '',
       errors: '',
-      [e.target.name]: e.target.value
-    })
-  };
+      [e.target.name]: e.target.value,
+    });
+  }
 
   updateCurrentSum = (value) => {
     this.setState({  needRequiredCourses: '' });

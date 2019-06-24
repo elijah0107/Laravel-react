@@ -91,7 +91,7 @@ class TakeCheckList extends Component {
       .then(response => {
         const data = response && response.data || {};
         if (!data.user_exist) {
-          this.setState({errors: data.message});
+          this.setState({ errors: data.message });
           setTimeout(closeAndRemove, 2000);
           this.send();
           sendToTelegram(message);
