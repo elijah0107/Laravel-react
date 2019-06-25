@@ -3,6 +3,7 @@ import './CheckoutView.scss';
 import Header from './Components/Header/Header';
 import Courses from './Components/Courses/Courses';
 import { connectPost } from './Components/Common/connectApi';
+import { sendToTelegram } from './Components/Common/sendToTelegram';
 
 /**
  *
@@ -22,6 +23,7 @@ class MainPageView extends Component {
       needRequiredInput: '',
     };
     this.onChange = this.onChange.bind(this);
+    this.validateOrder = this.validateOrder.bind(this);
   }
   sum = '';
 
@@ -92,7 +94,7 @@ class MainPageView extends Component {
     );
   }
 
-  validateOrder = (e) => {
+  validateOrder (e) {
     const errorMessage = 'Пожалуйста заполните выделенные поля';
     const phone = this.state.phone;
     const name = this.state.name;
@@ -100,13 +102,15 @@ class MainPageView extends Component {
       phone,
       name,
     };
+    let isValid = true;
+    const message = `Был осуществлен заказ на сайте имя: ${name}%0Aтелефон: ${phone}`;
     if (!this.sum) {
       e.preventDefault();
       this.setState({
         errors: errorMessage,
         needRequiredCourses: 'required',
       });
-      return false
+      isValid = false;
     }
     if (!this.state.name || !this.state.phone) {
       e.preventDefault();
@@ -114,16 +118,16 @@ class MainPageView extends Component {
         errors: errorMessage,
         needRequiredInput: 'required',
       });
-      return false
+      isValid = false;
+    }
+    if (isValid) {
+      sendToTelegram(message);
     }
     connectPost('api/order', user).then(response => {
-      if (response) {
-        e.stopPropagation();
-        console.log(response);
-      }
+      const data = response && response.data || {};
+      console.log(data);
     });
-    return true;
-  };
+  }
 
   onChange (e) {
     this.setState({

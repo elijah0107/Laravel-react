@@ -1,10 +1,10 @@
-import React, {Component, Fragment} from 'react'
-import './Take-check-list.scss'
-import { connectPost } from '../Common/connectApi'
+import React, { Component, Fragment } from 'react';
+import './Take-check-list.scss';
+import { connectPost } from '../Common/connectApi';
 import { sendToTelegram } from '../Common/sendToTelegram';
 
 class TakeCheckList extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       isOpenCheckListPopup: false,
@@ -14,9 +14,9 @@ class TakeCheckList extends Component {
       errors: '',
     };
     this.onChange = this.onChange.bind(this);
-  };
+  }
 
-  render() {
+  render () {
     return (
       <Fragment>
         {this.state.isOpenCheckListPopup && (
@@ -67,24 +67,24 @@ class TakeCheckList extends Component {
           <span className='open-button' onClick={this.closeButton}>&raquo;</span>
         )}
       </Fragment>
-    )
+    );
   }
-  onChange(e) {
+  onChange (e) {
     this.setState({
-      [e.target.name]: e.target.value
-    })
-  };
+      [e.target.name]: e.target.value,
+    });
+  }
   onTestSubmit = e => {
     e.preventDefault();
     const email = this.state.email;
     const name = this.state.name;
     const user = {
       email,
-      name
+      name,
     };
     const closeAndRemove = () => {
-      this.setState({ isOpenCheckListPopup: false })
-      this.setState({ errors: '' })
+      this.setState({ isOpenCheckListPopup: false });
+      this.setState({ errors: '' });
     };
     const message = `Кто-то заказал шпаргалку имя: ${name}%0Aпочта: ${email}`;
     connectPost('api/notice', user)
@@ -104,21 +104,21 @@ class TakeCheckList extends Component {
     };
     connectPost('api/send', user)
       .catch(err => {
-        console.log(err)
+        console.log(err);
       });
   };
   openCheckList = () => {
-    this.setState({isOpenCheckListPopup: !this.state.isOpenCheckListPopup})
+    this.setState({ isOpenCheckListPopup: !this.state.isOpenCheckListPopup });
   };
-  closeCheckList = ({target, currentTarget}) => {
+  closeCheckList = ({ target, currentTarget }) => {
     window.location.hash = '';
     if (target === currentTarget) {
-      this.setState({isOpenCheckListPopup: !this.state.isOpenCheckListPopup});
+      this.setState({ isOpenCheckListPopup: !this.state.isOpenCheckListPopup });
     }
   };
   closeButton = () => {
-    this.setState({isButton: !this.state.isButton})
+    this.setState({ isButton: !this.state.isButton });
   }
 }
 
-export default TakeCheckList
+export default TakeCheckList;

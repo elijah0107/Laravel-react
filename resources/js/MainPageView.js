@@ -9,25 +9,17 @@ import Courses from './Components/Courses/Courses';
 import WhoCanNot from './Components/Who-can-not/Who-can-not';
 import Footer from './Components/Footer/Footer';
 import TakeCheckList from './Components/Take-check-list/Take-check-list';
-import Countdown from "./Components/Timer/Timer";
+import Countdown from './Components/Timer/Timer';
 
 /**
  *
  */
 class MainPageView extends Component {
-  /**
-   *
-   * @param props
-   */
   constructor (props) {
     super(props);
     this.state = {};
   }
 
-  /**
-   *
-   * @returns {*}
-   */
   render () {
     return (
       <div>
