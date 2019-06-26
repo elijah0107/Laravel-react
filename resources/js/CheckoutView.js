@@ -4,6 +4,7 @@ import Header from './Components/Header/Header';
 import Courses from './Components/Courses/Courses';
 import { connectPost } from './Components/Common/connectApi';
 import { sendToTelegram } from './Components/Common/sendToTelegram';
+import cn from 'classnames';
 
 /**
  *
@@ -20,7 +21,8 @@ class MainPageView extends Component {
       phone: '',
       name: '',
       needRequiredCourses: '',
-      needRequiredInput: '',
+      needRequiredInputName: '',
+      needRequiredInputPhone: '',
     };
     this.onChange = this.onChange.bind(this);
     this.validateOrder = this.validateOrder.bind(this);
@@ -34,9 +36,9 @@ class MainPageView extends Component {
   render () {
     const walletNumber = 410012712600459;
     return (
-      <div>
+      <>
         <Header needShowBlockMenu={false} />
-        <div className={this.state.needRequiredCourses}>
+        <div className={cn('checkout-courses', this.state.needRequiredCourses)}>
           <Courses
             title='Выберите тариф и способ оплаты'
             smallSize='small-size'
@@ -69,18 +71,20 @@ class MainPageView extends Component {
               <input type='radio' name='paymentType' value='PC' id='payment-yandex' />
               <label className='label' htmlFor='payment-yandex'>Яндекс.Деньгами</label>
             </div>
-            <div className={this.state.needRequiredInput}>
+            <div>
               <input
                 onChange={this.onChange}
                 name='phone'
                 placeholder='Ваше телефон'
                 value={this.state.phone}
+                className={this.state.needRequiredInputPhone}
               />
               <input
                 onChange={this.onChange}
                 name='name'
                 placeholder='Вашя имя'
                 value={this.state.name}
+                className={this.state.needRequiredInputName}
               />
             </div>
             {this.state.errors && (
@@ -91,7 +95,7 @@ class MainPageView extends Component {
             <input type='submit' value='Оплатить' className='button-submit'/>
           </form>
         </div>
-      </div>
+      </>
     );
   }
 
@@ -104,7 +108,7 @@ class MainPageView extends Component {
       name,
     };
     let isValid = true;
-    const message = `Был осуществлен заказ на сайте имя: ${name}%0Aтелефон: ${phone}`;
+    const message = `Был осуществлен заказ на сайте%0Aимя: ${name}%0Aтелефон: ${phone}`;
     if (!this.sum) {
       e.preventDefault();
       this.setState({
@@ -113,11 +117,19 @@ class MainPageView extends Component {
       });
       isValid = false;
     }
-    if (!this.state.name || !this.state.phone) {
+    if (!this.state.name) {
       e.preventDefault();
       this.setState({
         errors: errorMessage,
-        needRequiredInput: 'required',
+        needRequiredInputName: 'required',
+      });
+      isValid = false;
+    }
+    if (!this.state.phone) {
+      e.preventDefault();
+      this.setState({
+        errors: errorMessage,
+        needRequiredInputPhone: 'required',
       });
       isValid = false;
     }
@@ -132,7 +144,8 @@ class MainPageView extends Component {
 
   onChange (e) {
     this.setState({
-      needRequiredInput: '',
+      needRequiredInputName: '',
+      needRequiredInputPhone: '',
       errors: '',
       [e.target.name]: e.target.value,
     });

@@ -10795,7 +10795,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.checkout-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.checkout-container .checkout-form {\n  display: flex;\n  flex-direction: column;\n  margin: 10px;\n  font-size: 1.5rem;\n  font-family: \"Poiret One\", cursive;\n}\n.checkout-container .checkout-form .change-sum {\n  margin: 30px;\n}\n.checkout-container .checkout-form .change-sum .value {\n  background-color: white;\n  border: 1px solid black;\n  padding: 8px;\n}\n.checkout-container .checkout-form .payment-type {\n  display: flex;\n  flex-direction: row;\n}\n.checkout-container .checkout-form .payment-type input[type=radio] {\n  display: none;\n}\n.checkout-container .checkout-form .payment-type .label {\n  padding-left: 20px;\n}\n.checkout-container .checkout-form .payment-type .label::before {\n  content: \"\";\n  display: inline-block;\n  height: 20px;\n  width: 20px;\n  vertical-align: middle;\n  border-radius: 50%;\n  border: 2px solid #000000;\n  margin-right: 5px;\n}\n.checkout-container .checkout-form .payment-type input[type=radio]:checked + .label::before {\n  background-color: #e74c3c;\n}\n@media (max-width: 500px) {\n  .checkout-container .checkout-form .payment-type {\n    flex-direction: column;\n  }\n}\n.checkout-container .checkout-form .error {\n  color: #e74c3c;\n  font-size: 1.5rem;\n}\n.checkout-container .checkout-form .button-submit {\n  background-color: #e74c3c;\n  color: white;\n  margin-top: 15px;\n}\n.checkout-container .checkout-form .button-submit:hover {\n  color: #000000;\n}\n\n.required {\n  border: 1px solid #e74c3c;\n}", ""]);
+exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.checkout-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.checkout-container .checkout-form {\n  display: flex;\n  flex-direction: column;\n  margin: 10px;\n  font-size: 1.5em;\n  font-family: \"Poiret One\", cursive;\n}\n.checkout-container .checkout-form .change-sum {\n  margin: 30px;\n}\n.checkout-container .checkout-form .change-sum .value {\n  background-color: white;\n  border: 1px solid black;\n  padding: 8px;\n}\n.checkout-container .checkout-form .payment-type {\n  display: flex;\n  flex-direction: row;\n}\n.checkout-container .checkout-form .payment-type input[type=radio] {\n  display: none;\n}\n.checkout-container .checkout-form .payment-type .label {\n  padding-left: 20px;\n}\n.checkout-container .checkout-form .payment-type .label::before {\n  content: \"\";\n  display: inline-block;\n  height: 20px;\n  width: 20px;\n  vertical-align: middle;\n  border-radius: 50%;\n  border: 2px solid #000000;\n  margin-right: 5px;\n}\n.checkout-container .checkout-form .payment-type input[type=radio]:checked + .label::before {\n  background-color: #e74c3c;\n}\n@media (max-width: 500px) {\n  .checkout-container .checkout-form .payment-type {\n    flex-direction: column;\n  }\n}\n.checkout-container .checkout-form .error {\n  color: #e74c3c;\n  font-size: 1.5em;\n}\n.checkout-container .checkout-form .button-submit {\n  background-color: #e74c3c;\n  color: white;\n  margin-top: 15px;\n}\n.checkout-container .checkout-form .button-submit:hover {\n  color: #000000;\n}\n\n.required {\n  border: 2px solid #e74c3c;\n}", ""]);
 
 // exports
 
@@ -10814,7 +10814,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.about-me {\n  padding-top: 20px;\n  min-height: 600px;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n}\n.about-me .photo-block .draw {\n  height: 50vh;\n  width: 30vw;\n  background-color: #e74c3c;\n}\n.about-me .photo-block .photo {\n  position: relative;\n  top: -300px;\n  left: 40px;\n}\n.about-me .photo-block .photo .img-photo {\n  width: 40vh;\n}\n.about-me .text {\n  width: 60vw;\n  font-size: 1.5rem;\n  text-align: justify;\n}\n.about-me .text .full-about-me {\n  color: #3498db;\n  text-decoration: underline;\n  cursor: pointer;\n}\n.about-me .text .text-min {\n  margin-top: -250px;\n}\n\n@media screen and (max-width: 600px) {\n  .about-me {\n    flex-direction: column;\n  }\n  .about-me .text {\n    margin-top: 30px;\n    width: 90vw;\n    font-size: 1.35rem;\n  }\n  .about-me .text .text-min {\n    margin-top: 50px;\n  }\n  .about-me .photo-block {\n    margin-bottom: 5vh;\n    position: relative;\n  }\n  .about-me .photo-block .draw {\n    width: 70vw;\n    height: 50vh;\n  }\n  .about-me .photo-block .photo {\n    position: absolute;\n    left: 40px;\n    top: 50px;\n  }\n  .about-me .photo-block .photo .img-photo {\n    width: 50vw;\n  }\n}\n@media screen and (max-width: 500px) {\n  .about-me {\n    flex-direction: column;\n  }\n  .about-me .text {\n    margin-top: 30px;\n    width: 70vw;\n    font-size: 1.2rem;\n  }\n  .about-me .photo-block {\n    margin-bottom: 5vh;\n    position: relative;\n  }\n  .about-me .photo-block .draw {\n    width: 80vw;\n    height: 50vh;\n  }\n  .about-me .photo-block .photo {\n    position: absolute;\n    left: 40px;\n    top: 50px;\n  }\n  .about-me .photo-block .photo .img-photo {\n    width: 60vw;\n  }\n}\n@media screen and (max-width: 350px) {\n  .about-me {\n    flex-direction: column;\n  }\n  .about-me .text {\n    margin-top: 30px;\n    width: 70vw;\n    font-size: 0.975rem;\n  }\n  .about-me .photo-block {\n    margin-bottom: 5vh;\n    position: relative;\n  }\n  .about-me .photo-block .draw {\n    width: 80vw;\n    height: 40vh;\n  }\n  .about-me .photo-block .photo {\n    position: absolute;\n    left: 40px;\n    top: 50px;\n  }\n  .about-me .photo-block .photo .img-photo {\n    width: 70vw;\n  }\n}", ""]);
+exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.about-me {\n  padding-top: 20px;\n  min-height: 600px;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n}\n.about-me .photo-block .draw {\n  height: 50vh;\n  width: 30vw;\n  background-color: #e74c3c;\n}\n.about-me .photo-block .photo {\n  position: relative;\n  top: -300px;\n  left: 40px;\n}\n.about-me .photo-block .photo .img-photo {\n  width: 40vh;\n}\n.about-me .text {\n  width: 60vw;\n  font-size: 1.5em;\n  text-align: justify;\n}\n.about-me .text .full-about-me {\n  color: #3498db;\n  text-decoration: underline;\n  cursor: pointer;\n}\n.about-me .text .text-min {\n  margin-top: -250px;\n}\n\n@media screen and (max-width: 600px) {\n  .about-me {\n    flex-direction: column;\n  }\n  .about-me .text {\n    margin-top: 30px;\n    width: 90vw;\n    font-size: 1.35em;\n  }\n  .about-me .text .text-min {\n    margin-top: 50px;\n  }\n  .about-me .photo-block {\n    margin-bottom: 5vh;\n    position: relative;\n  }\n  .about-me .photo-block .draw {\n    width: 70vw;\n    height: 50vh;\n  }\n  .about-me .photo-block .photo {\n    position: absolute;\n    left: 40px;\n    top: 50px;\n  }\n  .about-me .photo-block .photo .img-photo {\n    width: 50vw;\n  }\n}\n@media screen and (max-width: 500px) {\n  .about-me {\n    flex-direction: column;\n  }\n  .about-me .text {\n    margin-top: 30px;\n    width: 70vw;\n    font-size: 1.2em;\n  }\n  .about-me .photo-block {\n    margin-bottom: 5vh;\n    position: relative;\n  }\n  .about-me .photo-block .draw {\n    width: 80vw;\n    height: 50vh;\n  }\n  .about-me .photo-block .photo {\n    position: absolute;\n    left: 40px;\n    top: 50px;\n  }\n  .about-me .photo-block .photo .img-photo {\n    width: 60vw;\n  }\n}\n@media screen and (max-width: 350px) {\n  .about-me {\n    flex-direction: column;\n  }\n  .about-me .text {\n    margin-top: 30px;\n    width: 70vw;\n    font-size: 0.975em;\n  }\n  .about-me .photo-block {\n    margin-bottom: 5vh;\n    position: relative;\n  }\n  .about-me .photo-block .draw {\n    width: 80vw;\n    height: 40vh;\n  }\n  .about-me .photo-block .photo {\n    position: absolute;\n    left: 40px;\n    top: 50px;\n  }\n  .about-me .photo-block .photo .img-photo {\n    width: 70vw;\n  }\n}", ""]);
 
 // exports
 
@@ -10833,7 +10833,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.testimonials {\n  font-family: \"Montserrat\", sans-serif;\n  padding: 40px;\n  color: #434343;\n  text-align: center;\n}\n.testimonials .inner {\n  max-width: 100vw;\n  margin: auto;\n  overflow: hidden;\n  padding: 0 20px;\n  cursor: pointer;\n}\n.testimonials .inner .border {\n  width: 160px;\n  height: 5px;\n  background: #6ab04c;\n  margin: 26px auto;\n}\n.testimonials .inner .row {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.testimonials .inner .row .col {\n  flex: 33.33%;\n  max-width: 33.33%;\n  box-sizing: border-box;\n  padding: 15px;\n}\n.testimonials .inner .row .col .testimonial {\n  box-shadow: #434343 1px 1px 20px;\n  min-height: 400px;\n  background-color: #fff;\n  padding: 30px;\n}\n.testimonials .inner .row .col .testimonial:hover .hide-opinion {\n  display: block;\n}\n.testimonials .inner .row .col .testimonial img {\n  width: 150px;\n  height: 150px;\n  border-radius: 50%;\n}\n.testimonials .inner .row .col .testimonial .hide-opinion {\n  display: none;\n}\n.testimonials .inner .row .col .testimonial .name {\n  font-size: 1.2rem;\n  text-transform: uppercase;\n  margin: 20px 0;\n}\n.testimonials .inner .row .col .testimonial .price {\n  font-weight: bold;\n  margin-bottom: 20px;\n  font-size: 1.65rem;\n}\n.testimonials .inner .row .block-gray {\n  background-color: gray;\n}\n@media (max-width: 960px) {\n  .testimonials .inner .row .col {\n    flex: 100%;\n    max-width: 80%;\n  }\n}\n@media (max-width: 600px) {\n  .testimonials .inner .row .col {\n    flex: 100%;\n    max-width: 100%;\n  }\n}\n.testimonials .small-size {\n  max-width: 50vw;\n}\n.testimonials .small-size .row .col .testimonial img {\n  height: 75px;\n  width: 75px;\n}\n.testimonials .small-size .row .col .testimonial {\n  min-height: 300px;\n}\n@media (max-width: 500px) {\n  .testimonials .small-size {\n    max-width: 70vw;\n  }\n  .testimonials .small-size .row .col .testimonial img {\n    height: 75px;\n    width: 75px;\n  }\n  .testimonials .small-size .row .col .testimonial {\n    min-height: 200px;\n  }\n}", ""]);
+exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.testimonials {\n  font-family: \"Montserrat\", sans-serif;\n  padding: 40px;\n  color: #434343;\n  text-align: center;\n}\n.testimonials .inner {\n  max-width: 100vw;\n  margin: auto;\n  overflow: hidden;\n  padding: 0 20px;\n  cursor: pointer;\n}\n.testimonials .inner .border {\n  width: 160px;\n  height: 5px;\n  background: #6ab04c;\n  margin: 26px auto;\n}\n.testimonials .inner .row {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.testimonials .inner .row .col {\n  flex: 33.33%;\n  max-width: 33.33%;\n  box-sizing: border-box;\n  padding: 15px;\n}\n.testimonials .inner .row .col .testimonial {\n  box-shadow: #434343 1px 1px 20px;\n  min-height: 400px;\n  background-color: #fff;\n  padding: 30px;\n}\n.testimonials .inner .row .col .testimonial:hover .hide-opinion {\n  -webkit-transform: scale(1);\n          transform: scale(1);\n  transition: 0.5s;\n}\n.testimonials .inner .row .col .testimonial img {\n  width: 150px;\n  height: 150px;\n  border-radius: 50%;\n}\n.testimonials .inner .row .col .testimonial .hide-opinion {\n  -webkit-transform: scale(0);\n          transform: scale(0);\n}\n.testimonials .inner .row .col .testimonial .name {\n  font-size: 1.2em;\n  text-transform: uppercase;\n  margin: 20px 0;\n}\n.testimonials .inner .row .col .testimonial .price {\n  font-weight: bold;\n  margin-bottom: 20px;\n  font-size: 1.65em;\n}\n.testimonials .inner .row .block-gray {\n  background-color: gray;\n}\n@media (max-width: 960px) {\n  .testimonials .inner .row .col {\n    flex: 100%;\n    max-width: 80%;\n  }\n}\n@media (max-width: 600px) {\n  .testimonials .inner .row .col {\n    flex: 100%;\n    max-width: 100%;\n  }\n}\n.testimonials .small-size {\n  max-width: 80vw;\n}\n.testimonials .small-size .row .col .testimonial img {\n  height: 75px;\n  width: 75px;\n}\n.testimonials .small-size .row .col .testimonial {\n  min-height: 300px;\n}\n.testimonials .small-size .row .col .testimonial:hover {\n  min-height: 350px;\n  transition: 0.5s;\n}\n@media (max-width: 500px) {\n  .testimonials .small-size {\n    max-width: 70vw;\n  }\n  .testimonials .small-size .row .col .testimonial img {\n    height: 75px;\n    width: 75px;\n  }\n  .testimonials .small-size .row .col .testimonial {\n    min-height: 250px;\n  }\n}", ""]);
 
 // exports
 
@@ -10912,7 +10912,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".motto {\n  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(" + escape(__webpack_require__(/*! ./../../images/motto-fon-min.jpg */ "./resources/js/images/motto-fon-min.jpg")) + ");\n  background-repeat: no-repeat, no-repeat;\n  background-size: cover;\n  background-attachment: fixed;\n  background-position: center center;\n  min-height: 400px;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n}\n.motto .motto-block {\n  z-index: 15;\n  width: 90vw;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.motto .motto-block h1 {\n  font-size: 40px;\n  width: 40vw;\n}", ""]);
+exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.motto {\n  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(" + escape(__webpack_require__(/*! ./../../images/motto-fon-min.jpg */ "./resources/js/images/motto-fon-min.jpg")) + ");\n  background-repeat: no-repeat, no-repeat;\n  background-size: cover;\n  background-attachment: fixed;\n  background-position: center center;\n  min-height: 400px;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n}\n.motto .motto-block {\n  z-index: 15;\n  width: 90vw;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.motto .motto-block h1 {\n  font-size: 3em;\n  width: 40vw;\n  text-align: center;\n}\n@media (max-width: 350px) {\n  .motto .motto-block h1 {\n    font-size: 2.1em;\n  }\n}", ""]);
 
 // exports
 
@@ -10970,7 +10970,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".timer {\n  min-height: 20vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: row;\n}\n.timer .time {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  border: 2px solid #e74c3c;\n  color: #e74c3c;\n  border-radius: 50%;\n  font-size: 30px;\n  font-weight: bold;\n  margin-left: 10px;\n  height: 100px;\n  width: 100px;\n}\n.timer .time .time-name {\n  font-size: 15px;\n}", ""]);
+exports.push([module.i, ".timer {\n  min-height: 40vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n.timer h3 {\n  text-transform: uppercase;\n  font-weight: bold;\n  font-size: 2em;\n  padding-bottom: 10px;\n  border-bottom: 4px solid #111;\n  text-align: center;\n}\n.timer .time-to-left {\n  display: flex;\n  flex-direction: row;\n}\n.timer .time-to-left .time {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  color: #111;\n  font-size: 2em;\n  font-weight: bold;\n  margin-left: 10px;\n  height: 100px;\n  width: 100px;\n}\n.timer .time-to-left .time .time-name {\n  font-size: 15px;\n}\n@media (max-width: 600px) {\n  .timer .time-to-left .time {\n    margin-left: -20px;\n  }\n}\n\n@media (max-width: 600px) {\n  .timer h3 {\n    font-size: 1.7em;\n  }\n  .timer .time {\n    margin-left: -20px;\n    font-size: 1em;\n  }\n}\n@media (max-width: 350px) {\n  .timer h3 {\n    font-size: 1.4em;\n  }\n  .timer .time-to-left .time {\n    height: 80px;\n    width: 80px;\n    font-size: 1.4em;\n  }\n}", ""]);
 
 // exports
 
@@ -10989,7 +10989,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.what-i-teach {\n  min-height: 600px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  width: 80%;\n}\n.what-i-teach .about-teach {\n  position: relative;\n  height: 650px;\n  margin-top: 50px;\n}\n.what-i-teach .about-teach .rose-block {\n  position: absolute;\n  top: -29px;\n  left: -310px;\n  background-color: #e74c3c;\n  width: 40vw;\n  height: 90vh;\n  z-index: -10;\n}\n.what-i-teach .about-teach .text-block {\n  position: absolute;\n  left: -700px;\n  top: -10px;\n  display: flex;\n  align-items: center;\n  font-size: 1.5rem;\n  background-color: white;\n  padding: 5px;\n  width: 70vw;\n  height: 80vh;\n  border: 1px solid #000000;\n}\n@media (max-width: 750px) {\n  .what-i-teach .about-teach {\n    position: relative;\n    width: 100%;\n    margin-top: 10vh;\n  }\n  .what-i-teach .about-teach .text-block {\n    font-size: 1.35rem;\n    position: absolute;\n    width: 80vw;\n    left: 50px;\n    height: 90vh;\n  }\n  .what-i-teach .about-teach .rose-block {\n    position: absolute;\n    left: 50vw;\n    top: -80px;\n  }\n}\n@media (max-width: 500px) {\n  .what-i-teach .about-teach {\n    min-height: 800px;\n  }\n  .what-i-teach .about-teach .text-block {\n    font-size: 1.245rem;\n    left: 5px;\n    width: 90vw;\n    height: 110vh;\n  }\n}\n@media (max-width: 350px) {\n  .what-i-teach .about-teach {\n    position: relative;\n    width: 100%;\n  }\n  .what-i-teach .about-teach .text-block {\n    font-size: 0.975rem;\n    position: absolute;\n    width: 90vw;\n    left: 5px;\n    height: 90vh;\n  }\n  .what-i-teach .about-teach .rose-block {\n    position: absolute;\n    left: 50vw;\n    top: -80px;\n  }\n}", ""]);
+exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.what-i-teach {\n  min-height: 600px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  width: 80%;\n}\n.what-i-teach .about-teach {\n  position: relative;\n  height: 650px;\n  margin-top: 50px;\n}\n.what-i-teach .about-teach .rose-block {\n  position: absolute;\n  top: -29px;\n  left: -310px;\n  background-color: #e74c3c;\n  width: 40vw;\n  height: 90vh;\n  z-index: -10;\n}\n.what-i-teach .about-teach .text-block {\n  position: absolute;\n  left: -700px;\n  top: -10px;\n  display: flex;\n  align-items: center;\n  font-size: 1.5em;\n  background-color: white;\n  padding: 5px;\n  width: 70vw;\n  height: 80vh;\n  border: 1px solid #000000;\n}\n@media (max-width: 750px) {\n  .what-i-teach .about-teach {\n    position: relative;\n    width: 100%;\n    margin-top: 10vh;\n  }\n  .what-i-teach .about-teach .text-block {\n    font-size: 1.35em;\n    position: absolute;\n    width: 80vw;\n    left: 50px;\n    height: 90vh;\n  }\n  .what-i-teach .about-teach .rose-block {\n    position: absolute;\n    left: 50vw;\n    top: -80px;\n  }\n}\n@media (max-width: 500px) {\n  .what-i-teach .about-teach {\n    min-height: 800px;\n  }\n  .what-i-teach .about-teach .text-block {\n    font-size: 1.245em;\n    left: 5px;\n    width: 90vw;\n    height: 110vh;\n  }\n}\n@media (max-width: 350px) {\n  .what-i-teach .about-teach {\n    position: relative;\n    width: 100%;\n  }\n  .what-i-teach .about-teach .text-block {\n    font-size: 0.975em;\n    position: absolute;\n    width: 90vw;\n    left: 5px;\n    height: 90vh;\n  }\n  .what-i-teach .about-teach .rose-block {\n    position: absolute;\n    left: 50vw;\n    top: -80px;\n  }\n}", ""]);
 
 // exports
 
@@ -11008,7 +11008,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.who-can-not {\n  min-height: 800px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  width: 80%;\n}\n.who-can-not .about-can-not {\n  height: 300px;\n}\n.who-can-not .about-can-not .rose-block {\n  position: relative;\n  top: -350px;\n  left: 50%;\n  background-color: #e74c3c;\n  width: 40vw;\n  height: 60vh;\n  z-index: -10;\n}\n.who-can-not .about-can-not .text-block {\n  display: flex;\n  align-items: center;\n  font-size: 1.5rem;\n  background-color: white;\n  padding: 5px;\n  width: 50vw;\n  height: 63vh;\n  border: 1px solid #000000;\n}\n@media (max-width: 750px) {\n  .who-can-not .about-can-not {\n    position: relative;\n    width: 100%;\n  }\n  .who-can-not .about-can-not .text-block {\n    font-size: 1.2rem;\n    position: absolute;\n    width: 70vw;\n    left: 50px;\n    height: 60vh;\n  }\n  .who-can-not .about-can-not .rose-block {\n    position: absolute;\n    left: 50vw;\n    top: -80px;\n  }\n}\n@media (max-width: 350px) {\n  .who-can-not .about-can-not {\n    position: relative;\n    width: 100%;\n  }\n  .who-can-not .about-can-not .text-block {\n    font-size: 1.125rem;\n    position: absolute;\n    width: 70vw;\n    left: 50px;\n    height: 70vh;\n  }\n  .who-can-not .about-can-not .rose-block {\n    position: absolute;\n    left: 50vw;\n    top: -80px;\n  }\n}", ""]);
+exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.who-can-not {\n  min-height: 800px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  width: 80%;\n}\n.who-can-not .about-can-not {\n  height: 300px;\n}\n.who-can-not .about-can-not .rose-block {\n  position: relative;\n  top: -350px;\n  left: 50%;\n  background-color: #e74c3c;\n  width: 40vw;\n  height: 60vh;\n  z-index: -10;\n}\n.who-can-not .about-can-not .text-block {\n  display: flex;\n  align-items: center;\n  font-size: 1.5em;\n  background-color: white;\n  padding: 5px;\n  width: 50vw;\n  height: 63vh;\n  border: 1px solid #000000;\n}\n@media (max-width: 750px) {\n  .who-can-not .about-can-not {\n    position: relative;\n    width: 100%;\n  }\n  .who-can-not .about-can-not .text-block {\n    font-size: 1.2em;\n    position: absolute;\n    width: 70vw;\n    left: 50px;\n    height: 60vh;\n  }\n  .who-can-not .about-can-not .rose-block {\n    position: absolute;\n    left: 50vw;\n    top: -80px;\n  }\n}\n@media (max-width: 350px) {\n  .who-can-not .about-can-not {\n    position: relative;\n    width: 100%;\n  }\n  .who-can-not .about-can-not .text-block {\n    font-size: 1.125em;\n    position: absolute;\n    width: 70vw;\n    left: 50px;\n    height: 70vh;\n  }\n  .who-can-not .about-can-not .rose-block {\n    position: absolute;\n    left: 50vw;\n    top: -80px;\n  }\n}", ""]);
 
 // exports
 
@@ -75846,6 +75846,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Courses_Courses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Courses/Courses */ "./resources/js/Components/Courses/Courses.js");
 /* harmony import */ var _Components_Common_connectApi__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Components/Common/connectApi */ "./resources/js/Components/Common/connectApi.js");
 /* harmony import */ var _Components_Common_sendToTelegram__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Common/sendToTelegram */ "./resources/js/Components/Common/sendToTelegram.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_6__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -75865,6 +75867,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -75907,7 +75910,8 @@ function (_Component) {
       phone: '',
       name: '',
       needRequiredCourses: '',
-      needRequiredInput: ''
+      needRequiredInputName: '',
+      needRequiredInputPhone: ''
     };
     _this.onChange = _this.onChange.bind(_assertThisInitialized(_this));
     _this.validateOrder = _this.validateOrder.bind(_assertThisInitialized(_this));
@@ -75923,10 +75927,10 @@ function (_Component) {
      */
     value: function render() {
       var walletNumber = 410012712600459;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Header_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Header_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {
         needShowBlockMenu: false
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: this.state.needRequiredCourses
+        className: classnames__WEBPACK_IMPORTED_MODULE_6___default()('checkout-courses', this.state.needRequiredCourses)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Courses_Courses__WEBPACK_IMPORTED_MODULE_3__["default"], {
         title: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0442\u0430\u0440\u0438\u0444 \u0438 \u0441\u043F\u043E\u0441\u043E\u0431 \u043E\u043F\u043B\u0430\u0442\u044B",
         smallSize: "small-size",
@@ -76008,18 +76012,18 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "label",
         htmlFor: "payment-yandex"
-      }, "\u042F\u043D\u0434\u0435\u043A\u0441.\u0414\u0435\u043D\u044C\u0433\u0430\u043C\u0438")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: this.state.needRequiredInput
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "\u042F\u043D\u0434\u0435\u043A\u0441.\u0414\u0435\u043D\u044C\u0433\u0430\u043C\u0438")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         onChange: this.onChange,
         name: "phone",
         placeholder: "\u0412\u0430\u0448\u0435 \u0442\u0435\u043B\u0435\u0444\u043E\u043D",
-        value: this.state.phone
+        value: this.state.phone,
+        className: this.state.needRequiredInputPhone
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         onChange: this.onChange,
         name: "name",
         placeholder: "\u0412\u0430\u0448\u044F \u0438\u043C\u044F",
-        value: this.state.name
+        value: this.state.name,
+        className: this.state.needRequiredInputName
       })), this.state.errors && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "error"
       }, this.state.errors), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -76039,7 +76043,7 @@ function (_Component) {
         name: name
       };
       var isValid = true;
-      var message = "\u0411\u044B\u043B \u043E\u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043B\u0435\u043D \u0437\u0430\u043A\u0430\u0437 \u043D\u0430 \u0441\u0430\u0439\u0442\u0435 \u0438\u043C\u044F: ".concat(name, "%0A\u0442\u0435\u043B\u0435\u0444\u043E\u043D: ").concat(phone);
+      var message = "\u0411\u044B\u043B \u043E\u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043B\u0435\u043D \u0437\u0430\u043A\u0430\u0437 \u043D\u0430 \u0441\u0430\u0439\u0442\u0435%0A\u0438\u043C\u044F: ".concat(name, "%0A\u0442\u0435\u043B\u0435\u0444\u043E\u043D: ").concat(phone);
 
       if (!this.sum) {
         e.preventDefault();
@@ -76050,11 +76054,20 @@ function (_Component) {
         isValid = false;
       }
 
-      if (!this.state.name || !this.state.phone) {
+      if (!this.state.name) {
         e.preventDefault();
         this.setState({
           errors: errorMessage,
-          needRequiredInput: 'required'
+          needRequiredInputName: 'required'
+        });
+        isValid = false;
+      }
+
+      if (!this.state.phone) {
+        e.preventDefault();
+        this.setState({
+          errors: errorMessage,
+          needRequiredInputPhone: 'required'
         });
         isValid = false;
       }
@@ -76072,7 +76085,8 @@ function (_Component) {
     key: "onChange",
     value: function onChange(e) {
       this.setState(_defineProperty({
-        needRequiredInput: '',
+        needRequiredInputName: '',
+        needRequiredInputPhone: '',
         errors: ''
       }, e.target.name, e.target.value));
     }
@@ -77411,7 +77425,9 @@ function (_Component) {
       }, function () {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "timer"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "\u0421\u0442\u0430\u0440\u0442 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0435\u0433\u043E \u043F\u043E\u0442\u043E\u043A\u0430 \u043A\u0443\u0440\u0441\u0430"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "\u0421\u0442\u0430\u0440\u0442 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0435\u0433\u043E \u043F\u043E\u0442\u043E\u043A\u0430 \u043A\u0443\u0440\u0441\u0430 30 \u0438\u044E\u043B\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "time-to-left"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "time"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_compound_timer__WEBPACK_IMPORTED_MODULE_2__["default"].Days, null), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "time-name"
@@ -77427,7 +77443,7 @@ function (_Component) {
           className: "time"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_compound_timer__WEBPACK_IMPORTED_MODULE_2__["default"].Seconds, null), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "time-name"
-        }, "seconds")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "30 \u0438\u044E\u043B\u044F"));
+        }, "seconds"))));
       });
     }
   }]);
@@ -78163,8 +78179,8 @@ module.exports = "/images/whatsapp-logo.png?392ad4544a502022b3c98672b3f36f32";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/roman/Repositorii/Laravel-react/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/roman/Repositorii/Laravel-react/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/roman/Repositorii/laravel-react/react-laravel/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/roman/Repositorii/laravel-react/react-laravel/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -38,7 +38,8 @@
           padding: 30px;
           &:hover {
             .hide-opinion {
-              display: block;
+              transform: scale(1);
+              transition: 0.5s;
             }
           }
 
@@ -49,7 +50,7 @@
           }
 
           .hide-opinion {
-            display: none;
+            transform: scale(0);
           }
 
           .name {
@@ -83,13 +84,17 @@
     }
   }
   .small-size {
-    max-width: 50vw;
+    max-width: 80vw;
     .row .col .testimonial img {
       height: 75px;
       width: 75px;
     }
     .row .col .testimonial {
       min-height: 300px;
+      &:hover {
+        min-height: 350px;
+        transition: 0.5s;
+      }
     }
   }
   @media (max-width: 500px) {
@@ -100,7 +105,7 @@
         width: 75px;
       }
       .row .col .testimonial {
-        min-height: 200px;
+        min-height: 250px;
       }
     }
   }

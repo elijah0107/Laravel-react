@@ -1,3 +1,4 @@
+@import '../../MainPageView';
 .motto {
   background-image: linear-gradient(to top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
   url("./../../images/motto-fon-min.jpg");
@@ -19,8 +20,14 @@
     align-items: center;
     justify-content: center;
     h1 {
-      font-size: 40px;
+      font-size: 2*$sizeTextBlock;
       width: 40vw;
+      text-align: center;
+    }
+    @media (max-width: 350px) {
+      h1 {
+        font-size: 1.4*$sizeTextBlock;
+      }
     }
   }
 }

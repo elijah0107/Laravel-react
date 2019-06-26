@@ -1,4 +1,8 @@
-$sizeTextBlock: 1.5rem;
+$sizeTextBlock: 1.5em;
+
+@media (max-width: 350px) {
+  $sizeTextBlock: 1.2em;
+}
 body {
   line-height: normal;
 }

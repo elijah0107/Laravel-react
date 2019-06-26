@@ -20,20 +20,21 @@ class Countdown extends Component {
         >
           {() => (
             <div className='timer'>
-              <h3>Старт следующего потока курса</h3>
-              <div className='time'>
-                <Timer.Days /> <span className='time-name'>days</span>
+              <h3>Старт следующего потока курса 30 июля</h3>
+              <div className='time-to-left'>
+                <div className='time'>
+                  <Timer.Days /> <span className='time-name'>days</span>
+                </div>
+                <div className='time'>
+                  <Timer.Hours /> <span className='time-name'>hours</span>
+                </div>
+                <div className='time'>
+                  <Timer.Minutes /> <span className='time-name'>minutes</span>
+                </div>
+                <div className='time'>
+                  <Timer.Seconds /> <span className='time-name'>seconds</span>
+                </div>
               </div>
-              <div className='time'>
-                <Timer.Hours /> <span className='time-name'>hours</span>
-              </div>
-              <div className='time'>
-                <Timer.Minutes /> <span className='time-name'>minutes</span>
-              </div>
-              <div className='time'>
-                <Timer.Seconds /> <span className='time-name'>seconds</span>
-              </div>
-              <h3>30 июля</h3>
             </div>
           )}
         </Timer>
