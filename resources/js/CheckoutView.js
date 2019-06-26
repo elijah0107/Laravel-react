@@ -42,6 +42,7 @@ class MainPageView extends Component {
             smallSize='small-size'
             needUpdateCurrentSum={true}
             updateCurrentSum={this.updateCurrentSum}
+            hideOpinion='hide-opinion'
           />
         </div>
         <div className='checkout-container'>

@@ -20,7 +20,7 @@ class Courses extends Component {
     hard: 4999,
   };
   render () {
-    const { title, smallSize } = this.props;
+    const { title, smallSize, hideOpinion } = this.props;
     return (
       <section className='courses' id='about-courses'>
         <div className='testimonials'>
@@ -40,11 +40,9 @@ class Courses extends Component {
                   <img src={require('./../../images/easy.jpg')} alt=''/>
                   <div className='name'>Базовый</div>
                   <span className='price'>{this.sumToPay.easy} &#8381;</span>
-                  {!this.props.needUpdateCurrentSum && (
-                    <p>
-                      4 вебинара, доступ в чат
-                    </p>
-                  )}
+                  <p className={hideOpinion}>
+                    4 вебинара, доступ в чат
+                  </p>
                 </div>
               </div>
               <div className={cn('col', this.state.blocksState.medium)}
@@ -55,13 +53,11 @@ class Courses extends Component {
                   <img src={require('./../../images/middle.jpg')} alt=''/>
                   <div className='name'>Продвинутый</div>
                   <span className='price'>{ this.sumToPay.medium } &#8381;</span>
-                  {!this.props.needUpdateCurrentSum && (
-                    <p>
-                      4 вебинара, доступ в чат,
-                      ответы на вопросы
-                      в течение недели
-                    </p>
-                  )}
+                  <p className={hideOpinion}>
+                    4 вебинара, доступ в чат,
+                    ответы на вопросы
+                    в течение недели
+                  </p>
                 </div>
               </div>
               <div className={cn('col', this.state.blocksState.hard)}
@@ -72,14 +68,12 @@ class Courses extends Component {
                   <img src={require('./../../images/hard.jpg')} alt=''/>
                   <div className='name'>Максимум</div>
                   <span className='price'>{this.sumToPay.hard} &#8381;</span>
-                  {!this.props.needUpdateCurrentSum && (
-                    <p>
-                      4 вебинара, доступ в чат,
-                      контроль пищевого дневника
-                      в течение месяца и ответы на
-                      вопросы
-                    </p>
-                  )}
+                  <p className={hideOpinion}>
+                    4 вебинара, доступ в чат,
+                    контроль пищевого дневника
+                    в течение месяца и ответы на
+                    вопросы
+                  </p>
                 </div>
               </div>
             </div>

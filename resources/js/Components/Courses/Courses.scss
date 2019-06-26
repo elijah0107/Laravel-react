@@ -36,11 +36,20 @@
           min-height: 400px;
           background-color: #fff;
           padding: 30px;
+          &:hover {
+            .hide-opinion {
+              display: block;
+            }
+          }
 
           img {
             width: 150px;
             height: 150px;
             border-radius: 50%;
+          }
+
+          .hide-opinion {
+            display: none;
           }
 
           .name {

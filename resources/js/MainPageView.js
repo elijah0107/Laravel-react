@@ -34,6 +34,7 @@ class MainPageView extends Component {
           title='Мои курсы'
           smallSize=''
           needUpdateCurrentSum={false}
+          hideOpinion=''
         />
         <WhoCanNot/>
         <Footer/>

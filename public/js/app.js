@@ -10833,7 +10833,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.testimonials {\n  font-family: \"Montserrat\", sans-serif;\n  padding: 40px;\n  color: #434343;\n  text-align: center;\n}\n.testimonials .inner {\n  max-width: 100vw;\n  margin: auto;\n  overflow: hidden;\n  padding: 0 20px;\n  cursor: pointer;\n}\n.testimonials .inner .border {\n  width: 160px;\n  height: 5px;\n  background: #6ab04c;\n  margin: 26px auto;\n}\n.testimonials .inner .row {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.testimonials .inner .row .col {\n  flex: 33.33%;\n  max-width: 33.33%;\n  box-sizing: border-box;\n  padding: 15px;\n}\n.testimonials .inner .row .col .testimonial {\n  box-shadow: #434343 1px 1px 20px;\n  min-height: 400px;\n  background-color: #fff;\n  padding: 30px;\n}\n.testimonials .inner .row .col .testimonial img {\n  width: 150px;\n  height: 150px;\n  border-radius: 50%;\n}\n.testimonials .inner .row .col .testimonial .name {\n  font-size: 1.2rem;\n  text-transform: uppercase;\n  margin: 20px 0;\n}\n.testimonials .inner .row .col .testimonial .price {\n  font-weight: bold;\n  margin-bottom: 20px;\n  font-size: 1.65rem;\n}\n.testimonials .inner .row .block-gray {\n  background-color: gray;\n}\n@media (max-width: 960px) {\n  .testimonials .inner .row .col {\n    flex: 100%;\n    max-width: 80%;\n  }\n}\n@media (max-width: 600px) {\n  .testimonials .inner .row .col {\n    flex: 100%;\n    max-width: 100%;\n  }\n}\n.testimonials .small-size {\n  max-width: 50vw;\n}\n.testimonials .small-size .row .col .testimonial img {\n  height: 75px;\n  width: 75px;\n}\n.testimonials .small-size .row .col .testimonial {\n  min-height: 300px;\n}\n@media (max-width: 500px) {\n  .testimonials .small-size {\n    max-width: 70vw;\n  }\n  .testimonials .small-size .row .col .testimonial img {\n    height: 75px;\n    width: 75px;\n  }\n  .testimonials .small-size .row .col .testimonial {\n    min-height: 200px;\n  }\n}", ""]);
+exports.push([module.i, "body {\n  line-height: normal;\n}\n\n.testimonials {\n  font-family: \"Montserrat\", sans-serif;\n  padding: 40px;\n  color: #434343;\n  text-align: center;\n}\n.testimonials .inner {\n  max-width: 100vw;\n  margin: auto;\n  overflow: hidden;\n  padding: 0 20px;\n  cursor: pointer;\n}\n.testimonials .inner .border {\n  width: 160px;\n  height: 5px;\n  background: #6ab04c;\n  margin: 26px auto;\n}\n.testimonials .inner .row {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.testimonials .inner .row .col {\n  flex: 33.33%;\n  max-width: 33.33%;\n  box-sizing: border-box;\n  padding: 15px;\n}\n.testimonials .inner .row .col .testimonial {\n  box-shadow: #434343 1px 1px 20px;\n  min-height: 400px;\n  background-color: #fff;\n  padding: 30px;\n}\n.testimonials .inner .row .col .testimonial:hover .hide-opinion {\n  display: block;\n}\n.testimonials .inner .row .col .testimonial img {\n  width: 150px;\n  height: 150px;\n  border-radius: 50%;\n}\n.testimonials .inner .row .col .testimonial .hide-opinion {\n  display: none;\n}\n.testimonials .inner .row .col .testimonial .name {\n  font-size: 1.2rem;\n  text-transform: uppercase;\n  margin: 20px 0;\n}\n.testimonials .inner .row .col .testimonial .price {\n  font-weight: bold;\n  margin-bottom: 20px;\n  font-size: 1.65rem;\n}\n.testimonials .inner .row .block-gray {\n  background-color: gray;\n}\n@media (max-width: 960px) {\n  .testimonials .inner .row .col {\n    flex: 100%;\n    max-width: 80%;\n  }\n}\n@media (max-width: 600px) {\n  .testimonials .inner .row .col {\n    flex: 100%;\n    max-width: 100%;\n  }\n}\n.testimonials .small-size {\n  max-width: 50vw;\n}\n.testimonials .small-size .row .col .testimonial img {\n  height: 75px;\n  width: 75px;\n}\n.testimonials .small-size .row .col .testimonial {\n  min-height: 300px;\n}\n@media (max-width: 500px) {\n  .testimonials .small-size {\n    max-width: 70vw;\n  }\n  .testimonials .small-size .row .col .testimonial img {\n    height: 75px;\n    width: 75px;\n  }\n  .testimonials .small-size .row .col .testimonial {\n    min-height: 200px;\n  }\n}", ""]);
 
 // exports
 
@@ -75931,7 +75931,8 @@ function (_Component) {
         title: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0442\u0430\u0440\u0438\u0444 \u0438 \u0441\u043F\u043E\u0441\u043E\u0431 \u043E\u043F\u043B\u0430\u0442\u044B",
         smallSize: "small-size",
         needUpdateCurrentSum: true,
-        updateCurrentSum: this.updateCurrentSum
+        updateCurrentSum: this.updateCurrentSum,
+        hideOpinion: "hide-opinion"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "checkout-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -76380,7 +76381,8 @@ function (_Component) {
     value: function render() {
       var _this$props = this.props,
           title = _this$props.title,
-          smallSize = _this$props.smallSize;
+          smallSize = _this$props.smallSize,
+          hideOpinion = _this$props.hideOpinion;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "courses",
         id: "about-courses"
@@ -76405,7 +76407,9 @@ function (_Component) {
         className: "name"
       }, "\u0411\u0430\u0437\u043E\u0432\u044B\u0439"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "price"
-      }, this.sumToPay.easy, " \u20BD"), !this.props.needUpdateCurrentSum && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430, \u0434\u043E\u0441\u0442\u0443\u043F \u0432 \u0447\u0430\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.sumToPay.easy, " \u20BD"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: hideOpinion
+      }, "4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430, \u0434\u043E\u0441\u0442\u0443\u043F \u0432 \u0447\u0430\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('col', this.state.blocksState.medium),
         onClick: this.updateState,
         id: this.sumToPay.medium
@@ -76418,7 +76422,9 @@ function (_Component) {
         className: "name"
       }, "\u041F\u0440\u043E\u0434\u0432\u0438\u043D\u0443\u0442\u044B\u0439"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "price"
-      }, this.sumToPay.medium, " \u20BD"), !this.props.needUpdateCurrentSum && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430, \u0434\u043E\u0441\u0442\u0443\u043F \u0432 \u0447\u0430\u0442, \u043E\u0442\u0432\u0435\u0442\u044B \u043D\u0430 \u0432\u043E\u043F\u0440\u043E\u0441\u044B \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043D\u0435\u0434\u0435\u043B\u0438"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.sumToPay.medium, " \u20BD"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: hideOpinion
+      }, "4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430, \u0434\u043E\u0441\u0442\u0443\u043F \u0432 \u0447\u0430\u0442, \u043E\u0442\u0432\u0435\u0442\u044B \u043D\u0430 \u0432\u043E\u043F\u0440\u043E\u0441\u044B \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043D\u0435\u0434\u0435\u043B\u0438"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('col', this.state.blocksState.hard),
         onClick: this.updateState,
         id: this.sumToPay.hard
@@ -76431,7 +76437,9 @@ function (_Component) {
         className: "name"
       }, "\u041C\u0430\u043A\u0441\u0438\u043C\u0443\u043C"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "price"
-      }, this.sumToPay.hard, " \u20BD"), !this.props.needUpdateCurrentSum && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430, \u0434\u043E\u0441\u0442\u0443\u043F \u0432 \u0447\u0430\u0442, \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u044C \u043F\u0438\u0449\u0435\u0432\u043E\u0433\u043E \u0434\u043D\u0435\u0432\u043D\u0438\u043A\u0430 \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043C\u0435\u0441\u044F\u0446\u0430 \u0438 \u043E\u0442\u0432\u0435\u0442\u044B \u043D\u0430 \u0432\u043E\u043F\u0440\u043E\u0441\u044B")))))));
+      }, this.sumToPay.hard, " \u20BD"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: hideOpinion
+      }, "4 \u0432\u0435\u0431\u0438\u043D\u0430\u0440\u0430, \u0434\u043E\u0441\u0442\u0443\u043F \u0432 \u0447\u0430\u0442, \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u044C \u043F\u0438\u0449\u0435\u0432\u043E\u0433\u043E \u0434\u043D\u0435\u0432\u043D\u0438\u043A\u0430 \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 \u043C\u0435\u0441\u044F\u0446\u0430 \u0438 \u043E\u0442\u0432\u0435\u0442\u044B \u043D\u0430 \u0432\u043E\u043F\u0440\u043E\u0441\u044B")))))));
     }
   }, {
     key: "changeBlock",
@@ -77671,7 +77679,8 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Take_check_list_Take_check_list__WEBPACK_IMPORTED_MODULE_10__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Motto_Motto__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Timer_Timer__WEBPACK_IMPORTED_MODULE_11__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_About_me_About_me__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_What_I_teach_What_I_teach__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Reviews_Reviews__WEBPACK_IMPORTED_MODULE_6__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Courses_Courses__WEBPACK_IMPORTED_MODULE_7__["default"], {
         title: "\u041C\u043E\u0438 \u043A\u0443\u0440\u0441\u044B",
         smallSize: "",
-        needUpdateCurrentSum: false
+        needUpdateCurrentSum: false,
+        hideOpinion: ""
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Who_can_not_Who_can_not__WEBPACK_IMPORTED_MODULE_8__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_Footer_Footer__WEBPACK_IMPORTED_MODULE_9__["default"], null));
     }
   }]);
