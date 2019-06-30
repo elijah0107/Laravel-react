@@ -10970,7 +10970,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".timer {\n  min-height: 40vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n.timer h3 {\n  text-transform: uppercase;\n  font-weight: bold;\n  font-size: 2em;\n  padding-bottom: 10px;\n  border-bottom: 4px solid #111;\n  text-align: center;\n}\n.timer .time-to-left {\n  display: flex;\n  flex-direction: row;\n}\n.timer .time-to-left .time {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  color: #111;\n  font-size: 2em;\n  font-weight: bold;\n  margin-left: 10px;\n  height: 100px;\n  width: 100px;\n}\n.timer .time-to-left .time .time-name {\n  font-size: 15px;\n}\n@media (max-width: 600px) {\n  .timer .time-to-left .time {\n    margin-left: -20px;\n  }\n}\n\n@media (max-width: 600px) {\n  .timer h3 {\n    font-size: 1.7em;\n  }\n  .timer .time {\n    margin-left: -20px;\n    font-size: 1em;\n  }\n}\n@media (max-width: 350px) {\n  .timer h3 {\n    font-size: 1.4em;\n  }\n  .timer .time-to-left .time {\n    height: 80px;\n    width: 80px;\n    font-size: 1.4em;\n  }\n}", ""]);
+exports.push([module.i, ".wrapper {\n  min-height: 40vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n.wrapper .timer {\n  background-color: #e74c3c;\n  padding: 50px;\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n}\n.wrapper .timer h3 {\n  text-transform: uppercase;\n  font-weight: bold;\n  font-size: 2em;\n  padding-bottom: 10px;\n  border-bottom: 4px solid #111;\n  text-align: center;\n}\n.wrapper .timer .time-to-left {\n  display: flex;\n  flex-direction: row;\n}\n.wrapper .timer .time-to-left .time {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  color: #111;\n  font-size: 2em;\n  font-weight: bold;\n  margin-left: 10px;\n  height: 100px;\n  width: 100px;\n}\n.wrapper .timer .time-to-left .time .time-name {\n  font-size: 15px;\n}\n@media (max-width: 600px) {\n  .wrapper .timer .time-to-left .time {\n    margin-left: -20px;\n  }\n}\n\n@media (max-width: 600px) {\n  .timer h3 {\n    font-size: 1.7em;\n  }\n  .timer .time {\n    margin-left: -20px;\n    font-size: 1em;\n  }\n}\n@media (max-width: 350px) {\n  .timer h3 {\n    font-size: 1.4em;\n  }\n  .timer .time-to-left .time {\n    height: 80px;\n    width: 80px;\n    font-size: 1.4em;\n  }\n}", ""]);
 
 // exports
 
@@ -77434,6 +77434,8 @@ function (_Component) {
         direction: "backward"
       }, function () {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "wrapper"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "timer"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "\u0421\u0442\u0430\u0440\u0442 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0435\u0433\u043E \u043F\u043E\u0442\u043E\u043A\u0430 \u043A\u0443\u0440\u0441\u0430 30 \u0438\u044E\u043B\u044F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "time-to-left"
@@ -77453,7 +77455,7 @@ function (_Component) {
           className: "time"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_compound_timer__WEBPACK_IMPORTED_MODULE_2__["default"].Seconds, null), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "time-name"
-        }, "seconds"))));
+        }, "seconds")))));
       });
     }
   }]);

@@ -1,24 +1,25 @@
-import React, { Component } from 'react'
-import './Timer.scss'
-import Timer from 'react-compound-timer'
+import React, { Component } from 'react';
+import './Timer.scss';
+import Timer from 'react-compound-timer';
 
 class Countdown extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
-    }
-  };
-  render() {
+    };
+  }
+  render () {
     const now = new Date();
     const achieve = new Date(2019, 7, 30);
     let number = achieve - now;
     number = number/1.6;
     return (
-        <Timer
-          initialTime={number}
-          direction="backward"
-        >
-          {() => (
+      <Timer
+        initialTime={number}
+        direction='backward'
+      >
+        {() => (
+          <div className='wrapper'>
             <div className='timer'>
               <h3>Старт следующего потока курса 30 июля</h3>
               <div className='time-to-left'>
@@ -36,9 +37,10 @@ class Countdown extends Component {
                 </div>
               </div>
             </div>
-          )}
-        </Timer>
-    )
-  };
+          </div>
+        )}
+      </Timer>
+    );
+  }
 }
-export default Countdown
+export default Countdown;

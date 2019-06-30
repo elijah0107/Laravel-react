@@ -1,39 +1,50 @@
-.timer {
+.wrapper {
   $timerSize: 2em;
   min-height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  h3 {
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: $timerSize;
-    padding-bottom: 10px;
-    border-bottom: 4px solid #111;
-    text-align: center;
-  }
-  .time-to-left {
+  .timer {
+    background-color: #e74c3c;
+    padding: 50px;
     display: flex;
-    flex-direction: row;
-    .time {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #111;
-      font-size: $timerSize;
+    align-items: center;
+    flex-direction: column;
+    h3 {
+      text-transform: uppercase;
       font-weight: bold;
-      margin-left: 10px;
-      height: 100px;
-      width: 100px;
-      .time-name {
-        font-size: 15px;
-      }
+      font-size: $timerSize;
+      padding-bottom: 10px;
+      border-bottom: 4px solid #111;
+      text-align: center;
     }
-    @media (max-width: 600px) {
+
+    .time-to-left {
+      display: flex;
+      flex-direction: row;
+
       .time {
-        margin-left: -20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #111;
+        font-size: $timerSize;
+        font-weight: bold;
+        margin-left: 10px;
+        height: 100px;
+        width: 100px;
+
+        .time-name {
+          font-size: 15px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .time {
+          margin-left: -20px;
+        }
       }
     }
   }
