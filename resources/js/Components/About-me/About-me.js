@@ -12,8 +12,6 @@ class AboutMe extends Component {
     return (
         <section className="about-me" id="about-me">
           <div className="photo-block">
-            <div className="draw">
-            </div>
             <div className="photo">
               <img src={require('./../../images/photo.jpg')} alt="" className="img-photo"/>
             </div>

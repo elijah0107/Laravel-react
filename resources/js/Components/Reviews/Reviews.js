@@ -28,6 +28,12 @@ const SlideView = ({}) => {
         <div className="item">
           <img src={require('./../../images/5.jpg')} alt=""/>
         </div>
+        <div className="item">
+          <img src={require('./../../images/6.jpg')} alt=""/>
+        </div>
+        <div className="item">
+          <img src={require('./../../images/7.jpg')} alt=""/>
+        </div>
       </Slider>
     </section>
   )
