@@ -10,14 +10,15 @@
   .photo-block {
     background-color: #e74c3c;
     width: 40%;
-    min-width: 280px;
+    min-width: 19em;
     height: 400px;
     margin: 4em;
     .photo {
-      margin-left: 2em;
+      margin-left: 6em;
       margin-top: 2em;
       .img-photo {
-        width: 16em;
+        width: 80%;
+        min-width: 18em;
       }
     }
   }
@@ -35,8 +36,6 @@
         color: #1b4b72;
       }
     }
-    .text-min {
-    }
   }
 }
 @media (max-width: 600px) {
@@ -44,6 +43,13 @@
     flex-direction: column;
     .photo-block {
       margin: 1em;
+        .photo {
+          margin-left: 1em;
+          margin-top: 5em;
+          .img-photo {
+              width: 19em
+          }
+        }
     }
   }
 }

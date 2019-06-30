@@ -71,20 +71,20 @@ class MainPageView extends Component {
               <input type='radio' name='paymentType' value='PC' id='payment-yandex' />
               <label className='label' htmlFor='payment-yandex'>Яндекс.Деньгами</label>
             </div>
-            <div>
+            <div className='contact-form'>
               <input
                 onChange={this.onChange}
                 name='phone'
                 placeholder='Ваше телефон'
                 value={this.state.phone}
-                className={this.state.needRequiredInputPhone}
+                className={cn('contact', this.state.needRequiredInputPhone)}
               />
               <input
                 onChange={this.onChange}
                 name='name'
                 placeholder='Вашя имя'
                 value={this.state.name}
-                className={this.state.needRequiredInputName}
+                className={cn('contact', this.state.needRequiredInputName)}
               />
             </div>
             {this.state.errors && (

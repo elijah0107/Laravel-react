@@ -21,6 +21,8 @@
     .payment-type {
       display: flex;
       flex-direction: row;
+      justify-content: center;
+      align-items: center;
       input[type='radio'] {
         display: none;
       }
@@ -44,9 +46,22 @@
         background-color: #e74c3c;
       }
     }
+
+    .contact {
+      margin-left: 10px
+    }
     @media (max-width: 500px) {
       .payment-type {
+        justify-content: center;
         flex-direction: column;
+      }
+      .contact-form {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        .contact {
+          margin-bottom: 10px
+        }
       }
     }
     .error {

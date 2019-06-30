@@ -1,12 +1,12 @@
-import React from 'react'
-import './Who-can-not.scss'
+import React from 'react';
+import './Who-can-not.scss';
 
 const WhoCanNot = () => {
   return (
-    <section className="who-can-not" id="who-can-not">
+    <section className='who-can-not' id='who-can-not'>
       <div className='about-can-not'>
-        <div className="text-block">
-          <p className="text-who-can-not">
+        <div className='text-block'>
+          <p className='text-who-can-not'>
             Мой курс не подойдёт людям,
             которые хотят переложить ответственность
             за свою жизнь на других. Ждут чуда или
@@ -20,9 +20,8 @@ const WhoCanNot = () => {
             самостоятельно под себя.
           </p>
         </div>
-        <div className="rose-block"/>
       </div>
     </section>
-  )
+  );
 };
-export default WhoCanNot
+export default WhoCanNot;

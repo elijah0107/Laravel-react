@@ -5,71 +5,42 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 80%;
+  width: 90%;
 
   .about-can-not {
     height: 300px;
-
-    .rose-block {
-      position: relative;
-      top: -350px;
-      left: 50%;
-      background-color: #e74c3c;
-      width: 40vw;
-      height: 60vh;
-      z-index: -10;
-    }
+    background-color: #e74c3c;
 
     .text-block {
       display: flex;
       align-items: center;
       font-size: $sizeTextBlock;
       background-color: white;
-      padding: 5px;
-      width: 50vw;
-      height: 63vh;
+      padding: 10px;
+      margin-left: 2em;
+      margin-top: 2em;
+      width: 22em;
       border: 1px solid #000000;
+      overflow: auto;
     }
   }
 
   @media (max-width: 750px) {
     .about-can-not {
-      position: relative;
       width: 100%;
-
       .text-block {
-        font-size: 0.80*$sizeTextBlock;
-        position: absolute;
+        margin-left: 1em;
         width: 70vw;
         left: 50px;
-        height: 60vh;
-      }
-
-      .rose-block {
-        position: absolute;
-        left: 50vw;
-        top: -80px;
       }
     }
   }
 
-  @media (max-width: 350px) {
+  @media (max-width: 400px) {
     .about-can-not {
-      position: relative;
-      width: 100%;
-
       .text-block {
-        font-size: 0.75*$sizeTextBlock;
-        position: absolute;
-        width: 70vw;
-        left: 50px;
-        height: 70vh;
-      }
-
-      .rose-block {
-        position: absolute;
-        left: 50vw;
-        top: -80px;
+        margin-left: .5em;
+        width: 90vw;
       }
     }
   }

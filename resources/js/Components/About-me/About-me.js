@@ -1,24 +1,24 @@
-import React, { Component } from 'react'
-import './About-me.scss'
+import React, { Component } from 'react';
+import './About-me.scss';
 
 class AboutMe extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       isFullAboutMeText: false,
-    }
-  };
-  render() {
+    };
+  }
+  render () {
     return (
-        <section className="about-me" id="about-me">
-          <div className="photo-block">
-            <div className="photo">
-              <img src={require('./../../images/photo.jpg')} alt="" className="img-photo"/>
-            </div>
+      <section className='about-me' id='about-me'>
+        <div className='photo-block'>
+          <div className='photo'>
+            <img src={require('./../../images/photo.jpg')} alt='' className='img-photo'/>
           </div>
-          <div className="text">
-            { !this.state.isFullAboutMeText && (
-                <p className="text-about-me text-min">
+        </div>
+        <div className='text'>
+          { !this.state.isFullAboutMeText && (
+            <p className='text-about-me text-min'>
                     Меня зовут Марина. До того как я связала свою
                     жизнь с фитнесом, я верила в различные мифы про
                     спорт, питание и похудение. Думала, что бывают
@@ -29,14 +29,14 @@ class AboutMe extends Component {
                     и стала помогать другим - я стала тренером.
                     Я заметила, что мои клиенты сталкиваются
                     с такими же проблемами, и создала курс. ...
-                    <span className="full-about-me"
-                          onClick={this.transformAboutMe}>
+              <span className='full-about-me'
+                onClick={this.transformAboutMe}>
                         читать далее
-                    </span>
-                </p>
-            )}
-            { this.state.isFullAboutMeText && (
-                <p className="text-about-me-full">
+              </span>
+            </p>
+          )}
+          { this.state.isFullAboutMeText && (
+            <p className='text-about-me-full'>
                     Меня зовут Марина. До того как я связала свою
                     жизнь с фитнесом, я верила в различные мифы про
                     спорт, питание и похудение. Думала, что бывают
@@ -62,15 +62,15 @@ class AboutMe extends Component {
                     становой тяге и знаю, как добиваться поставленных
                     целей. Сейчас я практикующий тренер и консультант
                     по питанию.
-                  <span className="full-about-me" onClick={this.transformAboutMe}>скрыть</span>
-                </p>
-            )}
-          </div>
-        </section>
-    )
-  };
+              <span className='full-about-me' onClick={this.transformAboutMe}>скрыть</span>
+            </p>
+          )}
+        </div>
+      </section>
+    );
+  }
   transformAboutMe = () => {
-    this.setState({isFullAboutMeText: !this.state.isFullAboutMeText})
+    this.setState({ isFullAboutMeText: !this.state.isFullAboutMeText });
   }
 }
-export default AboutMe
+export default AboutMe;

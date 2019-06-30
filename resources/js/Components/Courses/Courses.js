@@ -38,7 +38,7 @@ class Courses extends Component {
               >
                 <div className='testimonial'>
                   <img src={require('./../../images/easy.jpg')} alt=''/>
-                  <div className='name'>Базовый</div>
+                  <div className='name'>Самостоятельный</div>
                   <span className='price'>{this.sumToPay.easy} &#8381;</span>
                   <p className={hideOpinion}>
                     4 вебинара, доступ в чат
@@ -51,7 +51,7 @@ class Courses extends Component {
               >
                 <div className='testimonial'>
                   <img src={require('./../../images/middle.jpg')} alt=''/>
-                  <div className='name'>Продвинутый</div>
+                  <div className='name'>Базовый</div>
                   <span className='price'>{ this.sumToPay.medium } &#8381;</span>
                   <p className={hideOpinion}>
                     4 вебинара, доступ в чат,
