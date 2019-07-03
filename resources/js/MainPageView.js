@@ -22,7 +22,7 @@ class MainPageView extends Component {
 
   render () {
     return (
-      <div>
+      <>
         <Header needShowBlockMenu={true} />
         <TakeCheckList/>
         <Motto/>
@@ -38,7 +38,7 @@ class MainPageView extends Component {
         />
         <WhoCanNot/>
         <Footer/>
-      </div>
+      </>
     );
   }
 

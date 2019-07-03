@@ -27,10 +27,10 @@ class Header extends Component {
                 <li>
                   <a className='buy' href='/checkout'>купить</a>
                 </li>
-                <li><a href='#about-me' data-hover='обо мне' className='menu-link' onClick={this.slowScroll}>обо мне</a></li>
-                <li><a href='#about-courses' data-hover='тарифы' className='menu-link' onClick={this.slowScroll}>тарифы</a></li>
-                <li><a href='#about-school' data-hover='о школе' className='menu-link' onClick={this.slowScroll}>о школе</a></li>
-                <li><a href='#reviews' data-hover='отзывы' className='menu-link' onClick={this.slowScroll}>отзывы</a></li>
+                <li><a href='#about-me' data-hover='обо мне' className='menu-link'>обо мне</a></li>
+                <li><a href='#about-courses' data-hover='тарифы' className='menu-link'>тарифы</a></li>
+                <li><a href='#teach' data-hover='о школе' className='menu-link'>о школе</a></li>
+                <li><a href='#reviews' data-hover='отзывы' className='menu-link'>отзывы</a></li>
               </ul>
               <a href={void (0)}
                 className={this.state.isOpen ? 'button-menu button-menu_active' : 'button-menu'}
@@ -63,13 +63,6 @@ class Header extends Component {
       this.setState({ modalIsShow: !this.state.modalIsShow });
     }
   };
-
-  slowScroll = event => {
-    event.preventDefault();
-    const id  = event.target.attr('href'),
-      top = id.offset().top;
-    $('body,html').animate({ scrollTop: top }, 1500);
-  }
 }
 
 export default Header;

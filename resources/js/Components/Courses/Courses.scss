@@ -36,21 +36,11 @@
           min-height: 400px;
           background-color: #fff;
           padding: 30px;
-          &:hover {
-            .hide-opinion {
-              transform: scale(1);
-              transition: 0.5s;
-            }
-          }
 
           img {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-          }
-
-          .hide-opinion {
-            transform: scale(0);
           }
 
           .name {
@@ -90,10 +80,9 @@
       width: 75px;
     }
     .row .col .testimonial {
-      min-height: 300px;
+      min-height: 350px;
       &:hover {
-        min-height: 350px;
-        transition: 0.5s;
+        box-shadow: #fafafa 2px 2px 30px;
       }
     }
   }
@@ -105,7 +94,7 @@
         width: 75px;
       }
       .row .col .testimonial {
-        min-height: 250px;
+        min-height: 350px;
       }
     }
   }

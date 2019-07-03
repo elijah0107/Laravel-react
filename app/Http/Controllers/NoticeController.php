@@ -13,11 +13,18 @@ class NoticeController extends Controller
     $notice = new Notice;
     $email = $request->input('email');
     $name = $request->input('name');
+    if (!$email || !$name) {
+        return [
+            'callbackMessage' => 'Значение поля e-mail или name не может быть пустым',
+            'error' => true
+        ];
+    }
     $emailExist = empty($notice::where('email', 'LIKE', $email)->get()->toArray());
     if (!$emailExist) {
       return array(
-          'message' => 'Мы уже отправляли файл на эту почту, пожалуйста проверьте в своих сообщениях',
+          'callbackMessage' => 'Мы уже отправляли файл на эту почту, пожалуйста проверьте в своих сообщениях',
           'user_exist' => true,
+          'error' => true
       );
     }
     $notice->email = $email;
@@ -25,8 +32,9 @@ class NoticeController extends Controller
     $result = $notice->save();
     if ($result == 1) {
         return array(
-            'message' => "Файл успешно отправлен вам на почту, если не пришло проверьте папку спам",
+            'callbackMessage' => "Файл успешно отправлен вам на почту, если не пришло проверьте папку спам",
             'userExist' => false,
+            'error' => false
         );
     } else {
       return "Что-то пошло не так";

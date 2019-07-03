@@ -10,9 +10,8 @@ class Countdown extends Component {
   }
   render () {
     const now = new Date();
-    const achieve = new Date(2019, 7, 30);
+    const achieve = new Date(2019, 6, 30);
     let number = achieve - now;
-    number = number/1.6;
     return (
       <Timer
         initialTime={number}

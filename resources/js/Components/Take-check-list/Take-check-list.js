@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './Take-check-list.scss';
 import { connectPost } from '../Common/connectApi';
 import { sendToTelegram } from '../Common/sendToTelegram';
@@ -18,7 +18,7 @@ class TakeCheckList extends Component {
 
   render () {
     return (
-      <Fragment>
+      <>
         {this.state.isOpenCheckListPopup && (
           <div className='container' onClick={this.closeCheckList}>
             <div className='check-list-form'>
@@ -66,7 +66,7 @@ class TakeCheckList extends Component {
         {this.state.isButton && (
           <span className='open-button' onClick={this.closeButton}>&raquo;</span>
         )}
-      </Fragment>
+      </>
     );
   }
   onChange (e) {
@@ -82,31 +82,44 @@ class TakeCheckList extends Component {
       email,
       name,
     };
+    connectPost('api/notice', user)
+      .then(response => {
+        const data = response && response.data || {};
+        if (data.error) {
+          this.setState({ errors: data.callbackMessage });
+          return;
+        }
+        if (!data.user_exist) {
+          this.send();
+        }
+        this.setState({ errors: data.callbackMessage });
+      });
+  };
+  send = () => {
+    const email = this.state.email;
+    const name = this.state.name;
+    const user = {
+      email,
+    };
     const closeAndRemove = () => {
       this.setState({ isOpenCheckListPopup: false });
       this.setState({ errors: '' });
     };
     const message = `Кто-то заказал шпаргалку имя: ${name}%0Aпочта: ${email}`;
-    connectPost('api/notice', user)
+    connectPost('api/send', user)
       .then(response => {
         const data = response && response.data || {};
-        if (!data.user_exist) {
-          this.setState({ errors: data.message });
+        if(data.has_send) {
           setTimeout(closeAndRemove, 2000);
-          this.send();
           sendToTelegram(message);
         }
-      });
-  };
-  send = () => {
-    const user = {
-      email: this.state.email,
-    };
-    connectPost('api/send', user)
+        this.setState({ errors: data.callbackMessage });
+      })
       .catch(err => {
         console.log(err);
       });
   };
+
   openCheckList = () => {
     this.setState({ isOpenCheckListPopup: !this.state.isOpenCheckListPopup });
   };
