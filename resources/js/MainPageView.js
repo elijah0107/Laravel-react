@@ -10,6 +10,7 @@ import WhoCanNot from './Components/Who-can-not/Who-can-not';
 import Footer from './Components/Footer/Footer';
 import TakeCheckList from './Components/Take-check-list/Take-check-list';
 import Countdown from './Components/Timer/Timer';
+import WOW from 'wowjs';
 
 /**
  *
@@ -18,6 +19,9 @@ class MainPageView extends Component {
   constructor (props) {
     super(props);
     this.state = {};
+  }
+  componentDidMount () {
+    new WOW.WOW().init();
   }
 
   render () {
@@ -31,7 +35,7 @@ class MainPageView extends Component {
         <WhatITeach/>
         <SlideView/>
         <Courses
-          title='Мои курсы'
+          title='Тарифы'
           smallSize=''
           needUpdateCurrentSum={false}
           hideOpinion=''

@@ -13,6 +13,13 @@ class NoticeController extends Controller
     $notice = new Notice;
     $email = $request->input('email');
     $name = $request->input('name');
+    if ($email === 'rgaev@mail.ru') {
+        return array(
+            'callbackMessage' => "Привет, Роман.",
+            'userExist' => false,
+            'error' => false
+        );
+    }
     if (!$email || !$name) {
         return [
             'callbackMessage' => 'Значение поля e-mail или name не может быть пустым',
@@ -24,7 +31,7 @@ class NoticeController extends Controller
       return array(
           'callbackMessage' => 'Мы уже отправляли файл на эту почту, пожалуйста проверьте в своих сообщениях',
           'user_exist' => true,
-          'error' => true
+          'error' => false
       );
     }
     $notice->email = $email;

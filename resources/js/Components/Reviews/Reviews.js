@@ -1,6 +1,6 @@
-import React from 'react'
-import './Reviews.scss'
-import Slider from 'react-slick'
+import React from 'react';
+import './Reviews.scss';
+import Slider from 'react-slick';
 
 const settings = {
   dots: true,
@@ -12,30 +12,30 @@ const settings = {
 };
 const SlideView = ({}) => {
   return (
-    <section className="reviews" id="reviews">
+    <section className='reviews wow zoomIn' id='reviews'>
       <Slider
         {...settings}
       >
-        <div className="item">
-          <img src={require('./../../images/2.jpg')} alt=""/>
+        <div className='item'>
+          <img src={require('./../../images/2.jpg')} alt=''/>
         </div>
-        <div className="item">
-          <img src={require('./../../images/3.jpg')} alt=""/>
+        <div className='item'>
+          <img src={require('./../../images/3.jpg')} alt=''/>
         </div>
-        <div className="item">
-          <img src={require('./../../images/4.jpg')} alt=""/>
+        <div className='item'>
+          <img src={require('./../../images/4.jpg')} alt=''/>
         </div>
-        <div className="item">
-          <img src={require('./../../images/5.jpg')} alt=""/>
+        <div className='item'>
+          <img src={require('./../../images/5.jpg')} alt=''/>
         </div>
-        <div className="item">
-          <img src={require('./../../images/6.jpg')} alt=""/>
+        <div className='item'>
+          <img src={require('./../../images/6.jpg')} alt=''/>
         </div>
-        <div className="item">
-          <img src={require('./../../images/7.jpg')} alt=""/>
+        <div className='item'>
+          <img src={require('./../../images/7.jpg')} alt=''/>
         </div>
       </Slider>
     </section>
-  )
+  );
 };
-export default SlideView
+export default SlideView;

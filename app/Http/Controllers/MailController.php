@@ -10,7 +10,8 @@ class MailController extends Controller
     public function sendMail(Request $request)
     {
         $email = $request->input('email');
-        Mail::send(['text' => 'mail'], ['name' => 'Приветики'], function ($message) use ($email) {
+        $message = "Кто-то заказал шпаргалку почта: $email";
+        Mail::send(['text' => "ordered"], ['name' => 'Приветики'], function ($message) use ($email) {
             $message->to('rgaev@mail.ru')->subject("Кто-то заказал шпаргалку почта: $email");
             $message->from('think-about-eat@mail.ru', 'Школа осознанного питания');
         });

@@ -23,7 +23,7 @@ class Courses extends Component {
     const { title, smallSize, hideOpinion } = this.props;
     return (
       <section className='courses' id='about-courses'>
-        <div className='testimonials'>
+        <div className='testimonials wow zoomIn'>
           <div className={'inner ' + smallSize}>
             {title && (
               <Fragment>
@@ -36,7 +36,7 @@ class Courses extends Component {
                 onClick={ this.updateState }
                 id={this.sumToPay.easy}
               >
-                <div className='testimonial'>
+                <div className='testimonial wow fadeInLeft'>
                   <img src={require('./../../images/easy.jpg')} alt=''/>
                   <div className='name'>Самостоятельный</div>
                   <span className='price'>{this.sumToPay.easy} &#8381;</span>
@@ -49,7 +49,7 @@ class Courses extends Component {
                 onClick={this.updateState}
                 id={this.sumToPay.medium}
               >
-                <div className='testimonial'>
+                <div className='testimonial wow zoomIn'>
                   <img src={require('./../../images/middle.jpg')} alt=''/>
                   <div className='name'>Базовый</div>
                   <span className='price'>{ this.sumToPay.medium } &#8381;</span>
@@ -64,7 +64,7 @@ class Courses extends Component {
                 onClick={ this.updateState }
                 id={this.sumToPay.hard}
               >
-                <div className='testimonial'>
+                <div className='testimonial wow fadeInRight'>
                   <img src={require('./../../images/hard.jpg')} alt=''/>
                   <div className='name'>Максимум</div>
                   <span className='price'>{this.sumToPay.hard} &#8381;</span>

@@ -16,13 +16,13 @@ class Header extends Component {
     return (
       <header className='header'>
         <div className='header-block'>
-          <a href='/'>
+          <a href='/' className='wow bounceInLeft'>
             <div className='logo'>
               <img src={require('./../../images/logo.jpg')} alt=''/>
             </div>
           </a>
           { needShowBlockMenu && (
-            <div className='block-menu'>
+            <div className='block-menu wow slideInRight'>
               <ul className={this.state.isOpen && !this.state.modalIsShow ? 'menu menu_active' : 'menu'}>
                 <li>
                   <a className='buy' href='/checkout'>купить</a>

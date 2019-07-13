@@ -108,7 +108,6 @@ class MainPageView extends Component {
       name,
     };
     let isValid = true;
-    const message = `Был осуществлен заказ на сайте%0Aимя: ${name}%0Aтелефон: ${phone}`;
     if (!this.sum) {
       e.preventDefault();
       this.setState({
@@ -134,12 +133,11 @@ class MainPageView extends Component {
       isValid = false;
     }
     if (isValid) {
-      sendToTelegram(message);
+      connectPost('api/order', user).then(response => {
+        const data = response && response.data || {};
+        console.log(data);
+      });
     }
-    connectPost('api/order', user).then(response => {
-      const data = response && response.data || {};
-      console.log(data);
-    });
   }
 
   onChange (e) {

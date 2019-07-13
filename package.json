@@ -45,10 +45,15 @@
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "classnames": "^2.2.6",
     "eslint": "^5.16.0",
     "flipclock": "^0.10.8",
     "react-compound-timer": "^1.0.13",
-    "react-scroll": "^1.7.12"
+    "react-scroll": "^1.7.12",
+    "wowjs": "^1.1.3"
   }
 }

@@ -4,8 +4,8 @@ import './What-I-teach.scss';
 const WhatITeach = () => {
   return (
     <section className='what-i-teach' id='teach'>
-      <div className='about-teach'>
-        <div className='text-about-school'>
+      <div className='about-teach wow fadeInLeft'>
+        <div className='text-about-school wow fadeInRight'>
             На курсе мы осветим эти темы
           <ol>
             <li>Популярные диеты и принцип их работы, почему эффект только временный;</li>

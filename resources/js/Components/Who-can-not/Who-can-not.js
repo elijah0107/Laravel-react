@@ -4,8 +4,8 @@ import './Who-can-not.scss';
 const WhoCanNot = () => {
   return (
     <section className='who-can-not' id='who-can-not'>
-      <div className='about-can-not'>
-        <div className='text-block'>
+      <div className='about-can-not wow fadeInLeft'>
+        <div className='text-block wow fadeInRight'>
           <p className='text-who-can-not'>
             Мой курс не подойдёт людям,
             которые хотят переложить ответственность

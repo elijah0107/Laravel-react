@@ -10,7 +10,7 @@ class Countdown extends Component {
   }
   render () {
     const now = new Date();
-    const achieve = new Date(2019, 6, 30);
+    const achieve = new Date(2019, 7, 4, 16);
     let number = achieve - now;
     return (
       <Timer
@@ -18,9 +18,9 @@ class Countdown extends Component {
         direction='backward'
       >
         {() => (
-          <div className='wrapper'>
+          <div className='wrapper wow fadeInLeft'>
             <div className='timer'>
-              <h3>Старт следующего потока курса 30 июля</h3>
+              <h3>Старт следующего потока курса 4 августа</h3>
               <div className='time-to-left'>
                 <div className='time'>
                   <Timer.Days /> <span className='time-name'>days</span>

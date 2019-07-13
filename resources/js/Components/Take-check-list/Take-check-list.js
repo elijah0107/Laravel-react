@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Take-check-list.scss';
 import { connectPost } from '../Common/connectApi';
 import { sendToTelegram } from '../Common/sendToTelegram';
+import cn from 'classnames';
 
 class TakeCheckList extends Component {
   constructor (props) {
@@ -12,6 +13,8 @@ class TakeCheckList extends Component {
       email: '',
       name: '',
       errors: '',
+      needShowAgainButton: false,
+      stopAnimation: '',
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -22,7 +25,7 @@ class TakeCheckList extends Component {
         {this.state.isOpenCheckListPopup && (
           <div className='container' onClick={this.closeCheckList}>
             <div className='check-list-form'>
-              <form className='form-action' noValidate onSubmit={this.onTestSubmit}>
+              <form className='form-action' noValidate >
                 <legend>Для получения шпаргалки введите ваши данные</legend>
                 <div className='input'>
                   <label htmlFor=''>
@@ -51,17 +54,20 @@ class TakeCheckList extends Component {
                 {this.state.errors && (
                   <div className='error-message'>{this.state.errors}</div>
                 )}
-                <button type='submit' className='submit-button' >Отправить</button>
+                <button type='submit' className='submit-button' onClick={this.onTestSubmit}>Отправить</button>
+                {this.state.needShowAgainButton && (
+                  <button type='submit' className='submit-button again-button' onClick={this.againSend}>Отправить ещё раз</button>
+                )}
               </form>
             </div>
           </div>
         )}
         {!this.state.isButton && !this.state.isOpenCheckListPopup && (
-          <button className='button-check-list' onClick={this.openCheckList}>Получить шпаргалку 'Почему я не
+          <button className={cn('button-check-list', this.state.stopAnimation)} onClick={this.openCheckList}>Получить шпаргалку 'Почему я не
             худею?'</button>
         )}
         {!this.state.isButton && !this.state.isOpenCheckListPopup && (
-          <span className='close-button' onClick={this.closeButton}>&times;</span>
+          <span className={cn('close-button', this.state.stopAnimation)} onClick={this.closeButton}>&times;</span>
         )}
         {this.state.isButton && (
           <span className='open-button' onClick={this.closeButton}>&raquo;</span>
@@ -89,6 +95,13 @@ class TakeCheckList extends Component {
           this.setState({ errors: data.callbackMessage });
           return;
         }
+        if (data.user_exist) {
+          this.setState({
+            errors: data.callbackMessage,
+            needShowAgainButton: true,
+          });
+          return;
+        }
         if (!data.user_exist) {
           this.send();
         }
@@ -109,11 +122,38 @@ class TakeCheckList extends Component {
     connectPost('api/send', user)
       .then(response => {
         const data = response && response.data || {};
-        if(data.has_send) {
-          setTimeout(closeAndRemove, 2000);
+        if (data.has_send) {
+          setTimeout(closeAndRemove, 4000);
           sendToTelegram(message);
         }
         this.setState({ errors: data.callbackMessage });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  againSend = (e) => {
+    const email = this.state.email;
+    const user = {
+      email,
+    };
+    e.preventDefault();
+
+    connectPost('api/send', user)
+      .then(response => {
+        const data = response && response.data || {};
+        if (data.has_send) {
+          this.setState({
+            errors: data.callbackMessage,
+            needShowAgainButton: false,
+          });
+          setTimeout(() => {
+            this.setState({
+              isOpenCheckListPopup: false,
+            });
+          },2000);
+        }
       })
       .catch(err => {
         console.log(err);
@@ -126,11 +166,17 @@ class TakeCheckList extends Component {
   closeCheckList = ({ target, currentTarget }) => {
     window.location.hash = '';
     if (target === currentTarget) {
-      this.setState({ isOpenCheckListPopup: !this.state.isOpenCheckListPopup });
+      this.setState({
+        isOpenCheckListPopup: !this.state.isOpenCheckListPopup,
+        stopAnimation: 'stop-animation',
+      });
     }
   };
   closeButton = () => {
-    this.setState({ isButton: !this.state.isButton });
+    this.setState({
+      isButton: !this.state.isButton,
+      stopAnimation: 'stop-animation',
+    });
   }
 }
 

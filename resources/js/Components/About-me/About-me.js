@@ -11,12 +11,12 @@ class AboutMe extends Component {
   render () {
     return (
       <section className='about-me' id='about-me'>
-        <div className='photo-block'>
-          <div className='photo'>
+        <div className='photo-block wow fadeInLeft' >
+          <div className='photo wow fadeInLeft' >
             <img src={require('./../../images/photo.jpg')} alt='' className='img-photo'/>
           </div>
         </div>
-        <div className='text'>
+        <div className='text wow fadeInRight'>
           { !this.state.isFullAboutMeText && (
             <p className='text-about-me text-min'>
                     Меня зовут Марина. До того как я связала свою

@@ -41,6 +41,13 @@
         color: white;
         border: none;
         padding: 5px;
+        &:hover {
+          color: #1b1e21;
+        }
+      }
+      .again-button {
+        background: #2fa360;
+        margin-top: 5px;
       }
     }
     .error-message {
@@ -74,7 +81,7 @@
   transform: rotate(90deg);
   position: fixed;
   top: 50%;
-  left: 0;
+  left: -300px;
   margin-left: -114px;
   font-family: 'Poiret One', cursive;
   font-size: 20px;
@@ -84,24 +91,53 @@
   width: 280px;
   z-index: 400;
   cursor: pointer;
+  animation: slide 2s;
+  animation-delay: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
   &:hover {
     color: #434343;
+  }
+}
+
+@keyframes slide {
+  from {
+    left: -300px
+  }
+  to {
+    left: 0;
   }
 }
 .close-button {
   position: fixed;
   top: 50%;
-  left: 0;
+  left: -300px;
   margin-left: 34px;
   margin-top: 148px;
   font-size: 55px;
   color: black;
   cursor: pointer;
   z-index: 400;
+  animation: slide 2s;
+  animation-delay: 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
   &:hover {
     color: #434343;
-    transform: rotate(180deg);
+    transform: rotate(90deg);
     transition: 1s;
+  }
+}
+.stop-animation {
+  animation: none;
+  left: 0;
+}
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
   }
 }
 .open-button {
@@ -125,4 +161,7 @@
   to {
     margin-left: 14px;
   }
+}
+.flipInX {
+
 }

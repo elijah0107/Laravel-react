@@ -13,7 +13,7 @@ class Footer extends Component {
 
   render () {
     return (
-      <footer className='footer' id='contacts'>
+      <footer className='footer wow zoomIn' id='contacts'>
         <div className='footer-block'>
           <div className='contacts'>
             <div className='social-networks'>
@@ -26,11 +26,21 @@ class Footer extends Component {
                 <img src={require('./../../images/insta-logo.png')} alt='' className='social-image'/>
               </a>
             </div>
+            {/*<div className='social-networks'>*/}
+            {/*  <a href='https://t.me/moiseeva_ma'>*/}
+            {/*    <img src={require('./../../images/telegram-logo.png')} className='social-image' alt='telegram'/>*/}
+            {/*  </a>*/}
+            {/*</div>*/}
+            {/*<div className='social-networks'>*/}
+            {/*  <a href='https://wa.me/79827147015'>*/}
+            {/*    <img src={require('./../../images/whatsapp-logo.png')} className='social-image' alt='whatsapp'/>*/}
+            {/*  </a>*/}
+            {/*</div>*/}
           </div>
           <div className='logo'>
             <img src={require('./../../images/logo.jpg')} alt=''/>
           </div>
-          <div className='block-menu'>
+          <div className='block-menu wow fadeInRight'>
             <ul className={this.state.isOpen ? 'menu menu_active' : 'menu'}>
               <li>
                 <a className='buy' href='/checkout'>купить</a>
@@ -69,6 +79,18 @@ class Footer extends Component {
       this.setState({ modalIsShow: !this.state.modalIsShow });
     }
   };
+  onClickContact = () => {
+    if (this.state.isContactActive === '') {
+      this.setState({
+        isContactActive: 'contact-active',
+      });
+    }
+    else {
+      this.setState({
+        isContactActive: '',
+      });
+    }
+  }
 }
 
 export default Footer;
