@@ -1,13 +1,13 @@
 import { call, put } from 'redux-saga/effects';
-import { Creators as OrdersCreators } from '../reducers/order';
+import { Creators as OrdersCreators } from '../reducers/notice';
 
 /**
  * Делает запрос на получение списка адресов доставки в API и обрабатывает ответ.
  * @generator
  * @param {Object} options.api Объект с API.
  */
-export function* request ({ api }, { pageNumber = 1 }) {
-  const response = yield call(api.getOrder, { page: pageNumber, id: 123 });
+export function* request ({ api }, { email = '', name = '' }) {
+  const response = yield call(api.getNotice, { email: email, name: name });
   const { ok, data } = response || {};
   if (ok) {
     const { items } = data || {};

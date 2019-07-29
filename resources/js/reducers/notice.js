@@ -7,7 +7,7 @@ export const { Types, Creators } = createActions(
     request: ['pageNumber'],
     success: ['data'],
     failure: ['error'],
-    setInfo: ['type', 'value'],
+    setInfo: ['name', 'value'],
   },
   { prefix: 'notice/' }
 );

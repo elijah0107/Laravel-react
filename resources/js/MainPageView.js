@@ -25,6 +25,7 @@ class MainPageView extends Component {
   }
 
   render () {
+    console.log(this.props)
     return (
       <>
         <Header needShowBlockMenu={true} />

@@ -1,18 +1,27 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
+import { createStore } from '../service/store';
+import { createWatcher } from '../sagas/_index';
+import { createAPI } from '../service/api';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
-import MainPageView from '../MainPageView';
 import * as serviceWorker from './serviceWorker';
+import reducer from '../reducers/_index';
+import MainPageView from '../MainPageView';
 
 document.addEventListener('DOMContentLoaded', () => {
   const history = createBrowserHistory();
-  ReactDOM.render((
-    <Router history={history}>
-      <MainPageView />
-    </Router>
-  ),
-  document.getElementById('root'),
+  const store = createStore(reducer, createWatcher({
+    api: createAPI(),
+    history,
+  }));
+  ReactDOM.render(
+    (
+      <Provider store={store}>
+        <MainPageView />
+      </Provider>
+    ),
+    document.getElementById('root'),
   );
   serviceWorker.unregister();
 });

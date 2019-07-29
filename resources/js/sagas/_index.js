@@ -1,10 +1,10 @@
 import { all, takeLatest } from 'redux-saga/effects';
 
 // типы действий
-import { Types as OrderType } from '../reducers/order';
+import { Types as NoticeType } from '../reducers/notice';
 
 // саги
-import * as OrderSagas from './order';
+import * as NoticeSagas from './notice';
 
 /**
  * Возвращает сагу-наблюдатель.
@@ -24,6 +24,6 @@ export function createWatcher (options = {}) {
  */
 export default function* watch (options = {}) {
   yield all([
-    takeLatest(OrderType.REQUEST, OrderSagas.request, options),
+    takeLatest(NoticeType.REQUEST, NoticeSagas.request, options),
   ]);
 }
