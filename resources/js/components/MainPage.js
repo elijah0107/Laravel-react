@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
 import * as serviceWorker from './serviceWorker';
 import reducer from '../reducers/_index';
-import MainPageView from '../MainPageView';
+import MainPageView from '../Connector';
 
 document.addEventListener('DOMContentLoaded', () => {
   const history = createBrowserHistory();
