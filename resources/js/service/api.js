@@ -11,6 +11,11 @@ export const createAPI = () => {
   });
 
   return {
-    getNotice: () => api.post('/notice/'),
+    getNotice: ({ email, name }) => {
+      return api.post('/api/notice/', {
+        email,
+        name,
+      });
+    },
   };
 };

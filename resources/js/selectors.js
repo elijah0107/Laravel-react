@@ -6,7 +6,28 @@ import get from 'lodash/get';
  * @param {Object} state Состояние приложения.
  * @returns {Object} Данные формы заказа.
  */
-export const selectEmail = state => get(state, 'notice') || {};
+export const selectEmail = state => get(state, 'notice.email', '');
+
+/**
+ * Возвращает данные формы заказа.
+ * @param {Object} state Состояние приложения.
+ * @returns {Object} Данные формы заказа.
+ */
+export const selectName = state => get(state, 'notice.name', '');
+
+/**
+ * Возвращает данные формы заказа.
+ * @param {Object} state Состояние приложения.
+ * @returns {Object} Данные формы заказа.
+ */
+export const selectError = state => get(state, 'notice.error', '');
+
+/**
+ * Возвращает данные которые вернулись из апи.
+ * @param {Object} state Состояние приложения.
+ * @returns {Object} Данные формы заказа.
+ */
+export const selectData = state => get(state, 'notice.data', '');
 
 /**
  * Возвращает данные значения комментария в заказе.
@@ -17,15 +38,3 @@ export const getCommentFieldValue = createSelector(
   selectEmail,
   comment => get(comment, 'value', '')
 );
-
-/**
- * Набор селекторов.
- * Вложенные селекторы должны браться отсюда для возможности тестирования.
- * @type {Object}
- */
-const Selectors = {
-  selectEmail,
-  getCommentFieldValue,
-};
-
-export default Selectors;

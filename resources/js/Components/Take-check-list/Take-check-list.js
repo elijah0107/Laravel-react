@@ -10,33 +10,43 @@ class TakeCheckList extends Component {
     this.state = {
       isOpenCheckListPopup: false,
       isButton: false,
-      email: '',
-      name: '',
       errors: '',
       needShowAgainButton: false,
       stopAnimation: '',
     };
-    this.onChange = this.onChange.bind(this);
   }
-
   render () {
+    const {
+      onChangeEmail,
+      onChangeName,
+      email,
+      name,
+      onSubmit,
+      error,
+      data,
+    } = this.props;
+    const {
+      callbackMessage,
+      error: callbackError,
+      user_exist: userExist,
+    } = data || {};
     return (
       <>
         {this.state.isOpenCheckListPopup && (
           <div className='container' onClick={this.closeCheckList}>
             <div className='check-list-form'>
-              <form className='form-action' noValidate >
+              <div className='form-action'>
                 <legend>Для получения шпаргалки введите ваши данные</legend>
                 <div className='input'>
                   <label htmlFor=''>
                     Ваш e-mail
                   </label>
                   <input
-                    onChange={this.onChange}
+                    onChange={onChangeEmail}
                     required
                     name='email'
-                    placeholder='Ваш e-mail'
-                    value={this.state.email}
+                    placeholder='e-mail'
+                    value={email}
                   />
                 </div>
                 <div className='input'>
@@ -44,21 +54,21 @@ class TakeCheckList extends Component {
                     Ваше имя
                   </label>
                   <input
-                    onChange={this.onChange}
+                    onChange={onChangeName}
                     required
                     name='name'
-                    placeholder='Ваше имя'
-                    value={this.state.name}
+                    placeholder='имя'
+                    value={name}
                   />
                 </div>
-                {this.state.errors && (
-                  <div className='error-message'>{this.state.errors}</div>
+                {(error || callbackMessage) && (
+                  <div className='error-message'>{error || callbackMessage}</div>
                 )}
-                <button type='submit' className='submit-button' onClick={this.onTestSubmit}>Отправить</button>
-                {this.state.needShowAgainButton && (
+                <button type='submit' className='submit-button' onClick={onSubmit}>Отправить</button>
+                {userExist && (
                   <button type='submit' className='submit-button again-button' onClick={this.againSend}>Отправить ещё раз</button>
                 )}
-              </form>
+              </div>
             </div>
           </div>
         )}
@@ -75,39 +85,6 @@ class TakeCheckList extends Component {
       </>
     );
   }
-  onChange (e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  }
-  onTestSubmit = e => {
-    e.preventDefault();
-    const email = this.state.email;
-    const name = this.state.name;
-    const user = {
-      email,
-      name,
-    };
-    connectPost('api/notice', user)
-      .then(response => {
-        const data = response && response.data || {};
-        if (data.error) {
-          this.setState({ errors: data.callbackMessage });
-          return;
-        }
-        if (data.user_exist) {
-          this.setState({
-            errors: data.callbackMessage,
-            needShowAgainButton: true,
-          });
-          return;
-        }
-        if (!data.user_exist) {
-          this.send();
-        }
-        this.setState({ errors: data.callbackMessage });
-      });
-  };
   send = () => {
     const email = this.state.email;
     const name = this.state.name;

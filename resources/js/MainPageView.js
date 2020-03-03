@@ -18,18 +18,33 @@ import WOW from 'wowjs';
 class MainPageView extends Component {
   constructor (props) {
     super(props);
-    this.state = {};
   }
   componentDidMount () {
     new WOW.WOW().init();
   }
 
   render () {
-    console.log(this.props)
+    const {
+      onChangeEmail,
+      onChangeName,
+      email,
+      name,
+      onSubmit,
+      error,
+      data,
+    } = this.props;
     return (
       <>
         <Header needShowBlockMenu={true} />
-        <TakeCheckList/>
+        <TakeCheckList
+          onChangeEmail={onChangeEmail}
+          onChangeName={onChangeName}
+          email={email}
+          name={name}
+          onSubmit={onSubmit}
+          error={error}
+          data={data}
+        />
         <Motto/>
         <Countdown/>
         <AboutMe/>

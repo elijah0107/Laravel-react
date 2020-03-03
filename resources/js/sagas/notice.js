@@ -1,45 +1,50 @@
-import { call, put } from 'redux-saga/effects';
-import { Creators as OrdersCreators } from '../reducers/notice';
+import { call, put, select } from 'redux-saga/effects';
+import { Creators as NoticeCreators } from '../reducers/notice';
+import { selectEmail, selectName } from '../selectors';
 
 /**
  * Делает запрос на получение списка адресов доставки в API и обрабатывает ответ.
  * @generator
+ * @param {Object} options Объект с опциями.
  * @param {Object} options.api Объект с API.
  */
-export function* request ({ api }, { email = '', name = '' }) {
-  const response = yield call(api.getNotice, { email: email, name: name });
-  const { ok, data } = response || {};
-  if (ok) {
-    const { items } = data || {};
-    if (Array.isArray(items)) {
-      const processedOrders = yield call(processOrders, items);
-      yield put(OrdersCreators.success(processedOrders));
+export function* request ({ api }) {
+  const email = yield select(selectEmail);
+  const name = yield select(selectName);
+  const validated = validateContact({ email: email, name: name });
+  if (validated) {
+    yield put(NoticeCreators.setError(validated));
+  }
+  if (!validated) {
+    const response = yield call(api.getNotice, { email: email, name: name });
+    const { ok, data } = response || {};
+    if (ok) {
+      yield put(NoticeCreators.success(data));
+    } else {
+      yield put(NoticeCreators.failure());
     }
-  } else {
-    yield put(OrdersCreators.failure());
   }
 }
 
 /**
- * Обрабатывает массив заказов.
- * @param {Array} orders Массив заказов, пришедший от API.
- * @return {Array} Обработанный массив заказов с нужными полями.
+ * Валидирует контакты.
+ * @param {Object} contact Необработанные данные.
+ * @return {Object|null} Контакты.
  */
-export function processOrders (orders) {
-  return Array
-    .from(orders || [])
-    .map(processOrder);
+export function validateContact (contact) {
+  const {
+    email,
+    name,
+  } = contact || {};
+  if (!email && !name) {
+    return 'Необходимо заполнить email и name';
+  }
+  if (!email) {
+    return 'Необходимо заполнить email';
+  }
+  if (!name) {
+    return 'Необходимо заполнить name';
+  }
+  return null;
 }
 
-/**
- * Обрабатывает массив заказов.
- * @param {Object} order Массив заказов, пришедший от API.
- * @return {Object} Обработанный заказ с нужными полями.
- */
-export function processOrder (order) {
-  order = order || {};
-  return {
-    test: 'test',
-    ...order,
-  };
-}

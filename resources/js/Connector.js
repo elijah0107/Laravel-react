@@ -3,6 +3,9 @@ import MainPageView from './MainPageView';
 import { Creators as NoticeCreators } from './reducers/notice';
 import {
   selectEmail,
+  selectName,
+  selectError,
+  selectData,
 } from './selectors';
 
 /**
@@ -13,6 +16,9 @@ import {
 const mapStateToProps = state => {
   return {
     email: selectEmail(state),
+    name: selectName(state),
+    error: selectError(state),
+    data: selectData(state),
   };
 };
 
@@ -22,7 +28,9 @@ const mapStateToProps = state => {
  * @return {Object} Свойства компонента.
  */
 const mapDispatchToProps = dispatch => ({
-  requestNotice: (email, name) => dispatch(NoticeCreators.request(email, name)),
+  onChangeEmail: event => event && event.target && dispatch(NoticeCreators.setEmail(event.target.value)),
+  onChangeName: event => event && event.target && dispatch(NoticeCreators.setName(event.target.value)),
+  onSubmit: () => dispatch(NoticeCreators.request()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPageView);

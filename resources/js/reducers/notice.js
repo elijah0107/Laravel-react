@@ -4,10 +4,13 @@ import * as commonReducers from './common-reducers';
 
 export const { Types, Creators } = createActions(
   {
-    request: ['pageNumber'],
     success: ['data'],
     failure: ['error'],
-    setInfo: ['name', 'value'],
+    setEmail: ['value'],
+    setName: ['value'],
+    request: [],
+    setData: ['data'],
+    setError: ['error'],
   },
   { prefix: 'notice/' }
 );
@@ -19,26 +22,48 @@ export const { Types, Creators } = createActions(
 export function getInitialState () {
   return {
     state: DATA_STATES_TYPES.initial,
-    data: [],
+    data: {},
     email: '',
     name: '',
+    error: '',
   };
 }
 
 /**
- * Записывает данные в хранилище.
+ * Записывает имя.
  * @param {Object} state Состояние приложения.
- * @param {string} name Имя переменной, которую нужно записать.
  * @param {string} value Значение переменной.
  * @returns {Object} Объект с записанными данными
  */
-export const setInfo = (state, { name, value }) => {
-  return { ...state, [name]: value };
+export const setName = (state, { value = '' }) => {
+  return { ...state, name: value, error: '' };
+};
+
+/**
+ * Записывает email.
+ * @param {Object} state Состояние приложения.
+ * @param {string} value Значение переменной.
+ * @returns {Object} Объект с записанными данными
+ */
+export const setEmail = (state, { value = '' }) => {
+  return { ...state, email: value, error: '' };
+};
+
+/**
+ * Записывает email.
+ * @param {Object} state Состояние приложения.
+ * @param {string} value Значение переменной.
+ * @returns {Object} Объект с записанными данными
+ */
+export const setError = (state, { error = '' }) => {
+  return { ...state, error };
 };
 
 export default createReducer(getInitialState(), {
-  [Types.REQUEST]: commonReducers.request,
   [Types.SUCCESS]: commonReducers.success,
   [Types.FAILURE]: commonReducers.failure,
-  [Types.SET_INFO]: setInfo,
+  [Types.REQUEST]: commonReducers.request,
+  [Types.SET_EMAIL]: setEmail,
+  [Types.SET_NAME]: setName,
+  [Types.SET_ERROR]: setError,
 });
