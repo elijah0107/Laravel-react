@@ -9,7 +9,7 @@ import cn from 'classnames';
 /**
  *
  */
-class MainPageView extends Component {
+export default class MainPageView extends Component {
   /**
    *
    * @param props
@@ -154,5 +154,3 @@ class MainPageView extends Component {
     this.sum = value;
   };
 }
-
-export default MainPageView;
